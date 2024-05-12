@@ -1,37 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace The_Greatest_Dance_Off.Units
 {
-    class HeavyUnit : IUnit
+    class HeavyUnit : Unit, IHealer
     {
-        public string Name { get; } = "uuuu";
-        public int Health { get; set; } = 100;
-        public int Attack { get; set; } = 50;
-        public int Defence { get; set; } = 74; // это рандом
-        public int Dodge { get; set; } = 16;
-        public int Cost { get; set; } = 60; // random too
-
-        public HeavyUnit(HeavyUnit HeavyUnit)
+        public HeavyUnit()
         {
-            Name = HeavyUnit.Name;
-            Health = HeavyUnit.Health;
-            Attack = HeavyUnit.Attack;
-            Defence = HeavyUnit.Defence;
-            Dodge = HeavyUnit.Dodge;
+            Attack = 60;
+            Defence = 25;
+            СurrentHealth = 100;
+            Health = СurrentHealth;
+            Price = (Attack + Defence + Health) * 10;
         }
-
-        public void DoAttack(int Attack)
+        public new void Heal(int Healing)
         {
-            int loss = Attack - Defence;
-            if (loss > 0)
+            if (СurrentHealth < Health && СurrentHealth > 0)
             {
-                Health = Health - loss;
+                int healAmount = Math.Min(Healing, Health - СurrentHealth);
+                Health += healAmount;
             }
         }
+
 
     }
 }

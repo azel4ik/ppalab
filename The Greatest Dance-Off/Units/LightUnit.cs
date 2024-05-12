@@ -6,31 +6,25 @@ using System.Threading.Tasks;
 
 namespace The_Greatest_Dance_Off.Units
 { 
-    class LightUnit : IUnit
+    class LightUnit : Unit, IHealer
     {
-        public string Name { get; } = "ppp";
-        public int Health { get; set; } = 75;
-        public int Attack { get; set; } = 25;
-        public int Defence { get; set; } = 74; // это рандом
-        public int Dodge { get; set; } = 8;
-        public int Cost { get; set; } = 60; // random to
-        public LightUnit(LightUnit LightUnit)
+        public LightUnit()
         {
-            Name = LightUnit.Name;
-            Health = LightUnit.Health;
-            Attack = LightUnit.Attack;
-            Defence = LightUnit.Defence;
-            Dodge = LightUnit.Dodge;
+            Attack = 25;
+            Defence = 50;
+            СurrentHealth = 100;
+            Health = СurrentHealth;
+            Price = (Attack + Defence + Health) * 10;
         }
-        public void DoAttack(int Attack)
-        {
-            int loss = Attack - Defence;
-            if (loss > 0)
+
+        public new void Heal(int Healing)
             {
-                Health = Health - loss;
+                if (СurrentHealth < Health && СurrentHealth > 0)
+                {
+                    int healAmount = Math.Min(Healing, Health - СurrentHealth);
+                    Health += healAmount;
+                }
             }
+
         }
-
-
     }
-}

@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace The_Greatest_Dance_Off.Units
 {
-    internal interface IShooting
+    public interface IHealer
     {
-        int Distance { get; set; }
-
-        void ToShoot();
-
-
-
+        public void Heal (int Healing) {}
     }
 }
