@@ -101,6 +101,7 @@
             Undo.Name = "Undo";
             Undo.Size = new Size(29, 24);
             Undo.Text = "Undo";
+            Undo.Click += Undo_Click;
             // 
             // Redo
             // 

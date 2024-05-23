@@ -15,12 +15,15 @@ namespace ppa_lab_test_1
     {
         System.Media.SoundPlayer player3 = new System.Media.SoundPlayer();
         System.Media.SoundPlayer effectplayer = new System.Media.SoundPlayer();
+        Game g;
+        GameManager gm = new GameManager();
 
-        public Form3()
+        public Form3(Game game)
         {
             InitializeComponent();
+            g = game;
             player3.SoundLocation = "Battle.wav";
-            effectplayer.SoundLocation = "sword-clash.wav";
+            //effectplayer.SoundLocation = "sword-clash.wav";
             player3.PlayLooping();
         }
 
@@ -36,13 +39,24 @@ namespace ppa_lab_test_1
 
         private void Save_Click(object sender, EventArgs e)
         {
-
+            SaveGame sg = new SaveGame(g);
+            gm.SetCommand(sg);
+            gm.Execute();
         }
 
         private void attackToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MakeMove mm = new MakeMove(g);
+            gm.SetCommand(mm);
+            gm.Execute();
             pictureBox1.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             //effectplayer.Play();
+        }
+
+        private void Undo_Click(object sender, EventArgs e)
+        {
+            
+            
         }
     }
 }

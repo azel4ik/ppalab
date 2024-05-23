@@ -50,7 +50,7 @@ namespace ppa_lab_test_1
         }
         public override void Execute()
         {
-            game.CreateArmy( );
+            game.CreateArmy();
         }
 
         public override void Undo()
@@ -86,7 +86,7 @@ namespace ppa_lab_test_1
         }
     }
 
-    class Game
+    public class Game
     {
         public Army player = new Army();
         public Army enemy = new Army();
@@ -109,6 +109,7 @@ namespace ppa_lab_test_1
         {
             Console.WriteLine("The army is being created...");
             player.ChooseUnits(player.HICount, player.LICount, player.ACount, player.HCount, player.WCount);
+            enemy.ChooseUnits(1,1,1,1,1);
         }
         public void Save()
         {
@@ -162,7 +163,7 @@ namespace ppa_lab_test_1
         }
     }
 
-    class Army
+    public class Army
     {
         public List<Unit> units = new List<Unit>();
         public int HICount;

@@ -3,6 +3,7 @@ namespace ppa_lab_test_1
 
     public partial class Form1 : Form
     {
+        Game g;
         System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         public Form1()
         {

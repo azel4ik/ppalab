@@ -41,7 +41,7 @@ namespace ppa_lab_test_1
 
                 gm.SetCommand(ga);
                 gm.Execute();
-                Form3 f3 = new Form3();
+                Form3 f3 = new Form3(g);
                 this.Hide();
                 f3.Show();
             }
