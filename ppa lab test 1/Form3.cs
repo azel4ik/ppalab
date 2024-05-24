@@ -32,7 +32,7 @@ namespace ppa_lab_test_1
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e) //
         {
 
         }
