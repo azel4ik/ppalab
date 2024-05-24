@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ppa_lab_test_1.ppa_lab_test_1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -10,6 +11,7 @@ namespace ppa_lab_test_1
     abstract class GameCommand
     {
         public string? command_name;
+        public string? command_status;
         public abstract void Execute();
         public abstract void Undo();
         public abstract void Redo();
@@ -92,42 +94,45 @@ namespace ppa_lab_test_1
         public Army enemy = new Army();
         public void Move()
         {
-            Console.WriteLine("Units are making their moves...");
-            player.units[0].DoAttack(enemy.units[0]);
-            enemy.units[0].DoAttack(player.units[0]);
-            //player.units[0].Heal(FindNearestUnit(player.units));
-            //enemy.units[0].Heal(FindNearestUnit(enemy.units));
-            //player.units[0].Copy(FindNearestUnit(player.units));
-            //enemy.units[0].Copy(FindNearestUnit(enemy.units));
-            //если есть archer, он стреляет
-            player.RemoveDeadUnits();
-            enemy.RemoveDeadUnits();
-            player.MoveInQueue();
-            enemy.MoveInQueue();
+            if (player.units.Count() > 0 && enemy.units.Count() > 0)
+            {
+                player.units[0].DoAttack(enemy.units[0]);
+                enemy.units[0].DoAttack(player.units[0]);
+                //player.units[0].Heal(FindNearestUnit(player.units));
+                //enemy.units[0].Heal(FindNearestUnit(enemy.units));
+                //player.units[0].Copy(FindNearestUnit(player.units));
+                //enemy.units[0].Copy(FindNearestUnit(enemy.units));
+                //если есть archer, он стреляет
+                player.RemoveDeadUnits();
+                enemy.RemoveDeadUnits();
+                player.MoveInQueue();
+                enemy.MoveInQueue();
+            }
         }
         public void CreateArmy()
         {
             Console.WriteLine("The army is being created...");
             player.ChooseUnits(player.HICount, player.LICount, player.ACount, player.HCount, player.WCount);
-            enemy.ChooseUnits(1,1,1,1,1);
         }
         public void Save()
         {
             Console.WriteLine("The game is being saved...");
         }
-        
+
     }
 
 
-    class GameManager
+    class GameManager : IObservable
     {
         GameCommand? command;
+        CommandLogger observer = new CommandLogger();
         Stack<GameCommand> Undoable = new Stack<GameCommand>();
         Stack<GameCommand> Redoable = new Stack<GameCommand>();
         public void SetCommand(GameCommand c)
         {
-            Console.WriteLine($"Setting a command '{c.command_name}'...");
             command = c;
+            command.command_status = "Set";
+            NotifyObservers();
         }
         public void Execute()
         {
@@ -135,7 +140,8 @@ namespace ppa_lab_test_1
             {
                 command.Execute();
                 Undoable.Push(command);
-                Console.WriteLine($"'{command.command_name}' has been executed.");
+                command.command_status = "Executed";
+                NotifyObservers();
             }
             else { Console.WriteLine("No command to execute"); }
         }
@@ -146,7 +152,8 @@ namespace ppa_lab_test_1
                 command = Undoable.Peek();
                 Undoable.Pop().Undo();
                 Redoable.Push(command);
-                Console.WriteLine($"'{command.command_name}' has been undone.");
+                command.command_status = "Undone";
+                NotifyObservers();
             }
             else { Console.WriteLine("No command to undo."); }
         }
@@ -157,9 +164,19 @@ namespace ppa_lab_test_1
                 command = Redoable.Peek();
                 Redoable.Pop().Redo();
                 Undoable.Push(command);
-                Console.WriteLine($"'{command.command_name}' has been redone.");
+                command.command_status = "Redone";
+                NotifyObservers();
             }
             else { Console.WriteLine("No command to redo."); }
+        }
+
+
+        public void NotifyObservers()
+        {
+            if (command != null && command.command_status != null && command.command_name != null)
+            {
+                observer.Update(command.command_name, command.command_status);
+            }
         }
     }
 
@@ -199,18 +216,5 @@ namespace ppa_lab_test_1
 
         }
     }
-
-    //class Unit
-    //{
-    //    public string Name { get; set; }
-    //    public string Description { get; set; }
-    //    public int attack;
-    //    public int health;
-    //    public Unit() { }
-
-    //    public Image StandImage { get; set; }
-    //    public Image AttackImage { get; set; }
-
-    //}
 
 }

@@ -77,20 +77,20 @@
             // attackToolStripMenuItem
             // 
             attackToolStripMenuItem.Name = "attackToolStripMenuItem";
-            attackToolStripMenuItem.Size = new Size(224, 26);
+            attackToolStripMenuItem.Size = new Size(134, 26);
             attackToolStripMenuItem.Text = "Attack";
             attackToolStripMenuItem.Click += attackToolStripMenuItem_Click;
             // 
             // healToolStripMenuItem
             // 
             healToolStripMenuItem.Name = "healToolStripMenuItem";
-            healToolStripMenuItem.Size = new Size(224, 26);
+            healToolStripMenuItem.Size = new Size(134, 26);
             healToolStripMenuItem.Text = "Heal";
             // 
             // cloneToolStripMenuItem
             // 
             cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
-            cloneToolStripMenuItem.Size = new Size(224, 26);
+            cloneToolStripMenuItem.Size = new Size(134, 26);
             cloneToolStripMenuItem.Text = "Clone";
             // 
             // Undo
@@ -111,6 +111,7 @@
             Redo.Name = "Redo";
             Redo.Size = new Size(29, 24);
             Redo.Text = "Redo";
+            Redo.Click += Redo_Click;
             // 
             // Save
             // 
