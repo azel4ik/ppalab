@@ -102,7 +102,7 @@ namespace ppa_lab_test_1
                 //enemy.units[0].Heal(FindNearestUnit(enemy.units));
                 //player.units[0].Copy(FindNearestUnit(player.units));
                 //enemy.units[0].Copy(FindNearestUnit(enemy.units));
-                //если есть archer, он стреляет
+                //если есть archer, он стреляет  
                 player.RemoveDeadUnits();
                 enemy.RemoveDeadUnits();
                 player.MoveInQueue();
