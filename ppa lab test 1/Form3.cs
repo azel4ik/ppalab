@@ -68,5 +68,29 @@ namespace ppa_lab_test_1
         {
             gm.Redo();
         }
+
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void x1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            game.SetArmyPosition(new OnevsOnePosition());
+        }
+
+        private void x3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            game.SetArmyPosition(new ThreevsThreePosition());
+
+        }
+
+        private void everyoneXEveryoneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            game.SetArmyPosition(new AllvsAllPosition());
+
+        }
+
+        
     }
 }

@@ -92,22 +92,17 @@ namespace ppa_lab_test_1
     {
         public Army player = new Army();
         public Army enemy = new Army();
+        public IArmyPosition ArmyPosition = new OnevsOnePosition();
+
+        public void SetArmyPosition(IArmyPosition ap)
+        {
+            ArmyPosition = ap;
+        }
+
         public void Move()
         {
-            if (player.units.Count() > 0 && enemy.units.Count() > 0)
-            {
-                player.units[0].DoAttack(enemy.units[0]);
-                enemy.units[0].DoAttack(player.units[0]);
-                //player.units[0].Heal(FindNearestUnit(player.units));
-                //enemy.units[0].Heal(FindNearestUnit(enemy.units));
-                //player.units[0].Copy(FindNearestUnit(player.units));
-                //enemy.units[0].Copy(FindNearestUnit(enemy.units));
-                //если есть archer, он стреляет
-                player.RemoveDeadUnits();
-                enemy.RemoveDeadUnits();
-                player.MoveInQueue();
-                enemy.MoveInQueue();
-            }
+            ArmyPosition.MoveAlgorithm(player, enemy);
+
         }
         public void CreateArmy()
         {
@@ -169,8 +164,6 @@ namespace ppa_lab_test_1
             }
             else { Console.WriteLine("No command to redo."); }
         }
-
-
         public void NotifyObservers()
         {
             if (command != null && command.command_status != null && command.command_name != null)
