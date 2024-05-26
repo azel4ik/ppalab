@@ -1,6 +1,7 @@
 ﻿using ppa_lab_test_1.ppa_lab_test_1;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -93,7 +94,7 @@ namespace ppa_lab_test_1
         public Army player = new Army();
         public Army enemy = new Army();
         public IArmyPosition ArmyPosition = new OnevsOnePosition();
-
+        
         public void SetArmyPosition(IArmyPosition ap)
         {
             ArmyPosition = ap;
@@ -101,19 +102,42 @@ namespace ppa_lab_test_1
 
         public void Move()
         {
-            ArmyPosition.MoveAlgorithm(player, enemy);
+            ArmyPosition.MoveAlgorithm(this);
 
+        }
+
+        public void Attack(Unit p_unt, Unit o_unt)
+        {
+            IUnit pdlp = new DeathLogProxy(p_unt);
+            IUnit pdmlp = new DamageLogProxy(p_unt);
+            IUnit odlp = new DeathLogProxy(o_unt);
+            IUnit odmlp = new DamageLogProxy(o_unt);
+
+            if (p_unt.Alive()) 
+            { 
+                p_unt.DoAttack(o_unt); 
+                odmlp.GetDamaged();
+                if (!o_unt.Alive()) { odlp.Die(); return; }
+            }
+            if (o_unt.Alive()) 
+            { 
+                o_unt.DoAttack(p_unt); 
+                pdmlp.GetDamaged();
+                if (!p_unt.Alive()) { pdlp.Die(); return; }
+
+            }
         }
         public void CreateArmy()
         {
             Console.WriteLine("The army is being created...");
             player.ChooseUnits(player.HICount, player.LICount, player.ACount, player.HCount, player.WCount);
+            enemy.ChooseUnits(player.HICount, player.LICount, player.ACount, player.HCount, player.WCount);
+
         }
         public void Save()
         {
             Console.WriteLine("The game is being saved...");
         }
-
     }
 
 
@@ -181,12 +205,19 @@ namespace ppa_lab_test_1
         public int ACount;
         public int HCount;
         public int WCount;
+        
 
         public void RemoveDeadUnits()
         {
             for (int i = 0; i < units.Count(); i++)
             {
-                if (!units[i].Alive()) { units.RemoveAt(i); i--; }
+                if (!units[i].Alive()) 
+                {
+                    
+                    units.RemoveAt(i); 
+
+                    i--; 
+                }
             }
         }
         public void MoveInQueue()
@@ -201,11 +232,11 @@ namespace ppa_lab_test_1
         public void ChooseUnits(int HINum, int LINum, int ANum, int HNum, int WNum)
         {
             //может, как-то их потом перемешать для случайного порядка в очереди
-            for (int i = 0; i < HINum; i++) units.Add(new HeavyUnit());
+            for (int i = 0; i < HINum; i++) units.Add(new HeavyUnit()); 
             for (int i = 0; i < LINum; i++) units.Add(new LightUnit());
             for (int i = 0; i < ANum; i++) units.Add(new Archer());
             for (int i = 0; i < HNum; i++) units.Add(new Healer());
-            //for (int i = 0; i < WNum; i++) units.Add(new Wizard());
+            for (int i = 0; i < WNum; i++) units.Add(new Wizard());
 
         }
     }

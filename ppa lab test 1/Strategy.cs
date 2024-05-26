@@ -8,30 +8,28 @@ namespace ppa_lab_test_1
 {
     public interface IArmyPosition
     {
-        public void MoveAlgorithm(Army player, Army enemy)
+        public void MoveAlgorithm(Game g)
         {
 
         }
     }
     public class OnevsOnePosition : IArmyPosition
     {
-        public void MoveAlgorithm(Army player, Army enemy)
+        public void MoveAlgorithm(Game g)
         {
-            if (player.units.Count() > 0 && enemy.units.Count() > 0)
+            if (g.player.units.Count() > 0 && g.enemy.units.Count() > 0)
             {
-                player.units[0].DoAttack(enemy.units[0]);
-                enemy.units[0].DoAttack(player.units[0]);
-
+                g.Attack(g.player.units[0], g.enemy.units[0]);
 
                 //player.units[0].Heal(FindNearestUnit(player.units));
                 //enemy.units[0].Heal(FindNearestUnit(enemy.units));
                 //player.units[0].Copy(FindNearestUnit(player.units));
                 //enemy.units[0].Copy(FindNearestUnit(enemy.units));
                 //если есть archer, он стреляет
-                player.RemoveDeadUnits();
-                enemy.RemoveDeadUnits();
-                player.MoveInQueue();
-                enemy.MoveInQueue();
+                g.player.RemoveDeadUnits();
+                g.enemy.RemoveDeadUnits();
+                g.player.MoveInQueue();
+                g.enemy.MoveInQueue();
             }
         }
     }
