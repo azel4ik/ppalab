@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NAudio.Wave;
 
 namespace ppa_lab_test_1
 {
 
     public partial class Form3 : Form
     {
-        System.Media.SoundPlayer player3 = new System.Media.SoundPlayer();
-        System.Media.SoundPlayer effectplayer = new System.Media.SoundPlayer();
+        //System.Media.SoundPlayer player3 = new System.Media.SoundPlayer();
+        //System.Media.SoundPlayer effectplayer = new System.Media.SoundPlayer();
+        private WaveStream bcgstream;
+        private WaveOut outbcg;
+        private WaveStream deatheffectstream;
+        private WaveOut outdeatheffect;
+
         public Game game;
         GameManager gm = new GameManager();
 
@@ -22,9 +28,14 @@ namespace ppa_lab_test_1
         {
             InitializeComponent();
             game = g;
-            player3.SoundLocation = "Battle.wav";
-            effectplayer.SoundLocation = "sword-clash.wav";
-            player3.PlayLooping();
+            bcgstream = new AudioFileReader("Battle.wav");
+            outbcg = new();
+            outbcg.Init(bcgstream);
+            //deatheffectstream = new AudioFileReader("sword-clash.wav");
+            //outdeatheffect = new();
+            //outdeatheffect.Init(deatheffectstream);
+            bcgstream.CurrentTime = new TimeSpan(0L);
+            outbcg.Play();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -50,8 +61,9 @@ namespace ppa_lab_test_1
             MakeMove mm = new MakeMove(game);
             gm.SetCommand(mm);
             gm.Execute();
-            pictureBox1.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //effectplayer.Play();
+            pictureBox2.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            //deatheffectstream.CurrentTime = new TimeSpan(0L);
+            //outdeatheffect.Play();
         }
 
         private void Action_Click(object sender, EventArgs e)
@@ -91,6 +103,6 @@ namespace ppa_lab_test_1
 
         }
 
-        
+
     }
 }

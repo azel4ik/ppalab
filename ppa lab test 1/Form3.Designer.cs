@@ -37,24 +37,22 @@
             Undo = new ToolStripButton();
             Redo = new ToolStripButton();
             Save = new ToolStripButton();
+            toolStripDropDownButton1 = new ToolStripDropDownButton();
+            x1ToolStripMenuItem = new ToolStripMenuItem();
+            x3ToolStripMenuItem = new ToolStripMenuItem();
+            everyoneXEveryoneToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             panel1 = new Panel();
             splitContainer1 = new SplitContainer();
             pictureBox2 = new PictureBox();
-            pictureBox1 = new PictureBox();
-            toolStripDropDownButton1 = new ToolStripDropDownButton();
-            x1ToolStripMenuItem = new ToolStripMenuItem();
-            x3ToolStripMenuItem = new ToolStripMenuItem();
-            everyoneXEveryoneToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
@@ -81,20 +79,20 @@
             // attackToolStripMenuItem
             // 
             attackToolStripMenuItem.Name = "attackToolStripMenuItem";
-            attackToolStripMenuItem.Size = new Size(134, 26);
+            attackToolStripMenuItem.Size = new Size(224, 26);
             attackToolStripMenuItem.Text = "Attack";
             attackToolStripMenuItem.Click += attackToolStripMenuItem_Click;
             // 
             // healToolStripMenuItem
             // 
             healToolStripMenuItem.Name = "healToolStripMenuItem";
-            healToolStripMenuItem.Size = new Size(134, 26);
+            healToolStripMenuItem.Size = new Size(224, 26);
             healToolStripMenuItem.Text = "Heal";
             // 
             // cloneToolStripMenuItem
             // 
             cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
-            cloneToolStripMenuItem.Size = new Size(134, 26);
+            cloneToolStripMenuItem.Size = new Size(224, 26);
             cloneToolStripMenuItem.Text = "Clone";
             // 
             // Undo
@@ -127,82 +125,6 @@
             Save.Text = "Save";
             Save.Click += Save_Click;
             // 
-            // statusStrip1
-            // 
-            statusStrip1.BackColor = SystemColors.Info;
-            statusStrip1.ImageScalingSize = new Size(20, 20);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 424);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 26);
-            statusStrip1.TabIndex = 1;
-            statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(151, 20);
-            toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // toolStripStatusLabel2
-            // 
-            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(151, 20);
-            toolStripStatusLabel2.Text = "toolStripStatusLabel2";
-            // 
-            // panel1
-            // 
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.BackgroundImageLayout = ImageLayout.Stretch;
-            panel1.Controls.Add(splitContainer1);
-            panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(pictureBox1);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 27);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(800, 397);
-            panel1.TabIndex = 2;
-            // 
-            // splitContainer1
-            // 
-            splitContainer1.Dock = DockStyle.Bottom;
-            splitContainer1.Location = new Point(0, 346);
-            splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            splitContainer1.Panel1.BackColor = SystemColors.Info;
-            // 
-            // splitContainer1.Panel2
-            // 
-            splitContainer1.Panel2.BackColor = SystemColors.Info;
-            splitContainer1.Size = new Size(800, 51);
-            splitContainer1.SplitterDistance = 399;
-            splitContainer1.TabIndex = 2;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Anchor = AnchorStyles.None;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(501, 128);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(134, 127);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Anchor = AnchorStyles.None;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(199, 128);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(134, 127);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
-            // 
             // toolStripDropDownButton1
             // 
             toolStripDropDownButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -234,6 +156,69 @@
             everyoneXEveryoneToolStripMenuItem.Text = "everyone vs everyone";
             everyoneXEveryoneToolStripMenuItem.Click += everyoneXEveryoneToolStripMenuItem_Click;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.BackColor = SystemColors.Info;
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
+            statusStrip1.Location = new Point(0, 424);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(800, 26);
+            statusStrip1.TabIndex = 1;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(151, 20);
+            toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(151, 20);
+            toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            // 
+            // panel1
+            // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Controls.Add(splitContainer1);
+            panel1.Controls.Add(pictureBox2);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 27);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(800, 397);
+            panel1.TabIndex = 2;
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Dock = DockStyle.Bottom;
+            splitContainer1.Location = new Point(0, 346);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.BackColor = SystemColors.Info;
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.BackColor = SystemColors.Info;
+            splitContainer1.Size = new Size(800, 51);
+            splitContainer1.SplitterDistance = 399;
+            splitContainer1.TabIndex = 2;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Anchor = AnchorStyles.None;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(601, 138);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(134, 127);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -252,7 +237,6 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -271,7 +255,6 @@
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
         private Panel panel1;
-        private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private SplitContainer splitContainer1;
         private ToolStripDropDownButton toolStripDropDownButton1;

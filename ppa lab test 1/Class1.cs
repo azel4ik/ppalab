@@ -29,7 +29,7 @@ namespace ppa_lab_test_1
         }
         public override void Execute()
         {
-            game.Move();
+            game.Move(1);
         }
 
         public override void Undo()
@@ -46,6 +46,7 @@ namespace ppa_lab_test_1
     class GatherArmy : GameCommand
     {
         Game game;
+        
         public GatherArmy(Game r)
         {
             game = r;
@@ -91,39 +92,41 @@ namespace ppa_lab_test_1
 
     public class Game
     {
-        public Army player = new Army();
-        public Army enemy = new Army();
+        public Army player = new Army("Player");
+        public Army enemy = new Army("Enemy");
         public IArmyPosition ArmyPosition = new OnevsOnePosition();
         
         public void SetArmyPosition(IArmyPosition ap)
         {
             ArmyPosition = ap;
+            ap.PositionUnits(this);
         }
 
-        public void Move()
+        public void Move(int movetype)
         {
-            ArmyPosition.MoveAlgorithm(this);
-
+            ArmyPosition.MoveAlgorithm(this, movetype);
         }
 
         public void Attack(Unit p_unt, Unit o_unt)
         {
             IUnit pdlp = new DeathLogProxy(p_unt);
             IUnit pdmlp = new DamageLogProxy(p_unt);
+            IUnit pdsp = new DeathSoundProxy(p_unt);
             IUnit odlp = new DeathLogProxy(o_unt);
             IUnit odmlp = new DamageLogProxy(o_unt);
+            IUnit odsp = new DeathSoundProxy(o_unt);
 
             if (p_unt.Alive()) 
             { 
                 p_unt.DoAttack(o_unt); 
                 odmlp.GetDamaged();
-                if (!o_unt.Alive()) { odlp.Die(); return; }
+                if (!o_unt.Alive()) { odlp.Die(); odsp.Die(); return; }
             }
             if (o_unt.Alive()) 
             { 
                 o_unt.DoAttack(p_unt); 
                 pdmlp.GetDamaged();
-                if (!p_unt.Alive()) { pdlp.Die(); return; }
+                if (!p_unt.Alive()) { pdlp.Die(); pdsp.Die(); return; }
 
             }
         }
@@ -200,12 +203,18 @@ namespace ppa_lab_test_1
     public class Army
     {
         public List<Unit> units = new List<Unit>();
+        public string ArmyName;
         public int HICount;
         public int LICount;
         public int ACount;
         public int HCount;
         public int WCount;
         
+        public Army(string name)
+        {
+            ArmyName = name;
+        }
+
 
         public void RemoveDeadUnits()
         {

@@ -75,6 +75,16 @@ namespace ppa_lab_test_1
             if (Health <= 0) return false;
             return true;
         }
+
+        public Unit()
+        {
+
+        }
+
+        public Unit(string name)
+        {
+            Name = name;
+        }
         public void DoAttack(Unit opponent) // хз как написать, но суть в том, что аттакующий и аттакованный юниты были живы для действия
         {
            
@@ -136,7 +146,7 @@ namespace ppa_lab_test_1
         Image BuffedImage;
         public HeavyUnit()
         {
-            Name = "Heavy Infantry";
+            Name += " Heavy Infantry";
             Attack = 60;
             Defence = 25;
             СurrentHealth = 100;
@@ -165,7 +175,7 @@ namespace ppa_lab_test_1
     {
         public LightUnit()
         {
-            Name = "Light Infantry";
+            Name += " Light Infantry";
             Attack = 25;
             Defence = 50;
             СurrentHealth = 100;
@@ -194,7 +204,7 @@ namespace ppa_lab_test_1
         Image ShootingImage;
         public Archer()
         {
-            Name = "Archer";
+            Name += " Archer";
             Attack = 35;
             Defence = 25;
             СurrentHealth = 100;
@@ -228,7 +238,7 @@ namespace ppa_lab_test_1
         Image HealingImage;
         public Healer()
         {
-            Name = "Healer";
+            Name += " Healer";
             Attack = 25;
             Defence = 50;
             СurrentHealth = 100;
@@ -263,7 +273,7 @@ namespace ppa_lab_test_1
         Image CloningImage;
         public Wizard()
         {
-            Name = "Wizard";
+            Name += " Wizard";
             Attack = 25;
             Defence = 50;
             СurrentHealth = 100;

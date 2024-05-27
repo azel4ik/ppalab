@@ -13,7 +13,7 @@ namespace ppa_lab_test_1
 
     public partial class Form2 : Form
     {
-        //System.Media.SoundPlayer player1 = new System.Media.SoundPlayer();
+        System.Media.SoundPlayer player1 = new System.Media.SoundPlayer();
         int wallet = 100;
         int balance;
         public Form2()
@@ -39,6 +39,7 @@ namespace ppa_lab_test_1
                 GameManager gm = new GameManager();
                 GatherArmy ga = new GatherArmy(g);
 
+                player1.Stop();
                 gm.SetCommand(ga);
                 gm.Execute();
                 Form3 f3 = new Form3(g);

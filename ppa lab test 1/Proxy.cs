@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NAudio.Wave;
 
 namespace ppa_lab_test_1
 {
@@ -15,14 +16,20 @@ namespace ppa_lab_test_1
     public class DeathSoundProxy: IUnit
     {
         private Unit _unit;
+        private WaveStream deatheffectstream;
+        private WaveOut outdeatheffect;
         public DeathSoundProxy(Unit unit) 
         {
             _unit = unit;
+            deatheffectstream = new AudioFileReader("sword-clash.wav");
+            outdeatheffect = new();
+            outdeatheffect.Init(deatheffectstream);
         }
         public void Die()
         {
             if (_unit.us != UnitStates.Dead) _unit.Die();
-            //make a sound
+            deatheffectstream.CurrentTime = new TimeSpan(0L);
+            outdeatheffect.Play();
         }
         public void GetDamaged() { }
     }
@@ -35,6 +42,7 @@ namespace ppa_lab_test_1
         public DeathLogProxy(Unit unit) 
         {
             _unit = unit;
+
         }
         public void Die()
         {
@@ -59,7 +67,7 @@ namespace ppa_lab_test_1
         {
             StreamWriter swdml = new StreamWriter("DamageLog.txt", true);
             if (_unit.us != UnitStates.Damaged) _unit.Die();
-            string msg = $"[{System.DateTime.Now}]: The unit '{_unit.Name}' has been Damaged.";
+            string msg = $"[{System.DateTime.Now}]: The unit '{_unit.Name}' has been Damaged. Their current health is {_unit.Health}";
             swdml.WriteLine(msg);
             swdml.Close();
         }
