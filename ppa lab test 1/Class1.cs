@@ -86,7 +86,7 @@ namespace ppa_lab_test_1
         public override void Redo()
         {
 
-        }
+        } //
     }
 
     public class Game
