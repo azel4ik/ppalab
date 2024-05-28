@@ -53,6 +53,43 @@ namespace ppa_lab_test_1
 
     }
 
+    class PlayUpToTheEnd: GameCommand
+    {
+        Game game;
+        Army initialplayerstate;
+        Army initialenemystate;
+        Army finalplayerstate;
+        Army finalenemystate;
+
+        public PlayUpToTheEnd(Game r)
+        {
+            game = r;
+            initialplayerstate = r.player.Copy();
+            initialenemystate = r.enemy.Copy();
+            command_name = "Play up to the end";
+        }
+        public override void Execute()
+        {
+            while (game.player.units.Count() > 0 || game.enemy.units.Count() > 0)
+            {
+                game.Move(1);
+            }
+            finalenemystate = game.enemy.Copy();
+            finalplayerstate = game.player.Copy();
+        }
+
+        public override void Undo()
+        {
+            game.player = initialplayerstate.Copy();
+            game.enemy = initialenemystate.Copy();
+        }
+        public override void Redo()
+        {
+            game.player = finalplayerstate.Copy();
+            game.enemy = finalenemystate.Copy();
+        }
+    }
+
     class GatherArmy : GameCommand
     {
         Game game;
@@ -130,13 +167,13 @@ namespace ppa_lab_test_1
 
             if (p_unt.Alive()) 
             { 
-                p_unt.DoAttack(o_unt); 
+                p_unt.DoAttack(o_unt, p_unt.Attack); 
                 odmlp.GetDamaged();
                 if (!o_unt.Alive()) { odlp.Die(); odsp.Die(); return; }
             }
             if (o_unt.Alive()) 
             { 
-                o_unt.DoAttack(p_unt); 
+                o_unt.DoAttack(p_unt, o_unt.Attack); 
                 pdmlp.GetDamaged();
                 if (!p_unt.Alive()) { pdlp.Die(); pdsp.Die(); return; }
 

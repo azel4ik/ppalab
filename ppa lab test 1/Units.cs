@@ -81,16 +81,15 @@ namespace ppa_lab_test_1
         {
             Name = name;
         }
-        public void DoAttack(Unit opponent) // хз как написать, но суть в том, что аттакующий и аттакованный юниты были живы для действия
+        public void DoAttack(Unit opponent, int attack) // хз как написать, но суть в том, что аттакующий и аттакованный юниты были живы для действия
         {
-           
-
-            //как-то сохраняться состояние до атаки
+            Random rndAtt = new Random();
+            int AttackValue = rndAtt.Next((int)(attack*0.75), (int)(attack * 1.25));
             //должна включаться анимация атаки у this
             //должна включаться анимация потери у defender
             if (Alive() && opponent.Alive())
             {
-                int loss = Math.Max(Attack - opponent.Defence, 0);
+                int loss = Math.Max(AttackValue - opponent.Defence, 0);
                 opponent.Health = Math.Max(opponent.Health - loss, 0);
                 //opponent.dmlp.GetDamaged();
 
@@ -229,15 +228,17 @@ namespace ppa_lab_test_1
     }
     public class Archer : Unit, IHealable, ICloneable
     {
+        int ShootAttack;
         Image ShootingImage;
         public Archer()
         {
             Name += " Archer";
             Attack = 35;
+            ShootAttack = 60;
             Defence = 25;
             MaxHealth = 100;
             Health = MaxHealth;
-            Price = (Attack + Defence + Health) / 10;
+            Price = (ShootAttack + Defence + Health) / 10;
 
             Imgs = new BasicImages();
 
@@ -251,7 +252,7 @@ namespace ppa_lab_test_1
 
         }
 
-        public void DistantAttack()
+        public void DistantAttack(Unit opponent)
         {
 
         }

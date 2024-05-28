@@ -15,18 +15,21 @@ namespace ppa_lab_test_1
     {
         System.Media.SoundPlayer player1 = new System.Media.SoundPlayer();
         int wallet = 100;
-        int balance;
+        int balance = 100;
         public Form2()
         {
             InitializeComponent();
-            //player1.SoundLocation = "ThePyre.wav";
-            //player1.Play();
+            label3.Text = $"Heavy Infantry ({new HeavyUnit().Price})";
+            label4.Text = $"Light Infantry ({new LightUnit().Price})";
+            label5.Text = $"Archers ({new Archer().Price})";
+            label6.Text = $"Healers ({new Healer().Price})";
+            label7.Text = $"Wizards ({new Wizard().Price})";
         }
 
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (balance >= 0)
+            if (balance >= 0 && balance != wallet)
             {
                 Game g = new Game();
 
@@ -37,7 +40,7 @@ namespace ppa_lab_test_1
                 g.player.WCount = (int)WCount.Value;
 
                 GameManager gm = new GameManager();
-                GatherArmy ga = new GatherArmy(g, wallet);
+                GatherArmy ga = new GatherArmy(g, wallet - balance);
 
                 player1.Stop();
                 gm.SetCommand(ga);
@@ -46,9 +49,14 @@ namespace ppa_lab_test_1
                 this.Hide();
                 f3.Show();
             }
+            else if (balance < 0)
+            {
+                Form4 f4 = new Form4("Not enough money...");
+                f4.Show();
+            }
             else
             {
-                Form4 f4 = new Form4();
+                Form4 f4 = new Form4("Choose some units first...");
                 f4.Show();
             }
         }
@@ -56,13 +64,19 @@ namespace ppa_lab_test_1
         private void button1_Click(object sender, EventArgs e)
         {
             Form1 f1 = new Form1();
-            this.Hide();
+            Hide();
             f1.Show();
         }
 
         private void HICount_ValueChanged(object sender, EventArgs e)
         {
-            balance = wallet - (int)HICount.Value * (new HeavyUnit().Price) - (int)LICount.Value * (new LightUnit().Price) - (int)ACount.Value * (new Archer().Price) - (int)HCount.Value * (new Healer().Price);
+            int HIPrice = (int)HICount.Value * new HeavyUnit().Price;
+            int LIPrice = (int)LICount.Value * new LightUnit().Price;
+            int APrice = (int)ACount.Value * new Archer().Price;
+            int HPrice = (int)HCount.Value * new Healer().Price;
+            int WPrice = (int)WCount.Value * new Wizard().Price;
+            int Total = HIPrice + LIPrice + APrice + HPrice + WPrice;
+            balance = wallet - Total;
             label2.Text = $"{balance}";
         }
 
@@ -77,9 +91,6 @@ namespace ppa_lab_test_1
             else label2.ForeColor = Color.Ivory;
 
         }
-
-
-
 
         //private void HICount_Click(object sender, EventArgs e)
         //{

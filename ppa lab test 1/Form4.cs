@@ -12,11 +12,14 @@ namespace ppa_lab_test_1
 {
     public partial class Form4 : Form
     {
-        public Form4()
+        string message;
+        public Form4(string _message)
         {
             InitializeComponent();
+            message = _message;
+            label1.Text = message;
         }
-
+        
         private void label1_Click(object sender, EventArgs e)
         {
 
