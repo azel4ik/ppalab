@@ -11,7 +11,10 @@ using NAudio.Wave;
 
 namespace ppa_lab_test_1
 {
-
+    //public static class MainForm
+    //{
+    //    public static Form3 form;
+    //}
     public partial class Form3 : Form
     {
         private WaveStream bcgstream;
@@ -23,7 +26,9 @@ namespace ppa_lab_test_1
         public Form3(Game g)
         {
             InitializeComponent();
+            //MainForm.form = this;
             game = g;
+            pictureBox1.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             bcgstream = new AudioFileReader("Battle.wav");
             LoopStream loop = new LoopStream(bcgstream);
             outbcg = new();

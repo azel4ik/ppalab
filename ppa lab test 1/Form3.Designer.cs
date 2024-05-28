@@ -47,12 +47,14 @@
             panel1 = new Panel();
             splitContainer1 = new SplitContainer();
             pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
@@ -183,6 +185,7 @@
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(splitContainer1);
             panel1.Controls.Add(pictureBox2);
             panel1.Dock = DockStyle.Fill;
@@ -212,12 +215,21 @@
             // 
             pictureBox2.Anchor = AnchorStyles.None;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(418, 231);
+            pictureBox2.Location = new Point(522, 149);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(94, 82);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.White;
+            pictureBox1.Location = new Point(99, 122);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(98, 109);
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
             // 
             // Form3
             // 
@@ -237,6 +249,7 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -261,5 +274,6 @@
         private ToolStripMenuItem x1ToolStripMenuItem;
         private ToolStripMenuItem x3ToolStripMenuItem;
         private ToolStripMenuItem everyoneXEveryoneToolStripMenuItem;
+        public PictureBox pictureBox1;
     }
 }
