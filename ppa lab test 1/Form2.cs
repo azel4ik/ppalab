@@ -37,7 +37,7 @@ namespace ppa_lab_test_1
                 g.player.WCount = (int)WCount.Value;
 
                 GameManager gm = new GameManager();
-                GatherArmy ga = new GatherArmy(g);
+                GatherArmy ga = new GatherArmy(g, wallet);
 
                 player1.Stop();
                 gm.SetCommand(ga);

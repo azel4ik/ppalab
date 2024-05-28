@@ -117,6 +117,19 @@ namespace ppa_lab_test_1
             us = UnitStates.Damaged;
         }
 
+        public Unit Copy()
+        {
+            Unit unt = new Unit();
+            unt.Name = Name;
+            unt.Health = Health;
+            unt.Attack = Attack;
+            unt.Defence = Defence;
+            unt.Dodge = Dodge;
+            unt.Price = Price;
+            unt.Imgs = new BasicImages();
+            unt.us = us;
+            return unt;
+        }
     }
 
     class LIFactory : IUnitAbstactFactory
@@ -170,7 +183,6 @@ namespace ppa_lab_test_1
         }
 
     }
-
     class LightUnit : Unit, IHealable
     {
         public LightUnit()
@@ -258,6 +270,12 @@ namespace ppa_lab_test_1
 
         }
 
+        public int FindClosestUnit()
+        {
+            int inx = 0;
+            return inx;
+        }
+
         public new void Recover(int Healing)
         {
             if (СurrentHealth < Health && СurrentHealth > 0)
@@ -310,6 +328,17 @@ namespace ppa_lab_test_1
         public Image Damaged;
         public Image Healed;
         public Image Dead;
+
+        public BasicImages Copy()
+        {
+            BasicImages bi = new BasicImages();
+            bi.BasicAttack = BasicAttack;
+            bi.StandingStill = StandingStill;
+            bi.Damaged = Damaged;
+            bi.Healed = Healed;
+            bi.Dead = Dead;
+            return bi;
+        }
     }
 
 }

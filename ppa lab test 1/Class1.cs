@@ -22,23 +22,33 @@ namespace ppa_lab_test_1
     class MakeMove : GameCommand
     {
         Game game;
+        Army initialplayerstate;
+        Army initialenemystate;
+        Army finalplayerstate;
+        Army finalenemystate;
         public MakeMove(Game r)
         {
             game = r;
+            initialplayerstate = r.player.Copy();
+            initialenemystate = r.enemy.Copy();
             command_name = "Make a move";
         }
         public override void Execute()
         {
             game.Move(1);
+            finalenemystate = game.enemy.Copy();
+            finalplayerstate = game.player.Copy();
         }
 
         public override void Undo()
         {
-
+            game.player = initialplayerstate.Copy();
+            game.enemy = initialenemystate.Copy();
         }
         public override void Redo()
         {
-
+            game.player = finalplayerstate.Copy();
+            game.enemy = finalenemystate.Copy();
         }
 
     }
@@ -46,15 +56,17 @@ namespace ppa_lab_test_1
     class GatherArmy : GameCommand
     {
         Game game;
+        int balance;
         
-        public GatherArmy(Game r)
+        public GatherArmy(Game r, int blnc)
         {
             game = r;
             command_name = "Gather Army";
+            balance = blnc;
         }
         public override void Execute()
         {
-            game.CreateArmy();
+            game.CreateArmy(balance);
         }
 
         public override void Undo()
@@ -130,11 +142,11 @@ namespace ppa_lab_test_1
 
             }
         }
-        public void CreateArmy()
+        public void CreateArmy(int balance)
         {
             Console.WriteLine("The army is being created...");
             player.ChooseUnits(player.HICount, player.LICount, player.ACount, player.HCount, player.WCount);
-            enemy.ChooseUnits(player.HICount, player.LICount, player.ACount, player.HCount, player.WCount);
+            enemy.ChooseRandomUnits(balance);
 
         }
         public void Save()
@@ -174,6 +186,7 @@ namespace ppa_lab_test_1
                 command = Undoable.Peek();
                 Undoable.Pop().Undo();
                 Redoable.Push(command);
+                command.Undo();
                 command.command_status = "Undone";
                 NotifyObservers();
             }
@@ -186,6 +199,7 @@ namespace ppa_lab_test_1
                 command = Redoable.Peek();
                 Redoable.Pop().Redo();
                 Undoable.Push(command);
+                command.Redo();
                 command.command_status = "Redone";
                 NotifyObservers();
             }
@@ -231,11 +245,14 @@ namespace ppa_lab_test_1
         }
         public void MoveInQueue()
         {
-            Unit a = units[0];
-            if (a.Alive())
+            if (units.Count() > 0)
             {
-                units.RemoveAt(0);
-                units.Add(a);
+                Unit a = units[0];
+                if (a.Alive())
+                {
+                    units.RemoveAt(0);
+                    units.Add(a);
+                }
             }
         }
         public void ChooseUnits(int HINum, int LINum, int ANum, int HNum, int WNum)
@@ -247,6 +264,75 @@ namespace ppa_lab_test_1
             for (int i = 0; i < HNum; i++) units.Add(new Healer());
             for (int i = 0; i < WNum; i++) units.Add(new Wizard());
 
+        }
+
+        public void ChooseRandomUnits(int balance)
+        {
+            while (units.Count() < 1)
+            {
+                while (balance > 0)
+                {
+                    Random rnd = new Random();
+                    Unit unt = new Unit();
+                    int value = rnd.Next(0, 4);
+                    switch (value)
+                    {
+                        case 0:
+                            unt = new HeavyUnit();
+                            balance -= unt.Price;
+                            if (balance < 0) break;
+                            HICount++;
+                            units.Add(unt);
+                            break;
+                        case 1:
+                            unt = new LightUnit();
+                            balance -= unt.Price;
+                            if (balance < 0) break;
+                            LICount++;
+                            units.Add(unt);
+                            break;
+                        case 2:
+                            unt = new Archer();
+                            balance -= unt.Price;
+                            if (balance < 0) break;
+                            ACount++;
+                            units.Add(unt);
+                            break;
+                        case 3:
+                            unt = new Healer();
+                            balance -= unt.Price;
+                            if (balance < 0) break;
+                            HCount++;
+                            units.Add(unt);
+                            break;
+                        case 4:
+                            unt = new Wizard();
+                            balance -= unt.Price;
+                            if (balance < 0) break;
+                            WCount++;
+                            units.Add(unt);
+                            break;
+                        default: break;
+                    }
+                    
+                }
+            }
+
+        }
+
+        public Army Copy()
+        {
+            Army a = new Army(ArmyName);
+            a.HICount = HICount;
+            a.LICount = LICount;
+            a.ACount = ACount;
+            a.HCount = HCount;
+            a.WCount = WCount;
+            for (int i = 0; i < units.Count(); i++)
+            {
+                a.units.Add(units.ElementAt(i).Copy());
+            }
+            return a;
         }
     }
 

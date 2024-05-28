@@ -14,12 +14,8 @@ namespace ppa_lab_test_1
 
     public partial class Form3 : Form
     {
-        //System.Media.SoundPlayer player3 = new System.Media.SoundPlayer();
-        //System.Media.SoundPlayer effectplayer = new System.Media.SoundPlayer();
         private WaveStream bcgstream;
         private WaveOut outbcg;
-        private WaveStream deatheffectstream;
-        private WaveOut outdeatheffect;
 
         public Game game;
         GameManager gm = new GameManager();
@@ -29,11 +25,9 @@ namespace ppa_lab_test_1
             InitializeComponent();
             game = g;
             bcgstream = new AudioFileReader("Battle.wav");
+            LoopStream loop = new LoopStream(bcgstream);
             outbcg = new();
-            outbcg.Init(bcgstream);
-            //deatheffectstream = new AudioFileReader("sword-clash.wav");
-            //outdeatheffect = new();
-            //outdeatheffect.Init(deatheffectstream);
+            outbcg.Init(loop);
             bcgstream.CurrentTime = new TimeSpan(0L);
             outbcg.Play();
         }
@@ -62,8 +56,6 @@ namespace ppa_lab_test_1
             gm.SetCommand(mm);
             gm.Execute();
             pictureBox2.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //deatheffectstream.CurrentTime = new TimeSpan(0L);
-            //outdeatheffect.Play();
         }
 
         private void Action_Click(object sender, EventArgs e)
