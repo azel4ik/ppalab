@@ -48,15 +48,15 @@ namespace ppa_lab_test_1
         {
             for (int i = 0; i < g.player.units.Count(); i++)
             {
-                PictureBox pupb = new PictureBox();
-                pupb.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));//g.player.units[i].Imgs.StandingStill;
-                pupb.Location = new Point(g.player.units.Count() * 120 + 20, 10);
-                pupb.Size = new Size(100, 120);
+                //PictureBox pupb = new PictureBox();
+                //pupb.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));//g.player.units[i].Imgs.StandingStill;
+                //pupb.Location = new Point(g.player.units.Count() * 120 + 20, 10);
+                //pupb.Size = new Size(100, 120);
             }
             for (int i = 0; i < g.enemy.units.Count(); i++)
             {
-                PictureBox eupb = new PictureBox();
-                eupb.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif")); //g.enemy.units[i].Imgs.StandingStill;
+                //PictureBox eupb = new PictureBox();
+                //eupb.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif")); //g.enemy.units[i].Imgs.StandingStill;
             }
         }
     }

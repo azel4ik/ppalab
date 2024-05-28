@@ -19,10 +19,6 @@ namespace ppa_lab_test_1
     {
         public Unit Create();
     }
-    public interface IClonable
-    {
-        public IClonable Clone();
-    }
 
     public interface IHealable
     {
@@ -33,7 +29,7 @@ namespace ppa_lab_test_1
     {
         public string Name; //название
         public int Health; //здоровье
-        public int СurrentHealth; // текущее здоровье которое будет на экране
+        public int MaxHealth; // текущее здоровье которое будет на экране
         public int Attack; // сила аттаки
         public int Defence; // защита (можно придмать разные способы и создать отдельный класс с ними, например :щит, волшебная пыль для защиты, магический барьер и т.д.)
         public int Dodge; // изворотливость (аналогично с защитой, например: прыжок, полет, шаг в сторону и т.д)
@@ -154,7 +150,7 @@ namespace ppa_lab_test_1
         }
     }
 
-    class HeavyUnit : Unit, IHealable
+    public class HeavyUnit : Unit, IHealable
     {
         Image BuffedImage;
         public HeavyUnit()
@@ -162,56 +158,76 @@ namespace ppa_lab_test_1
             Name += " Heavy Infantry";
             Attack = 60;
             Defence = 25;
-            СurrentHealth = 100;
-            Health = СurrentHealth;
+            MaxHealth = 100;
+            Health = MaxHealth;
             Price = (Attack + Defence + Health)/10;
 
-            //Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //BuffedImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs = new BasicImages();
+
+            Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            BuffedImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
         }
         public new void Recover(int Healing)
         {
-            if (СurrentHealth < Health && СurrentHealth > 0)
+            if (MaxHealth < Health && MaxHealth > 0)
             {
-                int healAmount = Math.Min(Healing, Health - СurrentHealth);
+                int healAmount = Math.Min(Healing, Health - MaxHealth);
                 Health += healAmount;
             }
         }
 
     }
-    class LightUnit : Unit, IHealable
+    public class LightUnit : Unit, IHealable, ICloneable
     {
         public LightUnit()
         {
             Name += " Light Infantry";
             Attack = 25;
             Defence = 50;
-            СurrentHealth = 100;
-            Health = СurrentHealth;
+            MaxHealth = 100;
+            Health = MaxHealth;
             Price = (Attack + Defence + Health) / 10;
 
-            //Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs = new BasicImages();
+
+            Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+        }
+
+        public object Clone()
+        {
+            LightUnit li = new LightUnit();
+            li.Name = Name;
+            li.Health = Health;
+            li.Attack = Attack;
+            li.Defence = Defence;
+            li.Dodge = Dodge;
+            li.Price = Price;
+            li.Imgs = new BasicImages(Imgs.StandingStill, Imgs.BasicAttack, Imgs.Damaged, Imgs.Healed, Imgs.Dead);
+            li.us = us;
+
+            return li;
         }
 
         public new void Recover(int Healing)
         {
-            if (СurrentHealth < Health && СurrentHealth > 0)
+            if (MaxHealth < Health && MaxHealth > 0)
             {
-                int healAmount = Math.Min(Healing, Health - СurrentHealth);
+                int healAmount = Math.Min(Healing, Health - MaxHealth);
                 Health += healAmount;
             }
         }
+        
 
     }
-    class Archer : Unit, IHealable
+    public class Archer : Unit, IHealable, ICloneable
     {
         Image ShootingImage;
         public Archer()
@@ -219,16 +235,19 @@ namespace ppa_lab_test_1
             Name += " Archer";
             Attack = 35;
             Defence = 25;
-            СurrentHealth = 100;
-            Health = СurrentHealth;
+            MaxHealth = 100;
+            Health = MaxHealth;
             Price = (Attack + Defence + Health) / 10;
 
-            //Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //ShootingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs = new BasicImages();
+
+
+            Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ShootingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
 
         }
 
@@ -238,11 +257,26 @@ namespace ppa_lab_test_1
         }
         public new void Recover(int Healing)
         {
-            if (СurrentHealth < Health && СurrentHealth > 0)
+            if (MaxHealth < Health && MaxHealth > 0)
             {
-                int healAmount = Math.Min(Healing, Health - СurrentHealth);
+                int healAmount = Math.Min(Healing, Health - MaxHealth);
                 Health += healAmount;
             }
+        }
+
+        public object Clone()
+        {
+            Archer arc = new Archer();
+            arc.Name = Name;
+            arc.Health = Health;
+            arc.Attack = Attack;
+            arc.Defence = Defence;
+            arc.Dodge = Dodge;
+            arc.Price = Price;
+            arc.Imgs = new BasicImages(this.Imgs.StandingStill, Imgs.BasicAttack, Imgs.Damaged,Imgs.Healed,Imgs.Dead);
+            arc.ShootingImage = ShootingImage;
+            arc.us = us;
+            return arc;
         }
     }
     public class Healer : Unit, IHealable
@@ -253,21 +287,24 @@ namespace ppa_lab_test_1
             Name += " Healer";
             Attack = 25;
             Defence = 50;
-            СurrentHealth = 100;
-            Health = СurrentHealth;
+            MaxHealth = 100;
+            Health = MaxHealth;
             Price = (Attack + Defence + Health) / 10;
 
-            //Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //HealingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs = new BasicImages();
+
+            Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            HealingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
         }
 
-        public void Heal()
+        public void Heal(Unit u)
         {
-
+            int value = (int)(Health * 0.5);
+            u.Recover(value);
         }
 
         public int FindClosestUnit()
@@ -278,9 +315,9 @@ namespace ppa_lab_test_1
 
         public new void Recover(int Healing)
         {
-            if (СurrentHealth < Health && СurrentHealth > 0)
+            if (MaxHealth < Health && MaxHealth > 0)
             {
-                int healAmount = Math.Min(Healing, Health - СurrentHealth);
+                int healAmount = Math.Min(Healing, Health - MaxHealth);
                 Health += healAmount;
             }
         }
@@ -294,28 +331,34 @@ namespace ppa_lab_test_1
             Name += " Wizard";
             Attack = 25;
             Defence = 50;
-            СurrentHealth = 100;
-            Health = СurrentHealth;
+            MaxHealth = 100;
+            Health = MaxHealth;
             Price = (Attack + Defence + Health) / 10;
 
-            //Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //CloningImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs = new BasicImages();
+
+            Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            CloningImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
 
         }
 
-        public void Clone()
+        public void Clone(Archer a)
         {
-
+            a.Clone();
+        }
+        public void Clone(LightUnit a)
+        {
+            a.Clone();
         }
         public new void Recover(int Healing)
         {
-            if (СurrentHealth < Health && СurrentHealth > 0)
+            if (MaxHealth < Health && MaxHealth > 0)
             {
-                int healAmount = Math.Min(Healing, Health - СurrentHealth);
+                int healAmount = Math.Min(Healing, Health - MaxHealth);
                 Health += healAmount;
             }
         }
@@ -329,14 +372,19 @@ namespace ppa_lab_test_1
         public Image Healed;
         public Image Dead;
 
+        public BasicImages(Image a, Image b, Image c, Image d, Image e)
+        {
+            StandingStill = a;
+            BasicAttack = b;
+            Damaged = c;
+            Healed = d;
+            Dead = e;
+        }
+        public BasicImages() { }
+
         public BasicImages Copy()
         {
-            BasicImages bi = new BasicImages();
-            bi.BasicAttack = BasicAttack;
-            bi.StandingStill = StandingStill;
-            bi.Damaged = Damaged;
-            bi.Healed = Healed;
-            bi.Dead = Dead;
+            BasicImages bi = new BasicImages(BasicAttack, StandingStill, Damaged, Healed, Dead);
             return bi;
         }
     }

@@ -46,7 +46,11 @@ namespace ppa_lab_test_1
                 this.Hide();
                 f3.Show();
             }
-            else MessageBox.Show("Not enough money.");
+            else
+            {
+                Form4 f4 = new Form4();
+                f4.Show();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

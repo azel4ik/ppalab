@@ -99,7 +99,7 @@ namespace ppa_lab_test_1
         public override void Redo()
         {
 
-        } //
+        } 
     }
 
     public class Game
@@ -147,7 +147,6 @@ namespace ppa_lab_test_1
             Console.WriteLine("The army is being created...");
             player.ChooseUnits(player.HICount, player.LICount, player.ACount, player.HCount, player.WCount);
             enemy.ChooseRandomUnits(balance);
-
         }
         public void Save()
         {

@@ -79,20 +79,20 @@
             // attackToolStripMenuItem
             // 
             attackToolStripMenuItem.Name = "attackToolStripMenuItem";
-            attackToolStripMenuItem.Size = new Size(224, 26);
+            attackToolStripMenuItem.Size = new Size(134, 26);
             attackToolStripMenuItem.Text = "Attack";
             attackToolStripMenuItem.Click += attackToolStripMenuItem_Click;
             // 
             // healToolStripMenuItem
             // 
             healToolStripMenuItem.Name = "healToolStripMenuItem";
-            healToolStripMenuItem.Size = new Size(224, 26);
+            healToolStripMenuItem.Size = new Size(134, 26);
             healToolStripMenuItem.Text = "Heal";
             // 
             // cloneToolStripMenuItem
             // 
             cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
-            cloneToolStripMenuItem.Size = new Size(224, 26);
+            cloneToolStripMenuItem.Size = new Size(134, 26);
             cloneToolStripMenuItem.Text = "Clone";
             // 
             // Undo
@@ -212,9 +212,9 @@
             // 
             pictureBox2.Anchor = AnchorStyles.None;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(601, 138);
+            pictureBox2.Location = new Point(418, 231);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(134, 127);
+            pictureBox2.Size = new Size(94, 82);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
