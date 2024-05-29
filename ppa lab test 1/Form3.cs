@@ -67,18 +67,19 @@ namespace ppa_lab_test_1
         private void attackToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            MakeMove mm = new MakeMove(game);
-            gm.SetCommand(mm);
-            gm.Execute();
+            
             if (fight == 1)
             {
                 pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
                 Timer pauseTimer = new Timer();
-                pauseTimer.Interval = 5000; // 5 seconds
+                pauseTimer.Interval = 6000; // 5 seconds
                 pauseTimer.Tick += (sender, args) =>
                 {
                     // After 5 seconds, restore the original image
-                    pBoxAP[0].Image = game.player.units[0].ImgsP.StandingStill;
+                    for (int i = 0; i < game.player.units.Count(); i++)
+                    {
+                        pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
+                    }
                     pauseTimer.Stop();
                 };
                 pauseTimer.Start();
@@ -92,8 +93,10 @@ namespace ppa_lab_test_1
                 pauseTimer.Tick += (sender, args) =>
                 {
                     // After 5 seconds, restore the original image
-                    pBoxAP[0].Image = game.player.units[0].ImgsP.StandingStill;
-                    pBoxAP[1].Image = game.player.units[1].ImgsP.StandingStill;
+                    for (int i = 0; i < game.player.units.Count(); i++)
+                    {
+                        pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
+                    }
                     pauseTimer.Stop();
                 };
                 pauseTimer.Start();
@@ -104,19 +107,11 @@ namespace ppa_lab_test_1
                 {
                     pBoxAP[i].Image = game.player.units[i].ImgsP.BasicAttack;
                 }
-                Timer pauseTimer = new Timer();
-                pauseTimer.Interval = 5000; // 5 seconds
-                pauseTimer.Tick += (sender, args) =>
-                {
-                    for (int i = 0; i < game.player.units.Count(); i++)
-                    {
-                        pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
-                    }
-                    pauseTimer.Stop();
-                };
-                pauseTimer.Start();
             }
-
+            MakeMove mm = new MakeMove(game);
+            gm.SetCommand(mm);
+            gm.Execute();
+            
         }
 
         private void Action_Click(object sender, EventArgs e)
@@ -127,11 +122,21 @@ namespace ppa_lab_test_1
         private void Undo_Click(object sender, EventArgs e)
         {
             gm.Undo();
+            for (int i = 0; i < game.player.units.Count(); i++)
+            {
+                pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
+            }           
+
         }
 
         private void Redo_Click(object sender, EventArgs e)
         {
             gm.Redo();
+            for (int i = 0; i < game.player.units.Count(); i++)
+            {
+                pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
+            }
+            
         }
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
