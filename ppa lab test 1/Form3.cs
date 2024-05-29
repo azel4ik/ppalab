@@ -15,7 +15,15 @@ namespace ppa_lab_test_1
 
     public partial class Form3 : Form
     {
-        PictureBox[] pBoxAP = new PictureBox[5];
+        PictureBox[] pBoxAP = new PictureBox[4];
+        PictureBox[] pBoxAE = new PictureBox[4];
+        Point[] pointsLine = new Point[4]
+        {
+            new Point(510, 400),
+            new Point(405, 400),
+            new Point(155, 400),
+            new Point(30, 400),
+        };
 
         private WaveStream bcgstream;
         private WaveOut outbcg;
@@ -35,6 +43,10 @@ namespace ppa_lab_test_1
             pBoxAP[1] = pictureBoxp2;
             pBoxAP[2] = pictureBoxp3;
             pBoxAP[3] = pictureBoxp4;
+            pBoxAE[0] = pictureBoxe1;
+            pBoxAE[1] = pictureBoxe2;
+            pBoxAE[2] = pictureBoxe3;
+            pBoxAE[3] = pictureBoxe4;
             for (int i = 0; i < g.player.units.Count(); i++)
             {
                 pBoxAP[i].Image = g.player.units[i].ImgsP.StandingStill;
@@ -147,28 +159,35 @@ namespace ppa_lab_test_1
 
         private void x1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            game.SetArmyPosition(new OnevsOnePosition());
+            //
             fight = 1;
+            for (int i = 0; i < game.player.units.Count(); i++)
+            {
+                pBoxAE[i].Location = pointsLine[i];
+            }
+            game.SetArmyPosition(new OnevsOnePosition());
         }
 
         private void x3ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //game.SetArmyPosition(new ThreevsThreePosition());
+            //
             fight = 2;
             pBoxAP[0].Location = new Point(331, 53);
             pBoxAP[1].Location = new Point(331, 160);
             pBoxAP[2].Location = new Point(131, 53);
             pBoxAP[3].Location = new Point(131, 160);
+            game.SetArmyPosition(new ThreevsThreePosition());
         }
 
         private void everyoneXEveryoneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            game.SetArmyPosition(new AllvsAllPosition());
+            
             fight = 3;
             pBoxAP[0].Location = new Point(331, 53);
             pBoxAP[1].Location = new Point(331, 110);
             pBoxAP[2].Location = new Point(331, 160);
             pBoxAP[3].Location = new Point(331, 2100);
+            game.SetArmyPosition(new AllvsAllPosition());
         }
     }
 }
