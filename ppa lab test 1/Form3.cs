@@ -15,7 +15,7 @@ namespace ppa_lab_test_1
 
     public partial class Form3 : Form
     {
-        PictureBox[] pBoxAP = new PictureBox[4];
+        PictureBox[] pBoxAP = new PictureBox[5];
 
         private WaveStream bcgstream;
         private WaveOut outbcg;
@@ -30,6 +30,7 @@ namespace ppa_lab_test_1
             InitializeComponent();
             game = g;
             fight = 1;
+            PictureBox gulgor = ggP;
             pBoxAP[0] = pictureBoxp1;
             pBoxAP[1] = pictureBoxp2;
             pBoxAP[2] = pictureBoxp3;
@@ -67,7 +68,7 @@ namespace ppa_lab_test_1
         private void attackToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            
+
             if (fight == 1)
             {
                 pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
@@ -111,7 +112,7 @@ namespace ppa_lab_test_1
             MakeMove mm = new MakeMove(game);
             gm.SetCommand(mm);
             gm.Execute();
-            
+
         }
 
         private void Action_Click(object sender, EventArgs e)
@@ -125,7 +126,7 @@ namespace ppa_lab_test_1
             for (int i = 0; i < game.player.units.Count(); i++)
             {
                 pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
-            }           
+            }
 
         }
 
@@ -136,7 +137,7 @@ namespace ppa_lab_test_1
             {
                 pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
             }
-            
+
         }
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)

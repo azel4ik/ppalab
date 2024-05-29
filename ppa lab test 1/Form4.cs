@@ -19,7 +19,7 @@ namespace ppa_lab_test_1
             message = _message;
             label1.Text = message;
         }
-        
+
         private void label1_Click(object sender, EventArgs e)
         {
 

@@ -45,6 +45,7 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             panel1 = new Panel();
+            ggP = new PictureBox();
             pictureBoxp3 = new PictureBox();
             pictureBoxp2 = new PictureBox();
             pictureBoxp1 = new PictureBox();
@@ -54,6 +55,7 @@
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ggP).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp1).BeginInit();
@@ -70,7 +72,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { Action, Undo, Redo, Save, toolStripDropDownButton1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1000, 27);
+            toolStrip1.Size = new Size(1500, 27);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -169,9 +171,9 @@
             statusStrip1.BackColor = SystemColors.Info;
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 624);
+            statusStrip1.Location = new Point(0, 924);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1000, 26);
+            statusStrip1.Size = new Size(1500, 26);
             statusStrip1.TabIndex = 1;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -191,6 +193,7 @@
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Controls.Add(ggP);
             panel1.Controls.Add(pictureBoxp3);
             panel1.Controls.Add(pictureBoxp2);
             panel1.Controls.Add(pictureBoxp1);
@@ -200,8 +203,19 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 27);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1000, 597);
+            panel1.Size = new Size(1500, 897);
             panel1.TabIndex = 2;
+            // 
+            // ggP
+            // 
+            ggP.AccessibleName = "";
+            ggP.BackColor = Color.Transparent;
+            ggP.Location = new Point(438, 443);
+            ggP.Name = "ggP";
+            ggP.Size = new Size(127, 97);
+            ggP.TabIndex = 9;
+            ggP.TabStop = false;
+            ggP.Tag = "";
             // 
             // pictureBoxp3
             // 
@@ -244,7 +258,7 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Bottom;
-            splitContainer1.Location = new Point(0, 546);
+            splitContainer1.Location = new Point(0, 846);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -254,15 +268,15 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = SystemColors.Info;
-            splitContainer1.Size = new Size(1000, 51);
-            splitContainer1.SplitterDistance = 498;
+            splitContainer1.Size = new Size(1500, 51);
+            splitContainer1.SplitterDistance = 745;
             splitContainer1.TabIndex = 2;
             // 
             // pictureBoxe1
             // 
             pictureBoxe1.Anchor = AnchorStyles.None;
             pictureBoxe1.Image = (Image)resources.GetObject("pictureBoxe1.Image");
-            pictureBoxe1.Location = new Point(531, 249);
+            pictureBoxe1.Location = new Point(781, 399);
             pictureBoxe1.Name = "pictureBoxe1";
             pictureBoxe1.Size = new Size(94, 82);
             pictureBoxe1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -273,18 +287,20 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 650);
+            ClientSize = new Size(1500, 950);
             Controls.Add(panel1);
             Controls.Add(statusStrip1);
             Controls.Add(toolStrip1);
             DoubleBuffered = true;
             Name = "Form3";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form3";
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ggP).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp1).EndInit();
@@ -320,5 +336,6 @@
         public PictureBox pictureBoxp2;
         public PictureBox pictureBoxp1;
         public PictureBox pictureBoxp4;
+        public PictureBox ggP;
     }
 }

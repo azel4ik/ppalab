@@ -40,11 +40,11 @@
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Pfeffer Mediæval", 36F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.Control;
             label1.Location = new Point(241, 5);
             label1.Name = "label1";
-            label1.Size = new Size(326, 83);
+            label1.Size = new Size(358, 69);
             label1.TabIndex = 0;
             label1.Text = "Game name";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -56,7 +56,7 @@
             NewGame.BackColor = Color.Transparent;
             NewGame.Cursor = Cursors.Hand;
             NewGame.FlatStyle = FlatStyle.Flat;
-            NewGame.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            NewGame.Font = new Font("Microsoft Sans Serif", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             NewGame.ForeColor = Color.Gold;
             NewGame.Location = new Point(272, 91);
             NewGame.Name = "NewGame";
@@ -72,7 +72,7 @@
             LoadGame.BackColor = Color.Transparent;
             LoadGame.Cursor = Cursors.Hand;
             LoadGame.FlatStyle = FlatStyle.Flat;
-            LoadGame.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            LoadGame.Font = new Font("Microsoft Sans Serif", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             LoadGame.ForeColor = Color.Gold;
             LoadGame.Location = new Point(272, 163);
             LoadGame.Name = "LoadGame";
@@ -88,7 +88,7 @@
             ExitButton.BackColor = Color.Transparent;
             ExitButton.Cursor = Cursors.Hand;
             ExitButton.FlatStyle = FlatStyle.Flat;
-            ExitButton.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            ExitButton.Font = new Font("Microsoft Sans Serif", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             ExitButton.ForeColor = Color.Gold;
             ExitButton.Location = new Point(272, 235);
             ExitButton.Name = "ExitButton";
@@ -110,6 +110,7 @@
             Controls.Add(NewGame);
             Controls.Add(label1);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();

@@ -38,11 +38,11 @@
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Pfeffer Mediæval", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Microsoft Sans Serif", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.Info;
             label1.Location = new Point(73, 94);
             label1.Name = "label1";
-            label1.Size = new Size(253, 37);
+            label1.Size = new Size(266, 31);
             label1.TabIndex = 0;
             label1.Text = "Not enough money...";
             label1.Click += label1_Click;
@@ -53,7 +53,7 @@
             button1.BackColor = Color.Transparent;
             button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Pfeffer Mediæval", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Font = new Font("Microsoft Sans Serif", 16.1999989F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.Gold;
             button1.Location = new Point(85, 177);
             button1.Name = "button1";
@@ -77,6 +77,7 @@
             MaximumSize = new Size(400, 300);
             MinimumSize = new Size(400, 300);
             Name = "Form4";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Message";
             ResumeLayout(false);
             PerformLayout();
