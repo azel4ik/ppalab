@@ -248,8 +248,8 @@ namespace ppa_lab_test_1
     }
     public class Archer : Unit, IHealable, ICloneable
     {
-        int ShootAttack;
-        Image ShootingImage;
+        public int ShootAttack;
+        public Image ShootingImage;
         public Archer()
         {
             Name += " Archer";
@@ -342,7 +342,27 @@ namespace ppa_lab_test_1
             HealingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
         }
 
-        public void Heal(Unit u)
+        public void Heal(HeavyUnit u)
+        {
+            int value = (int)(Health * 0.5);
+            u.Recover(value);
+        }
+        public void Heal(LightUnit u)
+        {
+            int value = (int)(Health * 0.5);
+            u.Recover(value);
+        }
+        public void Heal(Archer u)
+        {
+            int value = (int)(Health * 0.5);
+            u.Recover(value);
+        }
+        public void Heal(Healer u)
+        {
+            int value = (int)(Health * 0.5);
+            u.Recover(value);
+        }
+        public void Heal(Wizard u)
         {
             int value = (int)(Health * 0.5);
             u.Recover(value);

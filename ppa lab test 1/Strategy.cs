@@ -27,6 +27,10 @@ namespace ppa_lab_test_1
             if (g.player.units.Count() > 0 && g.enemy.units.Count() > 0)
             {
                 g.Attack(g.player.units[0], g.enemy.units[0]);
+                g.LongAttack();
+                g.player.HealArmy(PositionType.OnevsOne);
+                g.enemy.HealArmy(PositionType.OnevsOne);
+
                 //if (g.player.units.Count() > 1 && g.enemy.units.Count() > 1)
                 //{
                 //    for (int i = 1;i < g.player.units.Count(); i++)

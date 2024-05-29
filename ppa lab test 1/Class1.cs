@@ -9,6 +9,21 @@ using System.Threading.Tasks;
 
 namespace ppa_lab_test_1
 {
+    public enum PositionType
+    {
+        OnevsOne,
+        ThreevsThree,
+        AllvsAll
+    }
+    public enum UnitType
+    {
+        HeavyUnit,
+        LightUnit,
+        Archer,
+        Healer,
+        Wizard,
+        Default
+    }
     abstract class GameCommand
     {
         public string? command_name;
@@ -179,6 +194,30 @@ namespace ppa_lab_test_1
 
             }
         }
+
+        public void LongAttack()
+        {
+            List<Unit> parchers = player.FindUnit("Archer");
+            List<Unit> oarchers = enemy.FindUnit("Archer");
+            for (int i = 0; i < parchers.Count(); i++)
+            {
+                if (enemy.units.Count() > 0)
+                {
+                    Random rndt = new Random();
+                    int value = rndt.Next(enemy.units.Count());
+                    parchers[i].DoAttack(enemy.units[value], ((Archer)parchers[i]).ShootAttack);
+                }
+            }
+            for (int i = 0; i < oarchers.Count(); i++)
+            {
+                if (player.units.Count() > 0)
+                {
+                    Random rndt = new Random();
+                    int value = rndt.Next(player.units.Count());
+                    oarchers[i].DoAttack(player.units[value], ((Archer)oarchers[i]).ShootAttack);
+                }
+            }
+        }
         public void CreateArmy(int balance)
         {
             Console.WriteLine("The army is being created...");
@@ -279,6 +318,7 @@ namespace ppa_lab_test_1
                 }
             }
         }
+
         public void MoveInQueue()
         {
             if (units.Count() > 0)
@@ -356,6 +396,132 @@ namespace ppa_lab_test_1
 
         }
 
+        public List<Unit> FindUnit(string str)
+        {
+            List<Unit> unts = new List<Unit>();
+            for (int i = 0; i < units.Count(); i++)
+            {
+                if (units[i].Name.Contains(str)) unts.Add(units[i]);
+            }
+            return unts;
+        }
+        public UnitType CheckUnit(Unit unt)
+        {
+            if (unt.Name != null)
+            {
+                if (unt.Name.Contains("Heavy Infantry")) return UnitType.HeavyUnit;
+                else if (unt.Name.Contains("Light Infantry")) return UnitType.LightUnit;
+                else if (unt.Name.Contains("Archer")) return UnitType.Archer;
+                else if (unt.Name.Contains("Healer")) return UnitType.Healer;
+                else return UnitType.Wizard;
+            }
+            return UnitType.Default;
+        }
+        public void HealArmy(PositionType pst)
+        {
+            List<Unit> hlrs = FindUnit("Healer");
+            if (hlrs.Count > 0)
+            {
+                if (units.Count() > 0)
+                {
+                    for (int i = 0; i < hlrs.Count(); i++)
+                    {
+                        int val = 0;
+                        for (int j = 0; j < units.Count(); j++)
+                        {
+                            if (hlrs[i] == units[j]) val = j;
+                        }
+                        Unit un = FindClosestUnitToHeal(val, pst);
+                        UnitType chu = CheckUnit(un);
+                        switch (chu)
+                        {
+                            case UnitType.HeavyUnit:
+                                HeavyUnit hu = (HeavyUnit)un;
+                                ((Healer)hlrs[i]).Heal(hu);
+                                break;
+                            case UnitType.LightUnit:
+                                LightUnit lu = (LightUnit)un;
+                                ((Healer)hlrs[i]).Heal(lu);
+                                break;
+                            case UnitType.Archer:
+                                Archer a = (Archer)un;
+                                ((Healer)hlrs[i]).Heal(a);
+                                break;
+                            case UnitType.Healer:
+                                Healer h = (Healer)un;
+                                ((Healer)hlrs[i]).Heal(h);
+                                break;
+                            case UnitType.Wizard:
+                                Wizard w = (Wizard)un;
+                                ((Healer)hlrs[i]).Heal(w);
+                                break;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        public Unit FindClosestUnitToHeal(int hpos, PositionType pst)
+        {
+            Unit res = new Unit();
+            switch (pst)
+            {
+                case PositionType.OnevsOne:
+                    if (units.Count() > 1)
+                    {
+                        Unit before = new Unit();
+                        Unit after = new Unit();
+                        if (hpos - 1 >= 0) before = units[hpos - 1];
+                        if (hpos + 1 < units.Count) after = units[hpos + 1];
+                        if (before != null && after != null)
+                        {
+                            if (after.Health < before.Health)
+                            {
+                                res = after;
+                            }
+                            else res = before;
+                        }
+                    }
+                    break;
+                //case PositionType.ThreevsThree:
+                //    if (units.Count() > 1)
+                //    {
+                //        List
+                //        if (hpos - 1 >= 0) before = units[hpos - 1];
+                //        if (hpos + 1 < units.Count) after = units[hpos + 1];
+                //        if (before != null && after != null)
+                //        {
+                //            if (after.Health < before.Health)
+                //            {
+                //                res = after;
+                //            }
+                //            else res = before;
+                //        }
+                //    }
+                //    break;
+                case PositionType.AllvsAll:
+                    if (units.Count() > 1)
+                    {
+                        Unit before = new Unit();
+                        Unit after = new Unit();
+                        if (hpos - 1 >= 0) before = units[hpos - 1];
+                        if (hpos + 1 < units.Count) after = units[hpos + 1];
+                        if (before != null && after != null)
+                        {
+                            if (after.Health < before.Health)
+                            {
+                                res = after;
+                            }
+                            else res = before;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return res;
+        }
         public Army Copy()
         {
             Army a = new Army(ArmyName);
