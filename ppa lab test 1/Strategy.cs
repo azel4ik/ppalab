@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace ppa_lab_test_1
 {
@@ -48,10 +49,10 @@ namespace ppa_lab_test_1
         {
             for (int i = 0; i < g.player.units.Count(); i++)
             {
-                //PictureBox pupb = new PictureBox();
-                //pupb.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));//g.player.units[i].Imgs.StandingStill;
-                //pupb.Location = new Point(g.player.units.Count() * 120 + 20, 10);
-                //pupb.Size = new Size(100, 120);
+                PictureBox pupb = new PictureBox();
+                pupb.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));//g.player.units[i].Imgs.StandingStill;
+                pupb.Location = new Point(g.player.units.Count() * 120 + 20, 10);
+                pupb.Size = new Size(100, 120);
             }
             for (int i = 0; i < g.enemy.units.Count(); i++)
             {

@@ -35,7 +35,8 @@ namespace ppa_lab_test_1
         public int Dodge; // изворотливость (аналогично с защитой, например: прыжок, полет, шаг в сторону и т.д)
         public int Price; // стоимость юнита (будет скалдываться из аттаки, извор и защиты, а затем умножаться на 10)
         public UnitStates us = UnitStates.Alive;
-        public BasicImages Imgs; //базовые картинки, которые есть у всех
+        public BasicImages ImgsP; //базовые картинки, которые есть у всех
+        public BasicImages ImgsE; //базовые картинки, которые есть у всех
 
         #region
         //public string NameOfUnit { get { return Name; } set { Name = value; } }
@@ -121,7 +122,8 @@ namespace ppa_lab_test_1
             unt.Defence = Defence;
             unt.Dodge = Dodge;
             unt.Price = Price;
-            unt.Imgs = new BasicImages();
+            unt.ImgsP = new BasicImages();
+            unt.ImgsE = new BasicImages();
             unt.us = us;
             return unt;
         }
@@ -161,14 +163,23 @@ namespace ppa_lab_test_1
             Health = MaxHealth;
             Price = (Attack + Defence + Health)/10;
 
-            Imgs = new BasicImages();
+            ImgsP = new BasicImages();
 
-            Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            BuffedImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "маг стоит.gif"));
+            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "маг колдует.gif"));
+            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "мага бьют.gif"));
+            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            BuffedImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));//?
+
+            ImgsE = new BasicImages();
+
+            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "маг стоит.gif"));
+            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "маг колдует.gif"));
+            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "мага бьют.gif"));
+            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            BuffedImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));//?
         }
         public new void Recover(int Healing)
         {
@@ -191,13 +202,21 @@ namespace ppa_lab_test_1
             Health = MaxHealth;
             Price = (Attack + Defence + Health) / 10;
 
-            Imgs = new BasicImages();
+            ImgsP = new BasicImages();
 
-            Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+
+            ImgsE = new BasicImages();
+
+            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
         }
 
         public object Clone()
@@ -209,7 +228,8 @@ namespace ppa_lab_test_1
             li.Defence = Defence;
             li.Dodge = Dodge;
             li.Price = Price;
-            li.Imgs = new BasicImages(Imgs.StandingStill, Imgs.BasicAttack, Imgs.Damaged, Imgs.Healed, Imgs.Dead);
+            li.ImgsP = new BasicImages(ImgsP.StandingStill, ImgsP.BasicAttack, ImgsP.Damaged, ImgsP.Healed, ImgsP.Dead);
+            li.ImgsE = new BasicImages(ImgsE.StandingStill, ImgsE.BasicAttack, ImgsE.Damaged, ImgsE.Healed, ImgsP.Dead);
             li.us = us;
 
             return li;
@@ -240,15 +260,25 @@ namespace ppa_lab_test_1
             Health = MaxHealth;
             Price = (ShootAttack + Defence + Health) / 10;
 
-            Imgs = new BasicImages();
+            ImgsP = new BasicImages();
 
 
-            Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ShootingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ShootingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif")); //
+
+            ImgsE = new BasicImages();
+
+
+            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ShootingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));//
 
         }
 
@@ -274,7 +304,8 @@ namespace ppa_lab_test_1
             arc.Defence = Defence;
             arc.Dodge = Dodge;
             arc.Price = Price;
-            arc.Imgs = new BasicImages(this.Imgs.StandingStill, Imgs.BasicAttack, Imgs.Damaged,Imgs.Healed,Imgs.Dead);
+            arc.ImgsP = new BasicImages(this.ImgsP.StandingStill, ImgsP.BasicAttack, ImgsP.Damaged,ImgsP.Healed,ImgsP.Dead);
+            arc.ImgsE = new BasicImages(this.ImgsE.StandingStill, ImgsE.BasicAttack, ImgsE.Damaged, ImgsE.Healed, ImgsE.Dead);
             arc.ShootingImage = ShootingImage;
             arc.us = us;
             return arc;
@@ -292,13 +323,22 @@ namespace ppa_lab_test_1
             Health = MaxHealth;
             Price = (Attack + Defence + Health) / 10;
 
-            Imgs = new BasicImages();
+            ImgsP = new BasicImages();
 
-            Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            HealingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+
+            ImgsE = new BasicImages();
+
+            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             HealingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
         }
 
@@ -336,13 +376,22 @@ namespace ppa_lab_test_1
             Health = MaxHealth;
             Price = (Attack + Defence + Health) / 10;
 
-            Imgs = new BasicImages();
+            ImgsP = new BasicImages();
 
-            Imgs.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            Imgs.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            CloningImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+
+            ImgsE = new BasicImages();
+
+            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             CloningImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
 
         }
