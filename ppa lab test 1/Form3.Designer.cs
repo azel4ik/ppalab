@@ -45,6 +45,11 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             panel1 = new Panel();
+            pictureBoxe5 = new PictureBox();
+            pictureBoxe4 = new PictureBox();
+            pictureBoxe3 = new PictureBox();
+            pictureBoxe2 = new PictureBox();
+            pictureBoxe1 = new PictureBox();
             pictureBoxp5 = new PictureBox();
             ggP = new PictureBox();
             pictureBoxp3 = new PictureBox();
@@ -52,14 +57,14 @@
             pictureBoxp1 = new PictureBox();
             pictureBoxp4 = new PictureBox();
             splitContainer1 = new SplitContainer();
-            pictureBoxe1 = new PictureBox();
-            pictureBoxe2 = new PictureBox();
-            pictureBoxe3 = new PictureBox();
-            pictureBoxe4 = new PictureBox();
-            pictureBoxe5 = new PictureBox();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxe5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxe4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxe3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxe2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxe1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ggP).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp3).BeginInit();
@@ -68,11 +73,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxp4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxe1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxe2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxe3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxe4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxe5).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
@@ -166,7 +166,7 @@
             // 
             x3ToolStripMenuItem.Name = "x3ToolStripMenuItem";
             x3ToolStripMenuItem.Size = new Size(233, 26);
-            x3ToolStripMenuItem.Text = "3 vs 3";
+            x3ToolStripMenuItem.Text = "2 vs 2";
             x3ToolStripMenuItem.Click += x3ToolStripMenuItem_Click;
             // 
             // everyoneXEveryoneToolStripMenuItem
@@ -221,6 +221,61 @@
             panel1.Size = new Size(1700, 897);
             panel1.TabIndex = 2;
             // 
+            // pictureBoxe5
+            // 
+            pictureBoxe5.AccessibleName = "";
+            pictureBoxe5.BackColor = Color.Transparent;
+            pictureBoxe5.Location = new Point(1550, 400);
+            pictureBoxe5.Name = "pictureBoxe5";
+            pictureBoxe5.Size = new Size(120, 140);
+            pictureBoxe5.TabIndex = 15;
+            pictureBoxe5.TabStop = false;
+            pictureBoxe5.Tag = "";
+            // 
+            // pictureBoxe4
+            // 
+            pictureBoxe4.AccessibleName = "";
+            pictureBoxe4.BackColor = Color.Transparent;
+            pictureBoxe4.Location = new Point(1425, 400);
+            pictureBoxe4.Name = "pictureBoxe4";
+            pictureBoxe4.Size = new Size(120, 140);
+            pictureBoxe4.TabIndex = 14;
+            pictureBoxe4.TabStop = false;
+            pictureBoxe4.Tag = "";
+            // 
+            // pictureBoxe3
+            // 
+            pictureBoxe3.AccessibleName = "";
+            pictureBoxe3.BackColor = Color.Transparent;
+            pictureBoxe3.Location = new Point(1300, 400);
+            pictureBoxe3.Name = "pictureBoxe3";
+            pictureBoxe3.Size = new Size(120, 140);
+            pictureBoxe3.TabIndex = 13;
+            pictureBoxe3.TabStop = false;
+            pictureBoxe3.Tag = "";
+            // 
+            // pictureBoxe2
+            // 
+            pictureBoxe2.AccessibleName = "";
+            pictureBoxe2.BackColor = Color.Transparent;
+            pictureBoxe2.Location = new Point(1175, 400);
+            pictureBoxe2.Name = "pictureBoxe2";
+            pictureBoxe2.Size = new Size(120, 140);
+            pictureBoxe2.TabIndex = 12;
+            pictureBoxe2.TabStop = false;
+            pictureBoxe2.Tag = "";
+            // 
+            // pictureBoxe1
+            // 
+            pictureBoxe1.AccessibleName = "";
+            pictureBoxe1.BackColor = Color.Transparent;
+            pictureBoxe1.Location = new Point(1050, 400);
+            pictureBoxe1.Name = "pictureBoxe1";
+            pictureBoxe1.Size = new Size(120, 140);
+            pictureBoxe1.TabIndex = 11;
+            pictureBoxe1.TabStop = false;
+            pictureBoxe1.Tag = "";
+            // 
             // pictureBoxp5
             // 
             pictureBoxp5.BackColor = Color.Transparent;
@@ -234,9 +289,9 @@
             // 
             ggP.AccessibleName = "";
             ggP.BackColor = Color.Transparent;
-            ggP.Location = new Point(713, 743);
+            ggP.Location = new Point(655, 400);
             ggP.Name = "ggP";
-            ggP.Size = new Size(127, 97);
+            ggP.Size = new Size(130, 140);
             ggP.TabIndex = 9;
             ggP.TabStop = false;
             ggP.Tag = "";
@@ -296,61 +351,6 @@
             splitContainer1.SplitterDistance = 842;
             splitContainer1.TabIndex = 2;
             // 
-            // pictureBoxe1
-            // 
-            pictureBoxe1.AccessibleName = "";
-            pictureBoxe1.BackColor = Color.Transparent;
-            pictureBoxe1.Location = new Point(1050, 400);
-            pictureBoxe1.Name = "pictureBoxe1";
-            pictureBoxe1.Size = new Size(120, 140);
-            pictureBoxe1.TabIndex = 11;
-            pictureBoxe1.TabStop = false;
-            pictureBoxe1.Tag = "";
-            // 
-            // pictureBoxe2
-            // 
-            pictureBoxe2.AccessibleName = "";
-            pictureBoxe2.BackColor = Color.Transparent;
-            pictureBoxe2.Location = new Point(1175, 400);
-            pictureBoxe2.Name = "pictureBoxe2";
-            pictureBoxe2.Size = new Size(120, 140);
-            pictureBoxe2.TabIndex = 12;
-            pictureBoxe2.TabStop = false;
-            pictureBoxe2.Tag = "";
-            // 
-            // pictureBoxe3
-            // 
-            pictureBoxe3.AccessibleName = "";
-            pictureBoxe3.BackColor = Color.Transparent;
-            pictureBoxe3.Location = new Point(1300, 400);
-            pictureBoxe3.Name = "pictureBoxe3";
-            pictureBoxe3.Size = new Size(120, 140);
-            pictureBoxe3.TabIndex = 13;
-            pictureBoxe3.TabStop = false;
-            pictureBoxe3.Tag = "";
-            // 
-            // pictureBoxe4
-            // 
-            pictureBoxe4.AccessibleName = "";
-            pictureBoxe4.BackColor = Color.Transparent;
-            pictureBoxe4.Location = new Point(1425, 400);
-            pictureBoxe4.Name = "pictureBoxe4";
-            pictureBoxe4.Size = new Size(120, 140);
-            pictureBoxe4.TabIndex = 14;
-            pictureBoxe4.TabStop = false;
-            pictureBoxe4.Tag = "";
-            // 
-            // pictureBoxe5
-            // 
-            pictureBoxe5.AccessibleName = "";
-            pictureBoxe5.BackColor = Color.Transparent;
-            pictureBoxe5.Location = new Point(1550, 400);
-            pictureBoxe5.Name = "pictureBoxe5";
-            pictureBoxe5.Size = new Size(120, 140);
-            pictureBoxe5.TabIndex = 15;
-            pictureBoxe5.TabStop = false;
-            pictureBoxe5.Tag = "";
-            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -368,6 +368,11 @@
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBoxe5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxe4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxe3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxe2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxe1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp5).EndInit();
             ((System.ComponentModel.ISupportInitialize)ggP).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp3).EndInit();
@@ -376,11 +381,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxp4).EndInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBoxe1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxe2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxe3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxe4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxe5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

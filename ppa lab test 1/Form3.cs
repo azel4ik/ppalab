@@ -15,14 +15,39 @@ namespace ppa_lab_test_1
 
     public partial class Form3 : Form
     {
-        PictureBox[] pBoxAP = new PictureBox[4];
+        PictureBox[] pBoxAP = new PictureBox[5];
         PictureBox[] pBoxAE = new PictureBox[4];
-        Point[] pointsLine = new Point[4]
+        Point[] pointsLineP = new Point[5]
         {
-            new Point(510, 400),
+            new Point(530, 400),
             new Point(405, 400),
+            new Point(280, 400),
             new Point(155, 400),
             new Point(30, 400),
+        };
+        Point[] pointsLineE = new Point[5]
+        {
+            new Point(1050, 400),
+            new Point(1175, 400),
+            new Point(1300, 400),
+            new Point(1425, 400),
+            new Point(1550, 400),
+        };
+        Point[] pointsTwoLineP = new Point[5]
+        {
+            new Point(530, 250),
+            new Point(530, 430),
+            new Point(405, 250),
+            new Point(405, 430),
+            new Point(280, 250),
+        };
+        Point[] pointsTwoLineE = new Point[5]
+        {
+            new Point(1050, 400),
+            new Point(1175, 400),
+            new Point(1300, 400),
+            new Point(1425, 400),
+            new Point(1550, 400),
         };
 
         private WaveStream bcgstream;
@@ -43,10 +68,12 @@ namespace ppa_lab_test_1
             pBoxAP[1] = pictureBoxp2;
             pBoxAP[2] = pictureBoxp3;
             pBoxAP[3] = pictureBoxp4;
-            pBoxAE[0] = pictureBoxe1;
-            pBoxAE[1] = pictureBoxe2;
-            pBoxAE[2] = pictureBoxe3;
-            pBoxAE[3] = pictureBoxe4;
+            //pBoxAP[5] = pictureBoxp5;
+            //pBoxAE[0] = pictureBoxe1;
+            //pBoxAE[1] = pictureBoxe2;
+            //pBoxAE[2] = pictureBoxe3;
+            //pBoxAE[3] = pictureBoxe4;
+            //pBoxAE[4] = pictureBoxe5;
             for (int i = 0; i < g.player.units.Count(); i++)
             {
                 pBoxAP[i].Image = g.player.units[i].ImgsP.StandingStill;
@@ -159,11 +186,11 @@ namespace ppa_lab_test_1
 
         private void x1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //
             fight = 1;
             for (int i = 0; i < game.player.units.Count(); i++)
             {
-                pBoxAE[i].Location = pointsLine[i];
+                pBoxAP[i].Location = pointsLineP[i];
+                //pBoxAE[i].Location = pointsLineE[i];
             }
             game.SetArmyPosition(new OnevsOnePosition());
         }
@@ -172,16 +199,17 @@ namespace ppa_lab_test_1
         {
             //
             fight = 2;
-            pBoxAP[0].Location = new Point(331, 53);
-            pBoxAP[1].Location = new Point(331, 160);
-            pBoxAP[2].Location = new Point(131, 53);
-            pBoxAP[3].Location = new Point(131, 160);
+            for (int i = 0; i < game.player.units.Count(); i++)
+            {
+                pBoxAP[i].Location = pointsTwoLineP[i];
+                //pBoxAE[i].Location = pointsLineE[i];
+            }
             game.SetArmyPosition(new ThreevsThreePosition());
         }
 
         private void everyoneXEveryoneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             fight = 3;
             pBoxAP[0].Location = new Point(331, 53);
             pBoxAP[1].Location = new Point(331, 110);
