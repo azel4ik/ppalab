@@ -16,7 +16,7 @@ namespace ppa_lab_test_1
     public partial class Form3 : Form
     {
         PictureBox[] pBoxAP = new PictureBox[5];
-        PictureBox[] pBoxAE = new PictureBox[4];
+        PictureBox[] pBoxAE = new PictureBox[5];
         Point[] pointsLineP = new Point[5]
         {
             new Point(530, 400),
@@ -51,11 +51,11 @@ namespace ppa_lab_test_1
         };
         Point[] pointsWallP = new Point[5]
         {
-            new Point(530, 50),
-            new Point(530, 240),
-            new Point(530, 430),
-            new Point(530, 620),
-            new Point(530, 810),
+            new Point(530, 35),
+            new Point(530, 190),
+            new Point(530, 345),
+            new Point(530, 500),
+            new Point(530, 655),
         };
         Point[] pointsWallE = new Point[5]
         {
@@ -84,12 +84,12 @@ namespace ppa_lab_test_1
             pBoxAP[1] = pictureBoxp2;
             pBoxAP[2] = pictureBoxp3;
             pBoxAP[3] = pictureBoxp4;
-            pBoxAP[5] = pictureBoxp5;
-            //pBoxAE[0] = pictureBoxe1;
-            //pBoxAE[1] = pictureBoxe2;
-            //pBoxAE[2] = pictureBoxe3;
-            //pBoxAE[3] = pictureBoxe4;
-            //pBoxAE[4] = pictureBoxe5;
+            pBoxAP[4] = pictureBoxp5;
+            pBoxAE[0] = pictureBoxe1;
+            pBoxAE[1] = pictureBoxe2;
+            pBoxAE[2] = pictureBoxe3;
+            pBoxAE[3] = pictureBoxe4;
+            pBoxAE[4] = pictureBoxe5;
             for (int i = 0; i < g.player.units.Count(); i++)
             {
                 pBoxAP[i].Image = g.player.units[i].ImgsP.StandingStill;
@@ -206,7 +206,7 @@ namespace ppa_lab_test_1
             for (int i = 0; i < game.player.units.Count(); i++)
             {
                 pBoxAP[i].Location = pointsLineP[i];
-                //pBoxAE[i].Location = pointsLineE[i];
+                pBoxAE[i].Location = pointsLineE[i];
             }
             game.SetArmyPosition(new OnevsOnePosition());
         }
@@ -218,7 +218,7 @@ namespace ppa_lab_test_1
             for (int i = 0; i < game.player.units.Count(); i++)
             {
                 pBoxAP[i].Location = pointsTwoLineP[i];
-                //pBoxAE[i].Location = pointsLineE[i];
+                pBoxAE[i].Location = pointsTwoLineE[i];
             }
             game.SetArmyPosition(new ThreevsThreePosition());
         }
@@ -230,7 +230,7 @@ namespace ppa_lab_test_1
             for (int i = 0; i < game.player.units.Count(); i++)
             {
                 pBoxAP[i].Location = pointsWallP[i];
-                //pBoxAE[i].Location = pointsLineE[i];
+                pBoxAE[i].Location = pointsWallE[i];
             }
             game.SetArmyPosition(new AllvsAllPosition());
         }

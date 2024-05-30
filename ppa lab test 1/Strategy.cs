@@ -73,7 +73,7 @@ namespace ppa_lab_test_1
             {
                 g.Attack(g.player.units[0], g.enemy.units[0]);
                 g.Attack(g.player.units[1], g.enemy.units[1]);
-                g.Attack(g.player.units[2], g.enemy.units[2]);
+                //g.Attack(g.player.units[2], g.enemy.units[2]);
                 //if (g.player.units.Count() > 1 && g.enemy.units.Count() > 1)
                 //{
                 //    for (int i = 1; i < g.player.units.Count(); i++)
