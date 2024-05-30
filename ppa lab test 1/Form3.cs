@@ -49,6 +49,22 @@ namespace ppa_lab_test_1
             new Point(1425, 400),
             new Point(1550, 400),
         };
+        Point[] pointsWallP = new Point[5]
+        {
+            new Point(530, 50),
+            new Point(530, 240),
+            new Point(530, 430),
+            new Point(530, 620),
+            new Point(530, 810),
+        };
+        Point[] pointsWallE = new Point[5]
+        {
+            new Point(1050, 400),
+            new Point(1175, 400),
+            new Point(1300, 400),
+            new Point(1425, 400),
+            new Point(1550, 400),
+        };
 
         private WaveStream bcgstream;
         private WaveOut outbcg;
@@ -68,7 +84,7 @@ namespace ppa_lab_test_1
             pBoxAP[1] = pictureBoxp2;
             pBoxAP[2] = pictureBoxp3;
             pBoxAP[3] = pictureBoxp4;
-            //pBoxAP[5] = pictureBoxp5;
+            pBoxAP[5] = pictureBoxp5;
             //pBoxAE[0] = pictureBoxe1;
             //pBoxAE[1] = pictureBoxe2;
             //pBoxAE[2] = pictureBoxe3;
@@ -211,10 +227,11 @@ namespace ppa_lab_test_1
         {
 
             fight = 3;
-            pBoxAP[0].Location = new Point(331, 53);
-            pBoxAP[1].Location = new Point(331, 110);
-            pBoxAP[2].Location = new Point(331, 160);
-            pBoxAP[3].Location = new Point(331, 2100);
+            for (int i = 0; i < game.player.units.Count(); i++)
+            {
+                pBoxAP[i].Location = pointsWallP[i];
+                //pBoxAE[i].Location = pointsLineE[i];
+            }
             game.SetArmyPosition(new AllvsAllPosition());
         }
     }
