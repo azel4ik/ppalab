@@ -154,6 +154,29 @@ namespace ppa_lab_test_1
         } 
     }
 
+    class PlaceGulyaiGorod : GameCommand
+    {
+        Game game;
+        public PlaceGulyaiGorod(Game r)
+        {
+            game = r;
+            command_name = "Place Gulyai-Gorod";
+        }
+        public override void Execute()
+        {
+            game.player.PlaceGulyaiGorod();
+        }
+
+        public override void Undo()
+        {
+            game.player.gg = null;
+        }
+        public override void Redo()
+        {
+            game.player.PlaceGulyaiGorod();
+        }
+    }
+
     public class Game
     {
         public Army player = new Army("Player");
@@ -163,7 +186,7 @@ namespace ppa_lab_test_1
         public void SetArmyPosition(IArmyPosition ap)
         {
             ArmyPosition = ap;
-            ap.PositionUnits(this);
+            //ap.PositionUnits(this);
         }
 
         public void Move(int movetype)
@@ -181,16 +204,34 @@ namespace ppa_lab_test_1
             IUnit odsp = new DeathSoundProxy(o_unt);
 
             if (p_unt.Alive()) 
-            { 
-                p_unt.DoAttack(o_unt, p_unt.Attack); 
-                odmlp.GetDamaged();
-                if (!o_unt.Alive()) { odlp.Die(); odsp.Die(); return; }
+            {
+                if (enemy.gg != null) p_unt.DoAttack(enemy.gg, p_unt.Attack);
+                else
+                {
+                    p_unt.DoAttack(o_unt, p_unt.Attack);
+                    odmlp.GetDamaged();
+                }
+                if (!o_unt.Alive()) 
+                { 
+                    odlp.Die(); 
+                    odsp.Die(); 
+                    return; 
+                }
             }
             if (o_unt.Alive()) 
-            { 
-                o_unt.DoAttack(p_unt, o_unt.Attack); 
-                pdmlp.GetDamaged();
-                if (!p_unt.Alive()) { pdlp.Die(); pdsp.Die(); return; }
+            {
+                if (player.gg != null) o_unt.DoAttack(enemy.gg, o_unt.Attack);
+                else
+                {
+                    o_unt.DoAttack(p_unt, o_unt.Attack);
+                    pdmlp.GetDamaged();
+                }
+                if (!p_unt.Alive()) 
+                { 
+                    pdlp.Die(); 
+                    pdsp.Die(); 
+                    return;
+                }
 
             }
         }
@@ -292,6 +333,7 @@ namespace ppa_lab_test_1
     public class Army
     {
         public List<Unit> units = new List<Unit>();
+        public Adapter? gg;
         public string ArmyName;
         public int HICount;
         public int LICount;
@@ -304,6 +346,11 @@ namespace ppa_lab_test_1
             ArmyName = name;
         }
 
+        public void PlaceGulyaiGorod()
+        {
+            gg = new Adapter();
+        }
+
 
         public void RemoveDeadUnits()
         {
@@ -314,7 +361,7 @@ namespace ppa_lab_test_1
                     
                     units.RemoveAt(i); 
 
-                    i--; 
+                    i--;
                 }
             }
         }
@@ -359,7 +406,6 @@ namespace ppa_lab_test_1
             for (int i = 0; i < ANum; i++) units.Add(new Archer());
             for (int i = 0; i < HNum; i++) units.Add(new Healer());
             for (int i = 0; i < WNum; i++) units.Add(new Wizard());
-
         }
 
         public void ChooseRandomUnits(int balance)
@@ -410,10 +456,8 @@ namespace ppa_lab_test_1
                             break;
                         default: break;
                     }
-                    
                 }
             }
-
         }
 
         public List<Unit> FindUnit(string str)
@@ -422,6 +466,16 @@ namespace ppa_lab_test_1
             for (int i = 0; i < units.Count(); i++)
             {
                 if (units[i].Name.Contains(str)) unts.Add(units[i]);
+            }
+            return unts;
+        }
+
+        public List<int> FindUnitInx(string str)
+        {
+            List<int> unts = new List<int>();
+            for (int i = 0; i < units.Count(); i++)
+            {
+                if (units[i].Name.Contains(str)) unts.Add(i);
             }
             return unts;
         }
@@ -439,64 +493,59 @@ namespace ppa_lab_test_1
         }
         public void HealArmy(PositionType pst)
         {
-            List<Unit> hlrs = FindUnit("Healer");
+            List<int> hlrs = FindUnitInx("Healer");
             if (hlrs.Count > 0)
             {
                 if (units.Count() > 0)
                 {
                     for (int i = 0; i < hlrs.Count(); i++)
                     {
-                        int val = 0;
-                        for (int j = 0; j < units.Count(); j++)
-                        {
-                            if (hlrs[i] == units[j]) val = j;
-                        }
-                        Unit un = FindClosestUnitToHeal(val, pst);
-                        UnitType chu = CheckUnit(un);
+                        int un = FindClosestUnitToHeal(hlrs[i], pst);
+                        if (un == -1) return;
+                        UnitType chu = CheckUnit(units[un]);
                         switch (chu)
                         {
                             case UnitType.HeavyUnit:
-                                HeavyUnit hu = (HeavyUnit)un;
-                                ((Healer)hlrs[i]).Heal(hu);
+                                HeavyUnit hu = (HeavyUnit)(units[un]);
+                                ((Healer)units[hlrs[i]]).Heal(hu);
                                 break;
                             case UnitType.LightUnit:
-                                LightUnit lu = (LightUnit)un;
-                                ((Healer)hlrs[i]).Heal(lu);
+                                LightUnit lu = (LightUnit)(units[un]);
+                                ((Healer)units[hlrs[i]]).Heal(lu);
                                 break;
                             case UnitType.Archer:
-                                Archer a = (Archer)un;
-                                ((Healer)hlrs[i]).Heal(a);
+                                Archer a = (Archer)(units[un]);
+                                ((Healer)units[hlrs[i]]).Heal(a);
                                 break;
                             case UnitType.Healer:
-                                Healer h = (Healer)un;
-                                ((Healer)hlrs[i]).Heal(h);
+                                Healer h = (Healer)(units[un]);
+                                ((Healer)units[hlrs[i]]).Heal(h);
                                 break;
                             case UnitType.Wizard:
-                                Wizard w = (Wizard)un;
-                                ((Healer)hlrs[i]).Heal(w);
+                                Wizard w = (Wizard)(units[un]);
+                                ((Healer)units[hlrs[i]]).Heal(w);
                                 break;
                         }
-
                     }
                 }
             }
         }
 
-        public Unit FindClosestUnitToHeal(int hpos, PositionType pst)
+        public int FindClosestUnitToHeal(int hpos, PositionType pst)
         {
-            Unit res = new Unit();
+            int res = -1;
             switch (pst)
             {
                 case PositionType.OnevsOne:
                     if (units.Count() > 1)
                     {
-                        Unit before = new Unit();
-                        Unit after = new Unit();
-                        if (hpos - 1 >= 0) before = units[hpos - 1];
-                        if (hpos + 1 < units.Count) after = units[hpos + 1];
-                        if (before != null && after != null)
+                        int before = -1;
+                        int after = -1;
+                        if (hpos - 1 >= 0) before = hpos - 1;
+                        if (hpos + 1 < units.Count) after = hpos + 1;
+                        if (before != -1 && after != -1)
                         {
-                            if (after.Health < before.Health)
+                            if (units[after].Health < units[before].Health)
                             {
                                 res = after;
                             }
@@ -504,32 +553,39 @@ namespace ppa_lab_test_1
                         }
                     }
                     break;
-                //case PositionType.ThreevsThree:
-                //    if (units.Count() > 1)
-                //    {
-                //        List
-                //        if (hpos - 1 >= 0) before = units[hpos - 1];
-                //        if (hpos + 1 < units.Count) after = units[hpos + 1];
-                //        if (before != null && after != null)
-                //        {
-                //            if (after.Health < before.Health)
-                //            {
-                //                res = after;
-                //            }
-                //            else res = before;
-                //        }
-                //    }
-                //    break;
+                case PositionType.ThreevsThree:
+                    if (units.Count() > 1)
+                    {
+                        int close1 = -1;
+                        int close2 = -1;
+                        int close3 = -1;
+                        if (hpos - 2 >= 0) close1 = hpos - 2;
+                        if (hpos + 2 < units.Count) close3 = hpos + 2;
+                        for (int i = 0;i<units.Count;i++)
+                        {
+                            if (i / 2 == hpos / 2 && i != hpos) close2 = i;
+                        }
+                        if (close1 != -1 && close2 != -1 && close3 != -1)
+                        {
+                            if (units[close1].Health < units[close3].Health && units[close1].Health < units[close2].Health)
+                            {
+                                res = close1;
+                            }
+                            else if (units[close1].Health < units[close3].Health && units[close1].Health > units[close2].Health) res = close2;
+                            else res = close3;
+                        }
+                    }
+                    break;
                 case PositionType.AllvsAll:
                     if (units.Count() > 1)
                     {
-                        Unit before = new Unit();
-                        Unit after = new Unit();
-                        if (hpos - 1 >= 0) before = units[hpos - 1];
-                        if (hpos + 1 < units.Count) after = units[hpos + 1];
-                        if (before != null && after != null)
+                        int before = -1;
+                        int after = -1;
+                        if (hpos - 1 >= 0) before = hpos - 1;
+                        if (hpos + 1 < units.Count) after = hpos + 1;
+                        if (before != -1 && after != -1)
                         {
-                            if (after.Health < before.Health)
+                            if (units[after].Health < units[before].Health)
                             {
                                 res = after;
                             }
@@ -550,6 +606,12 @@ namespace ppa_lab_test_1
             a.ACount = ACount;
             a.HCount = HCount;
             a.WCount = WCount;
+            if(gg != null) 
+            {
+                a.gg = new Adapter();
+                a.gg.Health = gg.Health;
+            }
+
             for (int i = 0; i < units.Count(); i++)
             {
                 a.units.Add(units.ElementAt(i).Copy());

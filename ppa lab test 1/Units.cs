@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ppa_lab_test_1
@@ -86,17 +87,13 @@ namespace ppa_lab_test_1
         {
             Random rndAtt = new Random();
             int AttackValue = rndAtt.Next((int)(attack*0.75), (int)(attack * 1.25));
-            //должна включаться анимация атаки у this
-            //должна включаться анимация потери у defender
+
             if (Alive() && opponent.Alive())
             {
                 int loss = Math.Max(AttackValue - opponent.Defence, 0);
                 opponent.Health = Math.Max(opponent.Health - loss, 0);
-                //opponent.dmlp.GetDamaged();
 
             }
-            //Imgs.BasicAttack
-            //opponent.Imgs.Damaged
         }
         internal IHealable Recover(int power) //стырила у Наташи
         {
@@ -208,6 +205,31 @@ namespace ppa_lab_test_1
         }
 
     }
+
+    public abstract class UnitDecorator : HeavyUnit
+    { 
+        public UnitDecorator(string _Name, int buffAttack, int buffDefence)
+        {
+            Name = _Name;
+            Attack = Attack + buffAttack;
+            Defence = Defence + buffDefence;
+        }
+    }
+
+    public class HeavyInfantryHelmet : UnitDecorator //  heavy infantry со шлемом
+    {
+        static int buff = 5; // +5
+        public HeavyInfantryHelmet(Unit unit) : base(unit.Name + " со шлемом", 0, buff)
+        {
+        }
+    }
+    public class HeavyInfantryCoolSword : UnitDecorator //  heavy infantry с лошадью
+    {
+        static int buff = 10; // +5 к атаке
+        public HeavyInfantryCoolSword(Unit unit) : base(unit.Name + " с крутым мечом", buff, 0)
+        {
+        }
+    }
     public class LightUnit : Unit, IHealable, ICloneable
     {
         public LightUnit()
@@ -221,7 +243,7 @@ namespace ppa_lab_test_1
 
             ImgsP = new BasicImages();
 
-            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "cat.gif"));
             ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
@@ -297,11 +319,6 @@ namespace ppa_lab_test_1
             ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             ShootingImageE = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));//
-
-        }
-
-        public void DistantAttack(Unit opponent)
-        {
 
         }
         public new void Recover(int Healing)
@@ -485,72 +502,39 @@ namespace ppa_lab_test_1
 
     public class GulyaiGorod
     {
-        private int Health;
-        private int Defence;
-        private int MaxHealth;
+        public int Health;
+        public int Defence;
+        public int MaxHealth;
+        public Image GGs;
+        public Image GGd;
 
         public GulyaiGorod()
         {
             Defence = 10;
             MaxHealth = Health = 30;
+            GGs = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            GGd = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
         }
 
-        public int GetDefence()
-        {
-            return Defence;
-        }
-
-        public int GetStrength()
-        {
-            return 0;
-        }
-
-        public int GetHealth()
-        {
-            return Health;
-        }
-
-        public int GetMaxHealth()
-        {
-            return MaxHealth;
-        }
-
-
-        public void TakeDamage(int attack)
-        {
-            // oppAtt - сила атаки
-            var minus = (int)Math.Round((decimal)((attack - Defence) / 100));
-            Health -= minus;
-        }
-
-        public bool IsDead
-        {
-            get { return Health <= 0; }
-        }
     }
 
-    class Adapter : Unit
+    public class Adapter : Unit
     {
-        private GulyaiGorod gulyaiGorod;
+        public GulyaiGorod gulyaiGorod;
         public Adapter()
         {
             gulyaiGorod = new GulyaiGorod();
             Name = "Gulyai Gorod";
-            Attack = gulyaiGorod.GetStrength();
-            Defence = gulyaiGorod.GetDefence();
-            MaxHealth = gulyaiGorod.GetMaxHealth();
+            Attack = 0;
+            Defence = gulyaiGorod.Defence;
+            MaxHealth = gulyaiGorod.MaxHealth;
             Health = MaxHealth;
         }
-        public new bool IsStillAlive()
+        public bool Alive()
         {
-            return gulyaiGorod.IsDead;
+            return Health > 0;
         }
 
-        public new void GetHit(int oppAtt)
-        {
-            gulyaiGorod.TakeDamage(oppAtt);
-            Health = gulyaiGorod.GetHealth();
-        }
     }
 
         public class BasicImages

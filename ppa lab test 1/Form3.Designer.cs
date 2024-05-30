@@ -34,6 +34,7 @@
             attackToolStripMenuItem = new ToolStripMenuItem();
             healToolStripMenuItem = new ToolStripMenuItem();
             cloneToolStripMenuItem = new ToolStripMenuItem();
+            gulyaiToolStripMenuItem = new ToolStripMenuItem();
             Undo = new ToolStripButton();
             Redo = new ToolStripButton();
             Save = new ToolStripButton();
@@ -58,7 +59,6 @@
             pictureBoxp1 = new PictureBox();
             pictureBoxp4 = new PictureBox();
             splitContainer1 = new SplitContainer();
-            gulyaigorodToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             panel1.SuspendLayout();
@@ -92,7 +92,7 @@
             // Action
             // 
             Action.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            Action.DropDownItems.AddRange(new ToolStripItem[] { attackToolStripMenuItem, healToolStripMenuItem, cloneToolStripMenuItem, gulyaigorodToolStripMenuItem });
+            Action.DropDownItems.AddRange(new ToolStripItem[] { attackToolStripMenuItem, healToolStripMenuItem, cloneToolStripMenuItem, gulyaiToolStripMenuItem });
             Action.Image = (Image)resources.GetObject("Action.Image");
             Action.ImageTransparentColor = Color.Magenta;
             Action.Name = "Action";
@@ -117,6 +117,13 @@
             cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
             cloneToolStripMenuItem.Size = new Size(224, 26);
             cloneToolStripMenuItem.Text = "Clone";
+            // 
+            // gulyaiToolStripMenuItem
+            // 
+            gulyaiToolStripMenuItem.Name = "gulyaiToolStripMenuItem";
+            gulyaiToolStripMenuItem.Size = new Size(224, 26);
+            gulyaiToolStripMenuItem.Text = "Gulyai-Gorod";
+            gulyaiToolStripMenuItem.Click += gulyaiToolStripMenuItem_Click;
             // 
             // Undo
             // 
@@ -366,13 +373,6 @@
             splitContainer1.SplitterDistance = 842;
             splitContainer1.TabIndex = 2;
             // 
-            // gulyaigorodToolStripMenuItem
-            // 
-            gulyaigorodToolStripMenuItem.Name = "gulyaigorodToolStripMenuItem";
-            gulyaigorodToolStripMenuItem.Size = new Size(224, 26);
-            gulyaigorodToolStripMenuItem.Text = "Gulyai-gorod";
-            gulyaigorodToolStripMenuItem.Click += gulyaigorodToolStripMenuItem_Click;
-            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -440,5 +440,7 @@
         public PictureBox pictureBoxe1;
         public PictureBox ggE;
         private ToolStripMenuItem gulyaigorodToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem gulyaiToolStripMenuItem;
     }
 }

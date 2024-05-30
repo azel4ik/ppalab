@@ -275,5 +275,18 @@ namespace ppa_lab_test_1
             }
 
         }
+
+        private void gulyaiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ggP != null)
+            {
+                MessageBox.Show("You already have gulyai-gorod");
+            }
+            else
+            {
+                
+                ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            }
+        }
     }
 }

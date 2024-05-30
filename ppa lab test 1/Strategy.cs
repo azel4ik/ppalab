@@ -11,14 +11,7 @@ namespace ppa_lab_test_1
 {
     public interface IArmyPosition
     {
-        public void MoveAlgorithm(Game g, int movetype)
-        {
-
-        }
-        public void PositionUnits(Game g)
-        {
-
-        }
+        public void MoveAlgorithm(Game g, int movetype) { }
     }
     public class OnevsOnePosition : IArmyPosition
     {
@@ -37,21 +30,6 @@ namespace ppa_lab_test_1
                 g.enemy.RemoveDeadUnits();
             }
         }
-        public void PositionUnits(Game g)
-        {
-            for (int i = 0; i < g.player.units.Count(); i++)
-            {
-                PictureBox pupb = new PictureBox();
-                pupb.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));//g.player.units[i].Imgs.StandingStill;
-                pupb.Location = new Point(g.player.units.Count() * 120 + 20, 10);
-                pupb.Size = new Size(100, 120);
-            }
-            for (int i = 0; i < g.enemy.units.Count(); i++)
-            {
-                //PictureBox eupb = new PictureBox();
-                //eupb.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif")); //g.enemy.units[i].Imgs.StandingStill;
-            }
-        }
     }
     public class ThreevsThreePosition : IArmyPosition
     {
@@ -68,22 +46,16 @@ namespace ppa_lab_test_1
                 g.enemy.RemoveDeadUnits();
             }
         }
-        public void PositionUnits(Game g)
-        {
-            for (int i = 0; i < g.player.units.Count(); i++)
-            {
-
-            }
-
-        }
     }
     public class AllvsAllPosition : IArmyPosition
     {
         public void MoveAlgorithm(Game g, int movetype)
         {
-            if (g.player.units.Count() > 0 && g.enemy.units.Count() > 0)
+            int playernum = g.player.units.Count();
+            int enemynum = g.enemy.units.Count();
+            if (playernum > 0 && enemynum > 0)
             {
-                for (int i = 0;  i < g.player.units.Count(); i++)
+                for (int i = 0;  i < Math.Min(playernum,enemynum); i++)
                 {
                     g.Attack(g.player.units[i], g.enemy.units[i]);
                 }
@@ -92,13 +64,6 @@ namespace ppa_lab_test_1
                 g.enemy.MoveInQueue(PositionType.AllvsAll);
                 g.player.RemoveDeadUnits();
                 g.enemy.RemoveDeadUnits();
-            }
-        }
-        public void PositionUnits(Game g)
-        {
-            for (int i = 0; i < g.player.units.Count(); i++)
-            {
-
             }
         }
     }
