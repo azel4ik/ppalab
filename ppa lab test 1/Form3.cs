@@ -271,6 +271,9 @@ namespace ppa_lab_test_1
             }
             else
             {
+                PlaceGulyaiGorod pgg = new PlaceGulyaiGorod(game);
+                gm.SetCommand(pgg);
+                gm.Execute();
                 ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             }
 
@@ -284,9 +287,16 @@ namespace ppa_lab_test_1
             }
             else
             {
-                
+                PlaceGulyaiGorod pgg = new PlaceGulyaiGorod(game);
+                gm.SetCommand(pgg);
+                gm.Execute();
                 ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             }
+        }
+
+        private void cloneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

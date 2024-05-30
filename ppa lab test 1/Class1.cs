@@ -154,6 +154,37 @@ namespace ppa_lab_test_1
         } 
     }
 
+    class CloneUnit : GameCommand
+    {
+        Game game;
+        Army initialplayerstate;
+        Army initialenemystate;
+        Army finalplayerstate;
+        Army finalenemystate;
+        public CloneUnit(Game r)
+        {
+            game = r;
+            command_name = "Clone Unit";
+        }
+        public override void Execute()
+        {
+            game.player.WizardCloning();
+            finalenemystate = game.enemy.Copy();
+            finalplayerstate = game.player.Copy();
+        }
+
+        public override void Undo()
+        {
+            game.player = initialplayerstate.Copy();
+            game.enemy = initialenemystate.Copy();
+        }
+        public override void Redo()
+        {
+            game.player = finalplayerstate.Copy();
+            game.enemy = finalenemystate.Copy();
+        }
+    }
+
     class PlaceGulyaiGorod : GameCommand
     {
         Game game;
@@ -389,7 +420,7 @@ namespace ppa_lab_test_1
                         if (a.Alive())
                         {
                             units.RemoveAt(0);
-                            units.RemoveAt(1);
+                            units.RemoveAt(0);
                             units.Add(a);
                             units.Add(b);
                         }
@@ -598,6 +629,66 @@ namespace ppa_lab_test_1
             }
             return res;
         }
+
+        public int FindRandomLightorArcher()
+        {
+            int res = -1;
+            List<int> unts = new List<int>();
+            for (int i = 0; i < units.Count(); i++)
+            {
+                if (units[i].Name.Contains("Light Infantry") || units[i].Name.Contains("Archer")) unts.Add(i);
+            }
+            int val;
+            Random randinx = new Random();
+            val = randinx.Next(unts.Count);
+            return unts[val];
+        }
+
+        public void WizardCloning()
+        {
+            List<int> wzrds = new List<int>();
+            wzrds = FindUnitInx("Wizard");
+            if (wzrds.Count() > 0)
+            {
+
+                for (int i = 0; i < wzrds.Count(); i++)
+                {
+                    if (wzrds[i] > 0)
+                    {
+                        int inx = FindRandomLightorArcher();
+                        UnitType ut = CheckUnit(units[inx]);
+                        switch (ut)
+                        {
+                            case UnitType.Archer:
+                                Wizard wz = (Wizard)units[wzrds[i]];
+                                Archer ar = (Archer)units[inx];
+                                units.Add(wz.Clone(ar));
+                            break;
+
+                            case UnitType.LightUnit:
+                                Wizard wzl = (Wizard)units[wzrds[i]];
+                                LightUnit liu = (LightUnit)units[inx];
+                                units.Add(wzl.Clone(liu));
+                                break;
+
+                        }
+                        break;
+                     }
+                }
+            }
+        }
+    
+
+        public void BuffHeavyUnit()
+        {
+
+        }
+
+        public List<int> FindBuffPair()
+        {
+            List<int> res = new List<int>();
+            return res;
+        }
         public Army Copy()
         {
             Army a = new Army(ArmyName);
@@ -619,5 +710,4 @@ namespace ppa_lab_test_1
             return a;
         }
     }
-
 }

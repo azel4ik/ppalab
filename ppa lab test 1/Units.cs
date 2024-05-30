@@ -482,13 +482,13 @@ namespace ppa_lab_test_1
             return arc;
         }
 
-        public void Clone(Archer a)
+        public Archer Clone(Archer a)
         {
-            a.Clone();
+            return (Archer)a.Clone();
         }
-        public void Clone(LightUnit a)
+        public LightUnit Clone(LightUnit a)
         {
-            a.Clone();
+            return (LightUnit)a.Clone();
         }
         public new void Recover(int Healing)
         {

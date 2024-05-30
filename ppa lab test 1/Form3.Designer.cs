@@ -117,6 +117,7 @@
             cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
             cloneToolStripMenuItem.Size = new Size(224, 26);
             cloneToolStripMenuItem.Text = "Clone";
+            cloneToolStripMenuItem.Click += cloneToolStripMenuItem_Click;
             // 
             // gulyaiToolStripMenuItem
             // 
