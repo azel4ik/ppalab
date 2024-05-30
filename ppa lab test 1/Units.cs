@@ -122,8 +122,8 @@ namespace ppa_lab_test_1
             unt.Defence = Defence;
             unt.Dodge = Dodge;
             unt.Price = Price;
-            unt.ImgsP = new BasicImages();
-            unt.ImgsE = new BasicImages();
+            unt.ImgsP = new BasicImages(ImgsP.StandingStill, ImgsP.BasicAttack, ImgsP.Damaged, ImgsP.Healed, ImgsP.Dead);
+            unt.ImgsE = new BasicImages(ImgsE.StandingStill, ImgsE.BasicAttack, ImgsE.Damaged, ImgsE.Healed, ImgsE.Dead);
             unt.us = us;
             return unt;
         }
@@ -153,7 +153,7 @@ namespace ppa_lab_test_1
 
     public class HeavyUnit : Unit, IHealable
     {
-        Image BuffedImage;
+        public Image BuffedImage;
         public HeavyUnit()
         {
             Name += " Heavy Infantry";
@@ -181,6 +181,23 @@ namespace ppa_lab_test_1
             ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             BuffedImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));//?
         }
+
+        public HeavyUnit Copy()
+        {
+            HeavyUnit unt = new HeavyUnit();
+            unt.Name = Name;
+            unt.Health = Health;
+            unt.Attack = Attack;
+            unt.Defence = Defence;
+            unt.Dodge = Dodge;
+            unt.Price = Price;
+            unt.ImgsP = new BasicImages(ImgsP.StandingStill, ImgsP.BasicAttack, ImgsP.Damaged, ImgsP.Healed, ImgsP.Dead);
+            unt.ImgsE = new BasicImages(ImgsE.StandingStill, ImgsE.BasicAttack, ImgsE.Damaged, ImgsE.Healed, ImgsE.Dead);
+            unt.BuffedImage = BuffedImage;
+            unt.us = us;
+            return unt;
+        }
+
         public new void Recover(int Healing)
         {
             if (MaxHealth < Health && MaxHealth > 0)
@@ -304,8 +321,8 @@ namespace ppa_lab_test_1
             arc.Defence = Defence;
             arc.Dodge = Dodge;
             arc.Price = Price;
-            arc.ImgsP = new BasicImages(this.ImgsP.StandingStill, ImgsP.BasicAttack, ImgsP.Damaged,ImgsP.Healed,ImgsP.Dead);
-            arc.ImgsE = new BasicImages(this.ImgsE.StandingStill, ImgsE.BasicAttack, ImgsE.Damaged, ImgsE.Healed, ImgsE.Dead);
+            arc.ImgsP = new BasicImages(ImgsP.StandingStill, ImgsP.BasicAttack, ImgsP.Damaged,ImgsP.Healed,ImgsP.Dead);
+            arc.ImgsE = new BasicImages(ImgsE.StandingStill, ImgsE.BasicAttack, ImgsE.Damaged, ImgsE.Healed, ImgsE.Dead);
             arc.ShootingImage = ShootingImage;
             arc.us = us;
             return arc;
@@ -341,7 +358,21 @@ namespace ppa_lab_test_1
             ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             HealingImage = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
         }
-
+        public Healer Copy()
+        {
+            Healer arc = new Healer();
+            arc.Name = Name;
+            arc.Health = Health;
+            arc.Attack = Attack;
+            arc.Defence = Defence;
+            arc.Dodge = Dodge;
+            arc.Price = Price;
+            arc.ImgsP = new BasicImages(this.ImgsP.StandingStill, ImgsP.BasicAttack, ImgsP.Damaged, ImgsP.Healed, ImgsP.Dead);
+            arc.ImgsE = new BasicImages(this.ImgsE.StandingStill, ImgsE.BasicAttack, ImgsE.Damaged, ImgsE.Healed, ImgsE.Dead);
+            arc.HealingImage = HealingImage;
+            arc.us = us;
+            return arc;
+        }
         public void Heal(HeavyUnit u)
         {
             int value = (int)(Health * 0.5);
@@ -386,7 +417,7 @@ namespace ppa_lab_test_1
 
     public class Wizard : Unit, IHealable
     {
-        Image CloningImage;
+        public Image CloningImage;
         public Wizard()
         {
             Name += " Wizard";
@@ -416,6 +447,22 @@ namespace ppa_lab_test_1
 
         }
 
+        public Wizard Copy()
+        {
+            Wizard arc = new Wizard();
+            arc.Name = Name;
+            arc.Health = Health;
+            arc.Attack = Attack;
+            arc.Defence = Defence;
+            arc.Dodge = Dodge;
+            arc.Price = Price;
+            arc.ImgsP = new BasicImages(this.ImgsP.StandingStill, ImgsP.BasicAttack, ImgsP.Damaged, ImgsP.Healed, ImgsP.Dead);
+            arc.ImgsE = new BasicImages(this.ImgsE.StandingStill, ImgsE.BasicAttack, ImgsE.Damaged, ImgsE.Healed, ImgsE.Dead);
+            arc.CloningImage = CloningImage;
+            arc.us = us;
+            return arc;
+        }
+
         public void Clone(Archer a)
         {
             a.Clone();
@@ -434,7 +481,77 @@ namespace ppa_lab_test_1
         }
     }
 
-    public class BasicImages
+    public class GulyaiGorod
+    {
+        private int Health;
+        private int Defence;
+        private int MaxHealth;
+
+        public GulyaiGorod()
+        {
+            Defence = 10;
+            MaxHealth = Health = 30;
+        }
+
+        public int GetDefence()
+        {
+            return Defence;
+        }
+
+        public int GetStrength()
+        {
+            return 0;
+        }
+
+        public int GetHealth()
+        {
+            return Health;
+        }
+
+        public int GetMaxHealth()
+        {
+            return MaxHealth;
+        }
+
+
+        public void TakeDamage(int attack)
+        {
+            // oppAtt - сила атаки
+            var minus = (int)Math.Round((decimal)((attack - Defence) / 100));
+            Health -= minus;
+        }
+
+        public bool IsDead
+        {
+            get { return Health <= 0; }
+        }
+    }
+
+    class Adapter : Unit
+    {
+        private GulyaiGorod gulyaiGorod;
+        public Adapter()
+        {
+            gulyaiGorod = new GulyaiGorod();
+            Name = "Gulyai Gorod";
+            Attack = gulyaiGorod.GetStrength();
+            Defence = gulyaiGorod.GetDefence();
+            MaxHealth = gulyaiGorod.GetMaxHealth();
+            Health = MaxHealth;
+        }
+        public new bool IsStillAlive()
+        {
+            return gulyaiGorod.IsDead;
+        }
+
+        public new void GetHit(int oppAtt)
+        {
+            gulyaiGorod.TakeDamage(oppAtt);
+            Health = gulyaiGorod.GetHealth();
+        }
+    }
+
+        public class BasicImages
     {
         public Image StandingStill;
         public Image BasicAttack;

@@ -30,23 +30,11 @@ namespace ppa_lab_test_1
                 g.LongAttack();
                 g.player.HealArmy(PositionType.OnevsOne);
                 g.enemy.HealArmy(PositionType.OnevsOne);
-
-                //if (g.player.units.Count() > 1 && g.enemy.units.Count() > 1)
-                //{
-                //    for (int i = 1;i < g.player.units.Count(); i++)
-                //    {
-
-                //    }
-                //}
-                //player.units[0].Heal(FindNearestUnit(player.units));
-                //enemy.units[0].Heal(FindNearestUnit(enemy.units));
-                //player.units[0].Copy(FindNearestUnit(player.units));
-                //enemy.units[0].Copy(FindNearestUnit(enemy.units));
-                //если есть archer, он стреляет
+                
+                g.player.MoveInQueue(PositionType.OnevsOne);
+                g.enemy.MoveInQueue(PositionType.OnevsOne);
                 g.player.RemoveDeadUnits();
                 g.enemy.RemoveDeadUnits();
-                g.player.MoveInQueue();
-                g.enemy.MoveInQueue();
             }
         }
         public void PositionUnits(Game g)
@@ -73,23 +61,11 @@ namespace ppa_lab_test_1
             {
                 g.Attack(g.player.units[0], g.enemy.units[0]);
                 g.Attack(g.player.units[1], g.enemy.units[1]);
-                //g.Attack(g.player.units[2], g.enemy.units[2]);
-                //if (g.player.units.Count() > 1 && g.enemy.units.Count() > 1)
-                //{
-                //    for (int i = 1; i < g.player.units.Count(); i++)
-                //    {
-
-                //    }
-                //}
-                //player.units[0].Heal(FindNearestUnit(player.units));
-                //enemy.units[0].Heal(FindNearestUnit(enemy.units));
-                //player.units[0].Copy(FindNearestUnit(player.units));
-                //enemy.units[0].Copy(FindNearestUnit(enemy.units));
-                //если есть archer, он стреляет
+                
+                g.player.MoveInQueue(PositionType.ThreevsThree);
+                g.enemy.MoveInQueue(PositionType.ThreevsThree);
                 g.player.RemoveDeadUnits();
                 g.enemy.RemoveDeadUnits();
-                g.player.MoveInQueue();
-                g.enemy.MoveInQueue();
             }
         }
         public void PositionUnits(Game g)
@@ -111,22 +87,11 @@ namespace ppa_lab_test_1
                 {
                     g.Attack(g.player.units[i], g.enemy.units[i]);
                 }
-                //if (g.player.units.Count() > 1 && g.enemy.units.Count() > 1)
-                //{
-                //    for (int i = 1; i < g.player.units.Count(); i++)
-                //    {
-
-                //    }
-                //}
-                //player.units[0].Heal(FindNearestUnit(player.units));
-                //enemy.units[0].Heal(FindNearestUnit(enemy.units));
-                //player.units[0].Copy(FindNearestUnit(player.units));
-                //enemy.units[0].Copy(FindNearestUnit(enemy.units));
-                //если есть archer, он стреляет
+                
+                g.player.MoveInQueue(PositionType.AllvsAll);
+                g.enemy.MoveInQueue(PositionType.AllvsAll);
                 g.player.RemoveDeadUnits();
                 g.enemy.RemoveDeadUnits();
-                g.player.MoveInQueue();
-                g.enemy.MoveInQueue();
             }
         }
         public void PositionUnits(Game g)

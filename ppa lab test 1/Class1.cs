@@ -319,16 +319,36 @@ namespace ppa_lab_test_1
             }
         }
 
-        public void MoveInQueue()
+        public void MoveInQueue(PositionType pt)
         {
-            if (units.Count() > 0)
+            switch (pt)
             {
-                Unit a = units[0];
-                if (a.Alive())
-                {
-                    units.RemoveAt(0);
-                    units.Add(a);
-                }
+                case PositionType.OnevsOne:
+                    if (units.Count() > 0)
+                    {
+                        Unit a = units[0];
+                        if (a.Alive())
+                        {
+                            units.RemoveAt(0);
+                            units.Add(a);
+                        }
+                    }
+                break;
+                case PositionType.ThreevsThree:
+                    if (units.Count() > 1)
+                    {
+                        Unit a = units[0];
+                        Unit b = units[1];
+                        if (a.Alive())
+                        {
+                            units.RemoveAt(0);
+                            units.RemoveAt(1);
+                            units.Add(a);
+                            units.Add(b);
+                        }
+                    }
+                break;
+                case PositionType.AllvsAll: break;
             }
         }
         public void ChooseUnits(int HINum, int LINum, int ANum, int HNum, int WNum)
