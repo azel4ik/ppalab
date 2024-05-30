@@ -32,8 +32,10 @@
             toolStrip1 = new ToolStrip();
             Action = new ToolStripDropDownButton();
             attackToolStripMenuItem = new ToolStripMenuItem();
-            healToolStripMenuItem = new ToolStripMenuItem();
             cloneToolStripMenuItem = new ToolStripMenuItem();
+
+            gulyaigorodToolStripMenuItem = new ToolStripMenuItem();
+
             gulyaiToolStripMenuItem = new ToolStripMenuItem();
             Undo = new ToolStripButton();
             Redo = new ToolStripButton();
@@ -92,7 +94,11 @@
             // Action
             // 
             Action.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            Action.DropDownItems.AddRange(new ToolStripItem[] { attackToolStripMenuItem, healToolStripMenuItem, cloneToolStripMenuItem, gulyaiToolStripMenuItem });
+
+            Action.DropDownItems.AddRange(new ToolStripItem[] { attackToolStripMenuItem, cloneToolStripMenuItem, gulyaigorodToolStripMenuItem });
+
+            Action.DropDownItems.AddRange(new ToolStripItem[] { attackToolStripMenuItem, cloneToolStripMenuItem, gulyaiToolStripMenuItem });
+
             Action.Image = (Image)resources.GetObject("Action.Image");
             Action.ImageTransparentColor = Color.Magenta;
             Action.Name = "Action";
@@ -106,18 +112,21 @@
             attackToolStripMenuItem.Text = "Attack";
             attackToolStripMenuItem.Click += attackToolStripMenuItem_Click;
             // 
-            // healToolStripMenuItem
-            // 
-            healToolStripMenuItem.Name = "healToolStripMenuItem";
-            healToolStripMenuItem.Size = new Size(224, 26);
-            healToolStripMenuItem.Text = "Heal";
-            // 
             // cloneToolStripMenuItem
             // 
             cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
             cloneToolStripMenuItem.Size = new Size(224, 26);
             cloneToolStripMenuItem.Text = "Clone";
             cloneToolStripMenuItem.Click += cloneToolStripMenuItem_Click;
+
+            // 
+            // gulyaigorodToolStripMenuItem
+            // 
+            gulyaigorodToolStripMenuItem.Name = "gulyaigorodToolStripMenuItem";
+            gulyaigorodToolStripMenuItem.Size = new Size(224, 26);
+            gulyaigorodToolStripMenuItem.Text = "Gulyai-gorod";
+            gulyaigorodToolStripMenuItem.Click += gulyaigorodToolStripMenuItem_Click;
+
             // 
             // gulyaiToolStripMenuItem
             // 
@@ -414,7 +423,6 @@
         private ToolStrip toolStrip1;
         private ToolStripDropDownButton Action;
         private ToolStripMenuItem attackToolStripMenuItem;
-        private ToolStripMenuItem healToolStripMenuItem;
         private ToolStripMenuItem cloneToolStripMenuItem;
         private ToolStripButton Undo;
         private ToolStripButton Redo;
