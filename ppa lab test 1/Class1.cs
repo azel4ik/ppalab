@@ -679,8 +679,33 @@ namespace ppa_lab_test_1
         }
     
 
-        public void BuffHeavyUnit()
+        public void BuffHeavyUnit(int inx)
         {
+            Random rndbuff = new Random();
+            int c = rndbuff.Next(1);
+            if (c == 0)
+            {
+                HeavyUnit hu = new HeavyInfantryHelmet(units[inx]);
+                units[inx] = hu;
+            }
+            else
+            {
+                HeavyUnit hu = new HeavyInfantryCoolSword(units[inx]);
+                units[inx] = hu;
+            }
+        }
+        public void UnbuffHeavyUnit(int inx)
+        {
+            if (units[inx].Name.Contains(" с крутым мечом")) 
+            { 
+                units[inx].Defence -= HeavyInfantryHelmet.buff; 
+                units[inx].Name.Replace(" с крутым мечом", ""); 
+            }
+            if (units[inx].Name.Contains(" со шлемом"))
+            {
+                units[inx].Attack -= HeavyInfantryCoolSword.buff;
+                units[inx].Name.Replace(" со шлемом", "");
+            }
 
         }
 

@@ -218,14 +218,14 @@ namespace ppa_lab_test_1
 
     public class HeavyInfantryHelmet : UnitDecorator //  heavy infantry со шлемом
     {
-        static int buff = 5; // +5
+        public static int buff = 5; // +5
         public HeavyInfantryHelmet(Unit unit) : base(unit.Name + " со шлемом", 0, buff)
         {
         }
     }
     public class HeavyInfantryCoolSword : UnitDecorator //  heavy infantry с лошадью
     {
-        static int buff = 10; // +5 к атаке
+        public static int buff = 10; // +5 к атаке
         public HeavyInfantryCoolSword(Unit unit) : base(unit.Name + " с крутым мечом", buff, 0)
         {
         }

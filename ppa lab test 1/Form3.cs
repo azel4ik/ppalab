@@ -321,6 +321,10 @@ namespace ppa_lab_test_1
 
         private void cloneToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //если у нас еще нет клона:
+            CloneUnit cu = new CloneUnit(game);
+            gm.SetCommand(cu);
+            gm.Execute();
             //pBoxAP[4].Image = game.player.units[4].ImgsP.StandingStill;
         }
 
