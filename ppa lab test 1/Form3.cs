@@ -45,11 +45,11 @@ namespace ppa_lab_test_1
         };
         Point[] pointsTwoLineE = new Point[5]
         {
-            new Point(1050, 400),
-            new Point(1175, 400),
-            new Point(1300, 400),
-            new Point(1425, 400),
-            new Point(1550, 400),
+            new Point(1050, 250),
+            new Point(1050, 430),
+            new Point(1175, 250),
+            new Point(1175, 430),
+            new Point(1300, 250),
         };
         Point[] pointsWallP = new Point[5]
         {
@@ -61,11 +61,11 @@ namespace ppa_lab_test_1
         };
         Point[] pointsWallE = new Point[5]
         {
-            new Point(1050, 400),
-            new Point(1175, 400),
-            new Point(1300, 400),
-            new Point(1425, 400),
-            new Point(1550, 400),
+            new Point(1050, 35),
+            new Point(1050, 190),
+            new Point(1050, 345),
+            new Point(1050, 500),
+            new Point(1050, 655),
         };
         #endregion
         private WaveStream bcgstream;
@@ -82,6 +82,7 @@ namespace ppa_lab_test_1
             game = g;
             fight = 1;
             PictureBox gulgor = ggP;
+            ggP = null;
             pBoxAP[0] = pictureBoxp1;
             pBoxAP[1] = pictureBoxp2;
             pBoxAP[2] = pictureBoxp3;
@@ -128,11 +129,10 @@ namespace ppa_lab_test_1
 
         private void attackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
             if (fight == 1)
             {
                 pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
+                pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
                 Timer pauseTimer = new Timer();
                 pauseTimer.Interval = 6000; // 5 seconds
                 pauseTimer.Tick += (sender, args) =>
@@ -142,6 +142,10 @@ namespace ppa_lab_test_1
                     {
                         pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
                     }
+                    for (int i = 0; i < game.enemy.units.Count(); i++)
+                    {
+                        pBoxAE[i].Image = game.enemy.units[i].ImgsE.StandingStill;
+                    }
                     pauseTimer.Stop();
                 };
                 pauseTimer.Start();
@@ -150,6 +154,8 @@ namespace ppa_lab_test_1
             {
                 pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
                 pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
+                pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
+                pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
                 Timer pauseTimer = new Timer();
                 pauseTimer.Interval = 5000; // 5 seconds
                 pauseTimer.Tick += (sender, args) =>
@@ -158,6 +164,10 @@ namespace ppa_lab_test_1
                     for (int i = 0; i < game.player.units.Count(); i++)
                     {
                         pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
+                    }
+                    for (int i = 0; i < game.enemy.units.Count(); i++)
+                    {
+                        pBoxAE[i].Image = game.enemy.units[i].ImgsE.StandingStill;
                     }
                     pauseTimer.Stop();
                 };
@@ -168,6 +178,10 @@ namespace ppa_lab_test_1
                 for (int i = 0; i < game.player.units.Count(); i++)
                 {
                     pBoxAP[i].Image = game.player.units[i].ImgsP.BasicAttack;
+                }
+                for (int i = 0; i < game.enemy.units.Count(); i++)
+                {
+                    pBoxAE[i].Image = game.enemy.units[i].ImgsE.BasicAttack;
                 }
             }
             MakeMove mm = new MakeMove(game);
@@ -216,8 +230,6 @@ namespace ppa_lab_test_1
             for (int i = 0; i < game.enemy.units.Count(); i++)
             {
                 pBoxAE[i].Location = pointsLineE[i];
-                string x = pointsLineE[i].ToString();
-                MessageBox.Show(x);
             }
             game.SetArmyPosition(new OnevsOnePosition());
         }
@@ -233,8 +245,6 @@ namespace ppa_lab_test_1
             for (int i = 0; i < game.enemy.units.Count(); i++)
             {
                 pBoxAE[i].Location = pointsTwoLineE[i];
-                string x = pointsTwoLineE[i].ToString();
-                MessageBox.Show(x);
             }
             game.SetArmyPosition(new ThreevsThreePosition());
         }
@@ -252,6 +262,19 @@ namespace ppa_lab_test_1
                 pBoxAE[i].Location = pointsWallE[i];
             }
             game.SetArmyPosition(new AllvsAllPosition());
+        }
+
+        private void gulyaigorodToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ggP != null)
+            {
+                MessageBox.Show("You already have gulyai-gorod");
+            }
+            else
+            {
+                ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            }
+
         }
     }
 }
