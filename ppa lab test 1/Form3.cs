@@ -82,7 +82,6 @@ namespace ppa_lab_test_1
             game = g;
             fight = 1;
             PictureBox gulgor = ggP;
-            ggP = null;
             pBoxAP[0] = pictureBoxp1;
             pBoxAP[1] = pictureBoxp2;
             pBoxAP[2] = pictureBoxp3;
@@ -266,7 +265,7 @@ namespace ppa_lab_test_1
 
         private void gulyaigorodToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ggP != null)
+            if (ggP.Image != null)
             {
                 MessageBox.Show("You already have gulyai-gorod");
             }
