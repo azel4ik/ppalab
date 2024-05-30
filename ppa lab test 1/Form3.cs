@@ -96,6 +96,10 @@ namespace ppa_lab_test_1
             {
                 pBoxAP[i].Image = g.player.units[i].ImgsP.StandingStill;
             }
+            for (int i = 0; i < g.enemy.units.Count(); i++)
+            {
+                pBoxAE[i].Image = g.enemy.units[i].ImgsE.StandingStill;
+            }
             bcgstream = new AudioFileReader("Battle.wav");
             LoopStream loop = new LoopStream(bcgstream);
             outbcg = new();
@@ -208,7 +212,12 @@ namespace ppa_lab_test_1
             for (int i = 0; i < game.player.units.Count(); i++)
             {
                 pBoxAP[i].Location = pointsLineP[i];
+            }
+            for (int i = 0; i < game.enemy.units.Count(); i++)
+            {
                 pBoxAE[i].Location = pointsLineE[i];
+                string x = pointsLineE[i].ToString();
+                MessageBox.Show(x);
             }
             game.SetArmyPosition(new OnevsOnePosition());
         }
@@ -220,7 +229,12 @@ namespace ppa_lab_test_1
             for (int i = 0; i < game.player.units.Count(); i++)
             {
                 pBoxAP[i].Location = pointsTwoLineP[i];
+            }
+            for (int i = 0; i < game.enemy.units.Count(); i++)
+            {
                 pBoxAE[i].Location = pointsTwoLineE[i];
+                string x = pointsTwoLineE[i].ToString();
+                MessageBox.Show(x);
             }
             game.SetArmyPosition(new ThreevsThreePosition());
         }
@@ -232,6 +246,9 @@ namespace ppa_lab_test_1
             for (int i = 0; i < game.player.units.Count(); i++)
             {
                 pBoxAP[i].Location = pointsWallP[i];
+            }
+            for (int i = 0; i < game.enemy.units.Count(); i++)
+            {
                 pBoxAE[i].Location = pointsWallE[i];
             }
             game.SetArmyPosition(new AllvsAllPosition());
