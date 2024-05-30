@@ -57,6 +57,7 @@
             pictureBoxp1 = new PictureBox();
             pictureBoxp4 = new PictureBox();
             splitContainer1 = new SplitContainer();
+            ggE = new PictureBox();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             panel1.SuspendLayout();
@@ -73,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxp4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ggE).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
@@ -203,6 +205,7 @@
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Controls.Add(ggE);
             panel1.Controls.Add(pictureBoxe5);
             panel1.Controls.Add(pictureBoxe4);
             panel1.Controls.Add(pictureBoxe3);
@@ -351,6 +354,17 @@
             splitContainer1.SplitterDistance = 842;
             splitContainer1.TabIndex = 2;
             // 
+            // ggE
+            // 
+            ggE.AccessibleName = "";
+            ggE.BackColor = Color.Transparent;
+            ggE.Location = new Point(915, 400);
+            ggE.Name = "ggE";
+            ggE.Size = new Size(130, 140);
+            ggE.TabIndex = 16;
+            ggE.TabStop = false;
+            ggE.Tag = "";
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -381,6 +395,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxp4).EndInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ggE).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -415,5 +430,6 @@
         public PictureBox pictureBoxe3;
         public PictureBox pictureBoxe2;
         public PictureBox pictureBoxe1;
+        public PictureBox ggE;
     }
 }

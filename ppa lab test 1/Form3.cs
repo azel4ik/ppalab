@@ -15,6 +15,8 @@ namespace ppa_lab_test_1
 
     public partial class Form3 : Form
     {
+        //points
+        #region
         PictureBox[] pBoxAP = new PictureBox[5];
         PictureBox[] pBoxAE = new PictureBox[5];
         Point[] pointsLineP = new Point[5]
@@ -65,7 +67,7 @@ namespace ppa_lab_test_1
             new Point(1425, 400),
             new Point(1550, 400),
         };
-
+        #endregion
         private WaveStream bcgstream;
         private WaveOut outbcg;
 
