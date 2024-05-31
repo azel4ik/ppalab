@@ -75,6 +75,7 @@ namespace ppa_lab_test_1
         GameManager gm = new GameManager();
 
         public int fight = 0;
+        private int currentIndex = 0;
 
         public Form3(Game g)
         {
@@ -96,10 +97,10 @@ namespace ppa_lab_test_1
             {
                 pBoxAP[i].Image = g.player.units[i].ImgsP.StandingStill;
             }
-            //for (int i = 0; i < g.enemy.units.Count(); i++)
-            //{
-            //    pBoxAE[i].Image = g.enemy.units[i].ImgsE.StandingStill;
-            //}
+            for (int i = 0; i < g.enemy.units.Count(); i++)
+            {
+                pBoxAE[i].Image = g.enemy.units[i].ImgsE.StandingStill;
+            }
             bcgstream = new AudioFileReader("Battle.wav");
             LoopStream loop = new LoopStream(bcgstream);
             outbcg = new();
@@ -130,55 +131,88 @@ namespace ppa_lab_test_1
         {
             if (fight == 1)
             {
+                #region
                 pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
                 pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
-                Timer pauseTimer1 = new Timer();
-                pauseTimer1.Interval = 3000; // 5 seconds
-                pauseTimer1.Tick += (sender, args) =>
+                Timer archer = new Timer();
+                archer.Interval = 3000; // 5 seconds
+                Timer healer = new Timer();
+                healer.Interval = 3000; // 5 seconds
+                Timer stand = new Timer();
+                stand.Interval = 3000; // 5 seconds
+                archer.Tick += (sender, args) =>
                 {
+                    pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
+                    pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
                     // After 5 seconds, restore the original image
-                    for (int i = 0; i < game.player.units.Count(); i++)
+                    for (int i = 0; i < game.player.units.Count() - 1; i++)
                     {
                         if (game.player.units[i].Name.Contains("Archer"))
                         {
-                            pBoxAP[i].Image = game.player.units[i].ImgsP.Special;
+                            pBoxAP[i + 1].Image = game.player.units[i].ImgsP.Special;
                         }
-                        else
+                    }
+                    for (int i = 0; i < game.enemy.units.Count() - 1; i++)
+                    {
+                        if (game.enemy.units[i].Name.Contains("Archer"))
                         {
-                            pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
+                            pBoxAE[i + 1].Image = game.enemy.units[i].ImgsE.Special;
                         }
 
                     }
-                    Timer pauseTimer2 = new Timer();
-                    pauseTimer2.Interval = 3000; // 3 seconds
-                    pauseTimer2.Tick += (sender2, args2) =>
-                    {
-                        for (int i = 0; i < game.player.units.Count(); i++)
-                        {
+                    stand.Start();
+                    archer.Stop();
+                    healer.Start();
 
-                            pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
-                        }
-                        //for (int i = 0; i < game.enemy.units.Count(); i++)
-                        //{
-                        //    pBoxAE[i].Image = game.enemy.units[i].ImgsE.StandingStill;
-                        //}
-                        pauseTimer2.Stop();
-                    };
-                    //for (int i = 0; i < game.enemy.units.Count(); i++)
-                    //{
-                    //    pBoxAE[i].Image = game.enemy.units[i].ImgsE.StandingStill;
-                    //}
-                    //for (int i = 0; i < game.player.units.Count(); i++)
-                    //{
-                    //    if (game.player.units[i].Name == "Archer")
-                    //    {
-                    //        pBoxAP[i].Image = game.player.units[i].ImgsE.Special;
-                    //    }
-                    //}
-                    pauseTimer2.Start();
-                    pauseTimer1.Stop();
                 };
-                pauseTimer1.Start();
+                archer.Start();
+                healer.Tick += (sender, args) =>
+                {
+                    pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
+                    pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
+                    // After 5 seconds, restore the original image
+                    for (int i = 0; i < game.player.units.Count() - 1; i++)
+                    {
+                        if (game.player.units[i].Name.Contains("Healer"))
+                        {
+                            pBoxAP[i + 1].Image = game.player.units[i].ImgsP.Special;
+                        }
+
+                    }
+                    for (int i = 0; i < game.enemy.units.Count() - 1; i++)
+                    {
+                        if (game.enemy.units[i].Name.Contains("Healer"))
+                        {
+                            pBoxAE[i + 1].Image = game.enemy.units[i].ImgsE.Special;
+                        }
+
+                    }
+                    healer.Stop();
+                };
+                stand.Tick += (sender, args) =>
+                {
+                    pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
+                    pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
+                    // After 5 seconds, restore the original image
+                    for (int i = 0; i < game.player.units.Count() - 1; i++)
+                    {
+                        if (game.player.units[i].Name.Contains("Archer"))
+                        {
+                            pBoxAP[i + 1].Image = game.player.units[i].ImgsP.StandingStill;
+                        }
+
+                    }
+                    for (int i = 0; i < game.enemy.units.Count() - 1; i++)
+                    {
+                        if (game.enemy.units[i].Name.Contains("Archer"))
+                        {
+                            pBoxAE[i + 1].Image = game.enemy.units[i].ImgsE.StandingStill;
+                        }
+
+                    }
+                    stand.Stop();
+                };
+                #endregion
             }
             if (fight == 2)
             {
@@ -224,6 +258,72 @@ namespace ppa_lab_test_1
             MakeMove mm = new MakeMove(game);
             gm.SetCommand(mm);
             gm.Execute();
+            Timer firstpos = new Timer();
+            firstpos.Interval = 9000; // 5 seconds
+            firstpos.Tick += (sender, args) =>
+            {
+                // After 5 seconds, restore the original image
+                for (int i = 0; i < game.player.units.Count(); i++)
+                {
+                    pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
+
+                }
+                for (int i = 0; i < game.enemy.units.Count(); i++)
+                {
+                    pBoxAE[i].Image = game.enemy.units[i].ImgsE.StandingStill;
+
+                }
+                firstpos.Stop();
+            };
+            firstpos.Start();
+            Timer death = new Timer();
+            Timer clear = new Timer();
+            death.Interval = 10000; // 5 seconds
+            clear.Interval = 11000; // 5 seconds
+            death.Tick += (sender, args) =>
+            {
+                // After 5 seconds, restore the original image
+                for (int i = 0; i < game.player.units.Count(); i++)
+                {
+                    if (game.player.units[i].Health == 0)
+                    {
+                        pBoxAP[i].Image = game.player.units[i].ImgsP.Dead;
+                    }
+
+                }
+                for (int i = 0; i < game.enemy.units.Count(); i++)
+                {
+                    if (game.enemy.units[i].Health == 0)
+                    {
+                        pBoxAE[i].Image = game.enemy.units[i].ImgsE.Dead;
+                    }
+
+                }
+                death.Stop();
+            };
+            death.Start();
+            clear.Tick += (sender, args) =>
+            {
+                // After 5 seconds, restore the original image
+                for (int i = 0; i < game.player.units.Count(); i++)
+                {
+                    if (game.player.units[i].Health == 0)
+                    {
+                        pBoxAP[i].Image = null;
+                        pBoxAP[i].BackColor = Color.Transparent;
+                    }
+                }
+                for (int i = 0; i < game.enemy.units.Count(); i++)
+                {
+                    if (game.enemy.units[i].Health == 0)
+                    {
+                        pBoxAE[i].Image = null;
+                        pBoxAE[i].BackColor = Color.Transparent;
+                    }
+                }
+                clear.Stop();
+            };
+            clear.Start();
 
         }
 
@@ -310,7 +410,6 @@ namespace ppa_lab_test_1
 
         }
 
-
         private void cloneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //если у нас еще нет клона:
@@ -322,6 +421,17 @@ namespace ppa_lab_test_1
 
         private void playUpToTheEndToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (ggP.Image != null)
+            {
+                MessageBox.Show("You already have gulyai-gorod");
+            }
+            else
+            {
+                PlaceGulyaiGorod pgg = new PlaceGulyaiGorod(game);
+                gm.SetCommand(pgg);
+                gm.Execute();
+                ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            }
             PlayUpToTheEnd playUpToTheEnd = new PlayUpToTheEnd(game);
             gm.SetCommand(playUpToTheEnd);
             gm.Execute();
@@ -329,6 +439,6 @@ namespace ppa_lab_test_1
             Form5 f5 = new Form5(game.EndGame());
             f5.Show();
         }
-
     }
 }
+

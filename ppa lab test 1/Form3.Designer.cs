@@ -33,7 +33,10 @@
             Action = new ToolStripDropDownButton();
             attackToolStripMenuItem = new ToolStripMenuItem();
             cloneToolStripMenuItem = new ToolStripMenuItem();
+
+            gulyaiToolStripMenuItem = new ToolStripMenuItem();
             gulyaigorodToolStripMenuItem = new ToolStripMenuItem();
+
             Undo = new ToolStripButton();
             Redo = new ToolStripButton();
             Save = new ToolStripButton();
@@ -92,7 +95,11 @@
             // Action
             // 
             Action.DisplayStyle = ToolStripItemDisplayStyle.Image;
+
+            Action.DropDownItems.AddRange(new ToolStripItem[] { attackToolStripMenuItem, cloneToolStripMenuItem, gulyaiToolStripMenuItem });
+
             Action.DropDownItems.AddRange(new ToolStripItem[] { gulyaigorodToolStripMenuItem, attackToolStripMenuItem, cloneToolStripMenuItem, playUpToTheEndToolStripMenuItem });
+
             Action.Image = (Image)resources.GetObject("Action.Image");
             Action.ImageTransparentColor = Color.Magenta;
             Action.Name = "Action";
@@ -113,12 +120,21 @@
             cloneToolStripMenuItem.Text = "Clone";
             cloneToolStripMenuItem.Click += cloneToolStripMenuItem_Click;
             // 
+
+            // gulyaiToolStripMenuItem
+            // 
+            gulyaiToolStripMenuItem.Name = "gulyaiToolStripMenuItem";
+            gulyaiToolStripMenuItem.Size = new Size(224, 26);
+            gulyaiToolStripMenuItem.Text = "Gulyai-Gorod";
+            //gulyaiToolStripMenuItem.Click += gulyaiToolStripMenuItem_Click;
+
             // gulyaigorodToolStripMenuItem
             // 
             gulyaigorodToolStripMenuItem.Name = "gulyaigorodToolStripMenuItem";
             gulyaigorodToolStripMenuItem.Size = new Size(224, 26);
             gulyaigorodToolStripMenuItem.Text = "Gulyai-gorod";
             gulyaigorodToolStripMenuItem.Click += gulyaigorodToolStripMenuItem_Click;
+
             // 
             // Undo
             // 
@@ -440,7 +456,12 @@
         public PictureBox pictureBoxe2;
         public PictureBox pictureBoxe1;
         public PictureBox ggE;
+
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem gulyaiToolStripMenuItem;
+
         private ToolStripMenuItem gulyaigorodToolStripMenuItem;
         private ToolStripMenuItem playUpToTheEndToolStripMenuItem;
+
     }
 }
