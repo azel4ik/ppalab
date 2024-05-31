@@ -167,7 +167,6 @@ namespace ppa_lab_test_1
 
             ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "кентавр стоит.gif"));
             ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "кентавр атакует.gif"));
-            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "мага бьют.gif"));
             ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
@@ -176,7 +175,6 @@ namespace ppa_lab_test_1
 
             ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "кентавр стоит.gif"));
             ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "кентавр атакует.gif"));
-            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "мага бьют.gif"));
             ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
@@ -302,40 +300,19 @@ namespace ppa_lab_test_1
 
             ImgsP = new BasicImages();
 
-            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "лучник стоит.gif"));
-            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "лучник атакует.gif"));
-            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-
-            ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "лучник стреляет.gif"));
-
             ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "лучник стоит.png"));
             ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "лучник_обычная_атака.png"));
-            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "лучника бьют.png"));
             ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "лучник умер.png"));
-            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "лучника лечат.png"));
-
             ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "лучник стреляет.png"));
 
 
 
             ImgsE = new BasicImages();
 
-            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "лучник стоит.gif"));
-            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "лучник атакует.gif"));
-            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-
-            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "лучник стоит.jpg"));
+            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "лучник стоит.png"));
             ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "лучник_обычная_атака.png"));
-            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "лучника бьют.png"));
             ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "лучник умер.png"));
-            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "лучника лечат.png"));
-
-
-            ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "лучник стреляет.gif"));//
+            ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "лучник стреляет.png"));//
 
 
 
@@ -472,16 +449,13 @@ namespace ppa_lab_test_1
 
             ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "маг_стоит.png"));
             ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "маг_колдует.png"));
-            //ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "мага_бьют.png"));
             ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "маг_умер.png"));
-            //ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "мага_лечат.png"));
             ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "маг_клонирует.png"));
 
             ImgsE = new BasicImages();
 
             ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "маг_стоит.png"));
             ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "маг_колдует.png"));
-            //ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "мага_бьют.png"));
             ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "маг_умер.png"));
             ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "маг_клонирует.png"));
 
