@@ -70,7 +70,7 @@ namespace ppa_lab_test_1
         #endregion
         private WaveStream bcgstream;
         private WaveOut outbcg;
-
+        private LoopStream loop;
         public Game game;
         GameManager gm = new GameManager();
 
@@ -102,7 +102,7 @@ namespace ppa_lab_test_1
                 pBoxAE[i].Image = g.enemy.units[i].ImgsE.StandingStill;
             }
             bcgstream = new AudioFileReader("Battle.wav");
-            LoopStream loop = new LoopStream(bcgstream);
+            loop = new LoopStream(bcgstream);
             outbcg = new();
             outbcg.Init(loop);
             bcgstream.CurrentTime = new TimeSpan(0L);
@@ -132,6 +132,9 @@ namespace ppa_lab_test_1
             if (game.Over)
             {
                 Hide();
+                bcgstream.Dispose();
+                bcgstream.Close();
+                
                 Form5 f5 = new Form5(game.EndGame());
                 f5.Show();
             }
@@ -554,6 +557,9 @@ namespace ppa_lab_test_1
                 PlayUpToTheEnd playUpToTheEnd = new PlayUpToTheEnd(game);
                 gm.SetCommand(playUpToTheEnd);
                 gm.Execute();
+                loop.Dispose();
+                loop.Close();
+                outbcg.Dispose();
                 Hide();
                 f5.Show();
                 mess.Stop();

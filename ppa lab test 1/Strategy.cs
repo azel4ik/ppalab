@@ -41,7 +41,7 @@ namespace ppa_lab_test_1
             if (g.player.units.Count() > 0 && g.enemy.units.Count() > 0)
             {
                 g.Attack(g.player.units[0], g.enemy.units[0]);
-                g.Attack(g.player.units[1], g.enemy.units[1]);
+                if(g.player.units.Count() > 1 && g.enemy.units.Count() > 1) g.Attack(g.player.units[1], g.enemy.units[1]);
                 
                 g.player.MoveInQueue(PositionType.ThreevsThree);
                 g.enemy.MoveInQueue(PositionType.ThreevsThree);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -87,7 +88,21 @@ namespace ppa_lab_test_1
         {
             while (game.player.units.Count() > 0 && game.enemy.units.Count() > 0)
             {
-                game.Move();
+                Random randact = new Random();
+                int val = randact.Next(4);
+                switch(val)
+                {
+                    case 0:
+                        game.Move();
+                        break;
+                    case 1:
+                        game.player.PlaceGulyaiGorod();
+                        break;
+                    case 2:
+                        game.player.WizardCloning();
+                        break;
+                }
+                
             }
             game.Over = true;
             finalenemystate = game.enemy.Copy();
@@ -457,12 +472,22 @@ namespace ppa_lab_test_1
         }
         public void ChooseUnits(int HINum, int LINum, int ANum, int HNum, int WNum)
         {
-            //может, как-то их потом перемешать для случайного порядка в очереди
             for (int i = 0; i < HINum; i++) units.Add(new HeavyUnit()); 
             for (int i = 0; i < LINum; i++) units.Add(new LightUnit());
             for (int i = 0; i < ANum; i++) units.Add(new Archer());
             for (int i = 0; i < HNum; i++) units.Add(new Healer());
             for (int i = 0; i < WNum; i++) units.Add(new Wizard());
+
+            //перемешать для случайного порядка в очереди
+            for (int i = units.Count - 1; i >= 1; i--)
+            {
+                Random rand = new Random();
+                int j = rand.Next(i + 1);
+                // обменять значения data[j] и data[i]
+                var temp = units[j];
+                units[j] = units[i];
+                units[i] = temp;
+            }
         }
 
         public void ChooseRandomUnits(int balance)
@@ -749,10 +774,10 @@ namespace ppa_lab_test_1
             List<int> res = new List<int>();
             switch(pt)
             {
-                case PositionType.OnevsOne:
+                case PositionType.OnevsOne: 
                     for (int i = 0; i < units.Count - 1; i++)
                     {
-                        if (units[i].Name.Contains("Heavy Infantry") && units[i + 1].Name.Contains("Light Infantry"))
+                        if (units[i].Name.Contains("Heavy Infantry") && units[i + 1].Name.Contains("Light Infantry")) //если легкий стоит сзади
                         {
                             if (!units[i].Name.Contains(" с крутым мечом") && !units[i].Name.Contains(" со шлемом"))
                             {
@@ -762,13 +787,29 @@ namespace ppa_lab_test_1
                     }
                     break;
                 case PositionType.ThreevsThree:
-                    for (int i = 0; i < units.Count - 1; i++)
+                    for (int i = 0; i < units.Count - 2; i++)
                     {
-                        if (units[i].Name.Contains("Heavy Infantry") && units[i + 1].Name.Contains("Light Infantry"))
+                        if (units[i].Name.Contains("Heavy Infantry") && units[i + 1].Name.Contains("Light Infantry")) //если легкий стоит сзади
                         {
                             if (!units[i].Name.Contains(" с крутым мечом") && !units[i].Name.Contains(" со шлемом"))
                             {
                                 res.Add(i);
+                            }
+                        }
+                        else //сбоку тоже бафает
+                        {
+                            for(int p = 0; p < units.Count;i++)
+                            {
+                                if(p/2 == i/2 && p!=i)
+                                {
+                                    if (units[i].Name.Contains("Heavy Infantry") && units[i + 1].Name.Contains("Light Infantry"))
+                                    {
+                                        if (!units[i].Name.Contains(" с крутым мечом") && !units[i].Name.Contains(" со шлемом"))
+                                        {
+                                            res.Add(i);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
