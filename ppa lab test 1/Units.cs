@@ -440,6 +440,9 @@ namespace ppa_lab_test_1
         }
     }
 
+    /// <summary>
+    /// волшебник
+    /// </summary>
     public class Wizard : Unit, IHealable
     {
         public Wizard()
