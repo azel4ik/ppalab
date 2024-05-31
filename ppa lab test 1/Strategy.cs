@@ -25,13 +25,13 @@ namespace ppa_lab_test_1
                 g.LongAttack();
                 g.player.HealArmy(PositionType.OnevsOne);
                 g.enemy.HealArmy(PositionType.OnevsOne);
-                
+
                 g.player.MoveInQueue(PositionType.OnevsOne);
                 g.enemy.MoveInQueue(PositionType.OnevsOne);
                 g.player.RemoveDeadUnits();
                 g.enemy.RemoveDeadUnits();
             }
-            //bool b = g.EndGame();
+            if (g.player.units.Count() <= 0 || g.enemy.units.Count() <= 0) g.Over = true;
         }
     }
     public class ThreevsThreePosition : IArmyPosition

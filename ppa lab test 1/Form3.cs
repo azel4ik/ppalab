@@ -129,6 +129,12 @@ namespace ppa_lab_test_1
 
         private void attackToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (game.Over)
+            {
+                Hide();
+                Form5 f5 = new Form5(game.EndGame());
+                f5.Show();
+            }
             if (fight == 1)
             {
                 #region
@@ -142,6 +148,7 @@ namespace ppa_lab_test_1
                 stand.Interval = 3000; // 5 seconds
                 archer.Tick += (sender, args) =>
                 {
+                    //здесь кидает исключение из-за того, что одна из армий нулевая в конце игры
                     pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
                     pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
                     // After 5 seconds, restore the original image
@@ -255,9 +262,14 @@ namespace ppa_lab_test_1
                     pBoxAE[i].Image = game.enemy.units[i].ImgsE.BasicAttack;
                 }
             }
+ 
+
             MakeMove mm = new MakeMove(game);
             gm.SetCommand(mm);
             gm.Execute();
+
+
+
             Timer firstpos = new Timer();
             firstpos.Interval = 9000; // 5 seconds
             firstpos.Tick += (sender, args) =>
@@ -421,17 +433,17 @@ namespace ppa_lab_test_1
 
         private void playUpToTheEndToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ggP.Image != null)
-            {
-                MessageBox.Show("You already have gulyai-gorod");
-            }
-            else
-            {
-                PlaceGulyaiGorod pgg = new PlaceGulyaiGorod(game);
-                gm.SetCommand(pgg);
-                gm.Execute();
-                ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            }
+            //if (ggP.Image != null)
+            //{
+            //    MessageBox.Show("You already have gulyai-gorod");
+            //}
+            //else
+            //{
+            //    PlaceGulyaiGorod pgg = new PlaceGulyaiGorod(game);
+            //    gm.SetCommand(pgg);
+            //    gm.Execute();
+            //    ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            //}
             PlayUpToTheEnd playUpToTheEnd = new PlayUpToTheEnd(game);
             gm.SetCommand(playUpToTheEnd);
             gm.Execute();

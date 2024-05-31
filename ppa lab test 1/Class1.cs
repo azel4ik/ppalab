@@ -89,6 +89,7 @@ namespace ppa_lab_test_1
             {
                 game.Move();
             }
+            game.Over = true;
             finalenemystate = game.enemy.Copy();
             finalplayerstate = game.player.Copy();
         }
@@ -214,7 +215,7 @@ namespace ppa_lab_test_1
         public Army player = new Army("Player");
         public Army enemy = new Army("Enemy");
         public IArmyPosition ArmyPosition = new OnevsOnePosition();
-        
+        public bool Over = false;
         public void SetArmyPosition(IArmyPosition ap)
         {
             ArmyPosition = ap;
@@ -412,11 +413,13 @@ namespace ppa_lab_test_1
             {
                 if (!units[i].Alive()) 
                 {
-                    
                     units.RemoveAt(i); 
-
                     i--;
                 }
+            }
+            if (gg != null) 
+            {
+                if (!gg.Alive()) gg = null;
             }
         }
 
