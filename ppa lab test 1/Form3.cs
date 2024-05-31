@@ -72,17 +72,26 @@ namespace ppa_lab_test_1
         private WaveOut outbcg;
         private LoopStream loop;
         public Game game;
-        GameManager gm = new GameManager();
-
+        GameManager gm = new GameManager();        
         public int fight = 0;
-        private int currentIndex = 0;
+        //gg
+        #region
+        PictureBox gulgorP = new PictureBox();
+        PictureBox gulgorE = new PictureBox();
+        Image ggp= Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+        Image gge = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+        #endregion
+
+
+        public Image ClearIm = Image.FromFile(Path.Combine(Application.StartupPath, "clear.png"));
 
         public Form3(Game g)
         {
             InitializeComponent();
             game = g;
             fight = 1;
-            PictureBox gulgor = ggP;
+            gulgorP = ggP;
+            gulgorE = ggE;
             pBoxAP[0] = pictureBoxp1;
             pBoxAP[1] = pictureBoxp2;
             pBoxAP[2] = pictureBoxp3;
@@ -93,6 +102,8 @@ namespace ppa_lab_test_1
             pBoxAE[2] = pictureBoxe3;
             pBoxAE[3] = pictureBoxe4;
             pBoxAE[4] = pictureBoxe5;
+            gulgorP.Image = ClearIm;
+            gulgorE.Image = ClearIm;
             for (int i = 0; i < g.player.units.Count(); i++)
             {
                 pBoxAP[i].Image = g.player.units[i].ImgsP.StandingStill;
@@ -133,14 +144,32 @@ namespace ppa_lab_test_1
             if (fight == 1)
             {
                 #region
-                pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
-                pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
+                if(game.player.units[0].Name.Contains("Heavy") && game.player.units[1].Name.Contains("Light") && game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[1].Name.Contains("Light"))
+                {
+                    pBoxAP[0].Image = game.player.units[0].ImgsP.Special;
+                    pBoxAE[0].Image = game.enemy.units[0].ImgsE.Special;
+                }
+                else if((game.player.units[0].Name.Contains("Heavy") && game.player.units[1].Name.Contains("Light")) && !(game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[1].Name.Contains("Light")))
+                {
+                    pBoxAP[0].Image = game.player.units[0].ImgsP.Special;
+                    pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
+                }
+                else if(!(game.player.units[0].Name.Contains("Heavy") && game.player.units[1].Name.Contains("Light")) && (game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[1].Name.Contains("Light")))
+                {
+                    pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
+                    pBoxAE[0].Image = game.enemy.units[0].ImgsE.Special;
+                }
+                else
+                {
+                    pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
+                    pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
+                }                
                 Timer archer = new Timer();
-                archer.Interval = 3000; // 5 seconds
+                archer.Interval = 1500; // 5 seconds
                 Timer healer = new Timer();
-                healer.Interval = 3000; // 5 seconds
+                healer.Interval = 1500; // 5 seconds
                 Timer stand = new Timer();
-                stand.Interval = 3000; // 5 seconds
+                stand.Interval = 1500; // 5 seconds
                 archer.Tick += (sender, args) =>
                 {
                         //здесь кидает исключение из-за того, что одна из армий нулевая в конце игры
@@ -151,6 +180,7 @@ namespace ppa_lab_test_1
                         {
                             if (game.player.units[i].Name.Contains("Archer"))
                             {
+                                MessageBox.Show("here");
                                 pBoxAP[i + 1].Image = game.player.units[i].ImgsP.Special;
                             }
                         }
@@ -219,16 +249,17 @@ namespace ppa_lab_test_1
             }
             if (fight == 2)
             {
+                #region
                 pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
                 pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
                 pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
                 pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
                 Timer archer = new Timer();
-                archer.Interval = 3000; // 5 seconds
+                archer.Interval = 1500; // 5 seconds
                 Timer healer = new Timer();
-                healer.Interval = 3000; // 5 seconds
+                healer.Interval = 1500; // 5 seconds
                 Timer stand = new Timer();
-                stand.Interval = 3000; // 5 seconds
+                stand.Interval = 1500; // 5 seconds
                 archer.Tick += (sender, args) =>
                 {
                     pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
@@ -307,29 +338,7 @@ namespace ppa_lab_test_1
                     }
                     stand.Stop();
                 };
-                //Timer pauseTimer = new Timer();
-                //pauseTimer.Interval = 5000; // 5 seconds
-                //pauseTimer.Tick += (sender, args) =>
-                //{
-                //    // After 5 seconds, restore the original image
-                //    for (int i = 0; i < game.player.units.Count(); i++)
-                //    {
-                //        pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
-                //    }
-                //    //for (int i = 0; i < game.enemy.units.Count(); i++)
-                //    //{
-                //    //    pBoxAE[i].Image = game.enemy.units[i].ImgsE.StandingStill;
-                //    //}
-                //    for (int i = 0; i < game.player.units.Count(); i++)
-                //    {
-                //        if (game.player.units[i].Name == "Archer")
-                //        {
-                //            pBoxAP[i].Image = game.player.units[i].ImgsE.Special;
-                //        }
-                //    }
-                //    pauseTimer.Stop();
-                //};
-                //pauseTimer.Start();
+                #endregion
             }
             if (fight == 3)
             {
@@ -342,8 +351,6 @@ namespace ppa_lab_test_1
                     pBoxAE[i].Image = game.enemy.units[i].ImgsE.BasicAttack;
                 }
             }
- 
-
             MakeMove mm = new MakeMove(game);
             gm.SetCommand(mm);
             gm.Execute();
@@ -361,10 +368,8 @@ namespace ppa_lab_test_1
                 f5.Show();
                 return;
             }
-
-
             Timer firstpos = new Timer();
-            firstpos.Interval = 9000; // 5 seconds
+            firstpos.Interval = 4500; // 5 seconds
             firstpos.Tick += (sender, args) =>
             {
                 // After 5 seconds, restore the original image
@@ -383,8 +388,8 @@ namespace ppa_lab_test_1
             firstpos.Start();
             Timer death = new Timer();
             Timer clear = new Timer();
-            death.Interval = 10000; // 5 seconds
-            clear.Interval = 11000; // 5 seconds
+            death.Interval = 5500; // 5 seconds
+            clear.Interval = 6500; // 5 seconds
             death.Tick += (sender, args) =>
             {
                 // After 5 seconds, restore the original image
@@ -414,22 +419,27 @@ namespace ppa_lab_test_1
                 {
                     if (game.player.units[i].Health == 0)
                     {
-                        pBoxAP[i].Image = null;
-                        pBoxAP[i].BackColor = Color.Transparent;
+                        pBoxAP[i].Image = ClearIm;
                     }
                 }
                 for (int i = 0; i < game.enemy.units.Count(); i++)
                 {
                     if (game.enemy.units[i].Health == 0)
                     {
-                        pBoxAE[i].Image = null;
-                        pBoxAE[i].BackColor = Color.Transparent;
+                        pBoxAE[i].Image = ClearIm;
                     }
                 }
                 clear.Stop();
             };
             clear.Start();
-
+            if (game.player.gg == null || !game.player.gg.Alive())
+            {
+                gulgorP.Image = ClearIm;
+            }
+            if (game.enemy.gg == null || !game.enemy.gg.Alive())
+            {
+                gulgorE.Image = ClearIm;
+            }
         }
 
         private void Undo_Click(object sender, EventArgs e)
@@ -468,7 +478,6 @@ namespace ppa_lab_test_1
 
         private void x3ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //
             fight = 2;
             for (int i = 0; i < game.player.units.Count(); i++)
             {
@@ -495,24 +504,16 @@ namespace ppa_lab_test_1
             game.SetArmyPosition(new AllvsAllPosition());
         }
 
-
         private void cloneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //если у нас еще нет клона:
             CloneUnit cu = new CloneUnit(game);
             gm.SetCommand(cu);
-            gm.Execute();
-            int k = 0;
-            
+            gm.Execute();            
             for (int i = 0; i < game.player.units.Count(); i++)
             {
                 pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
-                k++;
             }
-            string str = k.ToString();
-            string str1= game.player.units.Count().ToString();
-            MessageBox.Show(str1);
-            //pBoxAP[4].Image = game.player.units[4].ImgsP.StandingStill;
         }
 
         private void playUpToTheEndToolStripMenuItem_Click(object sender, EventArgs e)
@@ -520,12 +521,11 @@ namespace ppa_lab_test_1
             Timer fightall = new Timer();
             fightall.Interval = 3000; // 5 seconds
             Timer deadall = new Timer();
-            deadall.Interval = 1000; // 5 seconds
+            deadall.Interval = 2000; // 5 seconds
             fightall.Tick += (sender, args) =>
             {
                 for (int i = 0; i < game.player.units.Count(); i++)
                 {
-                    //MessageBox.Show("I'm here");
                     pBoxAP[i].Image = game.player.units[i].ImgsP.BasicAttack;
 
                 }
@@ -534,8 +534,9 @@ namespace ppa_lab_test_1
                     pBoxAE[i].Image = game.enemy.units[i].ImgsE.BasicAttack;
 
                 }
-                deadall.Start();
+                
                 fightall.Stop();
+                deadall.Start();
             };
             fightall.Start();            
             deadall.Tick += (sender, args) =>
@@ -555,7 +556,7 @@ namespace ppa_lab_test_1
             
             Form5 f5 = new Form5(game.EndGame());
             Timer mess = new Timer();
-            mess.Interval = 4000; // 5 seconds
+            mess.Interval = 5000; // 5 seconds
             mess.Tick += (sender, args) =>
             {
                 
@@ -575,7 +576,7 @@ namespace ppa_lab_test_1
 
         private void gulyaigorodToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            if (ggP.Image != null)
+            if (gulgorP.Image != ClearIm)
             {
                 MessageBox.Show("You already have gulyai-gorod");
             }
@@ -584,8 +585,8 @@ namespace ppa_lab_test_1
                 PlaceGulyaiGorod pgg = new PlaceGulyaiGorod(game);
                 gm.SetCommand(pgg);
                 gm.Execute();
-                ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-                //ggE.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+                gulgorP.Image = ggp;
+                gulgorE.Image = gge;
             }
         }
     }
