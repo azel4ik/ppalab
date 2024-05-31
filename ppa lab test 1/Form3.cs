@@ -155,27 +155,36 @@ namespace ppa_lab_test_1
             if (fight == 1)
             {
                 #region
-
-                if (game.player.units[0].Name.Contains("Heavy") && game.player.units[1].Name.Contains("Light") && game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[1].Name.Contains("Light"))
-                {
-                    pBoxAP[0].Image = game.player.units[0].ImgsP.Special;
-                    pBoxAE[0].Image = game.enemy.units[0].ImgsE.Special;
-                }
-                else if ((game.player.units[0].Name.Contains("Heavy") && game.player.units[1].Name.Contains("Light")) && !(game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[1].Name.Contains("Light")))
-                {
-                    pBoxAP[0].Image = game.player.units[0].ImgsP.Special;
-                    pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
-                }
-                else if (!(game.player.units[0].Name.Contains("Heavy") && game.player.units[1].Name.Contains("Light")) && (game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[1].Name.Contains("Light")))
+                if(game.player.units.Count() == 1)
                 {
                     pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
-                    pBoxAE[0].Image = game.enemy.units[0].ImgsE.Special;
                 }
                 else
                 {
-                    pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
+                    if (game.player.units[0].Name.Contains("Heavy") && game.player.units[1].Name.Contains("Light"))
+                    {
+                        pBoxAP[0].Image = game.player.units[0].ImgsP.Special;
+                    }
+                    else
+                    {
+                        pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
+                    }
+                }
+                if (game.enemy.units.Count() == 1)
+                {
                     pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
                 }
+                else
+                {
+                    if (game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[1].Name.Contains("Light"))
+                    {
+                        pBoxAE[0].Image = game.enemy.units[0].ImgsE.Special;
+                    }
+                    else
+                    {
+                        pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
+                    }
+                }                      
                 Timer archer = new Timer();
                 archer.Interval = 1500; // 5 seconds
                 Timer healer = new Timer();
@@ -261,10 +270,86 @@ namespace ppa_lab_test_1
             if (fight == 2)
             {
                 #region
-                pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
-                pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
-                pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
-                pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
+                if(game.player.units.Count() == 1)
+                {
+                    pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
+                }
+                else if(game.player.units.Count() == 2)
+                {
+                    pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
+                    pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
+                }
+                else if(game.player.units.Count() == 3)
+                {
+                    if ((game.player.units[0].Name.Contains("Heavy") && game.player.units[2].Name.Contains("Light")))
+                    {
+                        pBoxAP[0].Image = game.player.units[0].ImgsP.Special;
+                        pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
+                    }
+                }
+                else
+                {
+                    if ((game.player.units[0].Name.Contains("Heavy") && game.player.units[2].Name.Contains("Light")) && !(game.player.units[1].Name.Contains("Heavy") && game.player.units[3].Name.Contains("Light")))
+                    {
+                        pBoxAP[0].Image = game.player.units[0].ImgsP.Special;
+                        pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
+                    }
+                    else if (!(game.player.units[0].Name.Contains("Heavy") && game.player.units[2].Name.Contains("Light")) && (game.player.units[1].Name.Contains("Heavy") && game.player.units[3].Name.Contains("Light")))
+                    {
+                        pBoxAP[1].Image = game.player.units[1].ImgsP.Special;
+                        pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
+                    }
+                    else if ((game.player.units[0].Name.Contains("Heavy") && game.player.units[2].Name.Contains("Light")) && (game.player.units[1].Name.Contains("Heavy") && game.player.units[3].Name.Contains("Light")))
+                    {
+                        pBoxAP[1].Image = game.player.units[1].ImgsP.Special;
+                        pBoxAP[0].Image = game.player.units[0].ImgsP.Special;
+                    }
+                    else
+                    {
+                        pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
+                        pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
+                    }
+                }
+                if (game.enemy.units.Count() == 1)
+                {
+                    pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
+                }
+                else if (game.enemy.units.Count() == 2)
+                {
+                    pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
+                    pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
+                }
+                else if (game.enemy.units.Count() == 3)
+                {
+                    if ((game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[2].Name.Contains("Light")))
+                    {
+                        pBoxAE[0].Image = game.enemy.units[0].ImgsE.Special;
+                        pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
+                    }
+                }
+                else
+                {
+                    if ((game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[2].Name.Contains("Light")) && !(game.enemy.units[1].Name.Contains("Heavy") && game.enemy.units[3].Name.Contains("Light")))
+                    {
+                        pBoxAE[0].Image = game.enemy.units[0].ImgsE.Special;
+                        pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
+                    }
+                    else if (!(game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[2].Name.Contains("Light")) && (game.enemy.units[1].Name.Contains("Heavy") && game.enemy.units[3].Name.Contains("Light")))
+                    {
+                        pBoxAE[1].Image = game.enemy.units[1].ImgsE.Special;
+                        pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
+                    }
+                    else if ((game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[2].Name.Contains("Light")) && (game.enemy.units[1].Name.Contains("Heavy") && game.enemy.units[3].Name.Contains("Light")))
+                    {
+                        pBoxAE[1].Image = game.enemy.units[1].ImgsE.Special;
+                        pBoxAE[0].Image = game.enemy.units[0].ImgsE.Special;
+                    }
+                    else
+                    {
+                        pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
+                        pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
+                    }
+                }                
                 Timer archer = new Timer();
                 archer.Interval = 1500; // 5 seconds
                 Timer healer = new Timer();
@@ -273,10 +358,34 @@ namespace ppa_lab_test_1
                 stand.Interval = 1500; // 5 seconds
                 archer.Tick += (sender, args) =>
                 {
-                    pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
-                    pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
-                    pBoxAP[1].Image = game.player.units[game.player.units.Count() - 2].ImgsP.StandingStill;
-                    pBoxAE[1].Image = game.enemy.units[game.enemy.units.Count() - 2].ImgsE.StandingStill;
+                    if(game.player.units.Count() == 1)
+                    {
+                        pBoxAP[0].Image = game.player.units[0].ImgsP.StandingStill;
+                    }
+                    else if(game.player.units.Count() == 2)
+                    {
+                        pBoxAP[0].Image = game.player.units[0].ImgsP.StandingStill;
+                        pBoxAP[1].Image = game.player.units[1].ImgsP.StandingStill;
+                    }
+                    else
+                    {
+                        pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
+                        pBoxAP[1].Image = game.player.units[game.player.units.Count() - 2].ImgsP.StandingStill;
+                    }
+                    if (game.enemy.units.Count() == 1)
+                    {
+                        pBoxAE[0].Image = game.enemy.units[0].ImgsE.StandingStill;
+                    }
+                    else if (game.enemy.units.Count() == 2)
+                    {
+                        pBoxAE[0].Image = game.enemy.units[0].ImgsE.StandingStill;
+                        pBoxAE[1].Image = game.enemy.units[1].ImgsE.StandingStill;
+                    }
+                    else
+                    {
+                        pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
+                        pBoxAE[1].Image = game.enemy.units[game.enemy.units.Count() - 2].ImgsE.StandingStill;
+                    }                    
                     // After 5 seconds, restore the original image
                     for (int i = 0; i < game.player.units.Count() - 2; i++)
                     {
@@ -602,6 +711,8 @@ namespace ppa_lab_test_1
                 gulgorE.Image = gge;
             }
         }
+
+        //private void 
     }
 }
 
