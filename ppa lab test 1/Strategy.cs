@@ -21,8 +21,14 @@ namespace ppa_lab_test_1
             {
                 g.player.BuffHeavyUnits(PositionType.OnevsOne);
                 g.enemy.BuffHeavyUnits(PositionType.OnevsOne);
-                g.Attack(g.player.units[0], g.enemy.units[0]);
+
+                Random rnst = new Random();
+                int valst = rnst.Next(1);
+                if (valst == 0) g.Attack(g.player.units[0], g.enemy.units[0]);
+                else g.Attack(g.enemy.units[0], g.player.units[0]);
+
                 g.LongAttack();
+
                 g.player.HealArmy(PositionType.OnevsOne);
                 g.enemy.HealArmy(PositionType.OnevsOne);
 

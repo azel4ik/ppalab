@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ppa_lab_test_1
-{
+﻿
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -49,4 +42,4 @@ namespace ppa_lab_test_1
 
     }
 
-}
+
