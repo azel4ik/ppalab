@@ -24,6 +24,7 @@ namespace ppa_lab_test_1
         public Unit Create();
     }
 
+    //лечение
     public interface IHealable
     {
         public void Recover(int Healing) { }
