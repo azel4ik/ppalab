@@ -83,6 +83,7 @@ namespace ppa_lab_test_1
         #endregion
 
 
+
         public Image ClearIm = Image.FromFile(Path.Combine(Application.StartupPath, "clear.png"));
 
         public Form3(Game g)
@@ -117,6 +118,10 @@ namespace ppa_lab_test_1
             outbcg = new();
             outbcg.Init(loop);
             bcgstream.CurrentTime = new TimeSpan(0L);
+
+            label1.Text = LivesInfo(game.player);
+            label2.Text = LivesInfo(game.enemy);
+
             outbcg.Play();
             Invalidate();
         }
@@ -131,12 +136,6 @@ namespace ppa_lab_test_1
 
         }
 
-        private void Save_Click(object sender, EventArgs e)
-        {
-            SaveGame sg = new SaveGame(game);
-            gm.SetCommand(sg);
-            gm.Execute();
-        }
 
         private string LivesInfo(Army a)
         {
@@ -155,7 +154,7 @@ namespace ppa_lab_test_1
             if (fight == 1)
             {
                 #region
-                if(game.player.units.Count() == 1)
+                if (game.player.units.Count() == 1)
                 {
                     pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
                 }
@@ -184,7 +183,7 @@ namespace ppa_lab_test_1
                     {
                         pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
                     }
-                }                      
+                }
                 Timer archer = new Timer();
                 archer.Interval = 1500; // 5 seconds
                 Timer healer = new Timer();
@@ -270,16 +269,16 @@ namespace ppa_lab_test_1
             if (fight == 2)
             {
                 #region
-                if(game.player.units.Count() == 1)
+                if (game.player.units.Count() == 1)
                 {
                     pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
                 }
-                else if(game.player.units.Count() == 2)
+                else if (game.player.units.Count() == 2)
                 {
                     pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
                     pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
                 }
-                else if(game.player.units.Count() == 3)
+                else if (game.player.units.Count() == 3)
                 {
                     if ((game.player.units[0].Name.Contains("Heavy") && game.player.units[2].Name.Contains("Light")))
                     {
@@ -349,7 +348,7 @@ namespace ppa_lab_test_1
                         pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
                         pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
                     }
-                }                
+                }
                 Timer archer = new Timer();
                 archer.Interval = 1500; // 5 seconds
                 Timer healer = new Timer();
@@ -358,11 +357,11 @@ namespace ppa_lab_test_1
                 stand.Interval = 1500; // 5 seconds
                 archer.Tick += (sender, args) =>
                 {
-                    if(game.player.units.Count() == 1)
+                    if (game.player.units.Count() == 1)
                     {
                         pBoxAP[0].Image = game.player.units[0].ImgsP.StandingStill;
                     }
-                    else if(game.player.units.Count() == 2)
+                    else if (game.player.units.Count() == 2)
                     {
                         pBoxAP[0].Image = game.player.units[0].ImgsP.StandingStill;
                         pBoxAP[1].Image = game.player.units[1].ImgsP.StandingStill;
@@ -385,7 +384,7 @@ namespace ppa_lab_test_1
                     {
                         pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
                         pBoxAE[1].Image = game.enemy.units[game.enemy.units.Count() - 2].ImgsE.StandingStill;
-                    }                    
+                    }
                     // After 5 seconds, restore the original image
                     for (int i = 0; i < game.player.units.Count() - 2; i++)
                     {

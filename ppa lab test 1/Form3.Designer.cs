@@ -37,7 +37,6 @@
             gulyaigorodToolStripMenuItem = new ToolStripMenuItem();
             Undo = new ToolStripButton();
             Redo = new ToolStripButton();
-            Save = new ToolStripButton();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             x1ToolStripMenuItem = new ToolStripMenuItem();
             x3ToolStripMenuItem = new ToolStripMenuItem();
@@ -86,7 +85,7 @@
             // 
             toolStrip1.BackColor = Color.White;
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { Action, Undo, Redo, Save, toolStripDropDownButton1 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { Action, Undo, Redo, toolStripDropDownButton1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1700, 27);
@@ -150,16 +149,6 @@
             Redo.Size = new Size(29, 24);
             Redo.Text = "Redo";
             Redo.Click += Redo_Click;
-            // 
-            // Save
-            // 
-            Save.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            Save.Image = (Image)resources.GetObject("Save.Image");
-            Save.ImageTransparentColor = Color.Magenta;
-            Save.Name = "Save";
-            Save.Size = new Size(29, 24);
-            Save.Text = "Save";
-            Save.Click += Save_Click;
             // 
             // toolStripDropDownButton1
             // 
@@ -448,7 +437,6 @@
         private ToolStripMenuItem cloneToolStripMenuItem;
         private ToolStripButton Undo;
         private ToolStripButton Redo;
-        private ToolStripButton Save;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
