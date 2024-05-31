@@ -147,7 +147,7 @@ namespace ppa_lab_test_1
                         {
                             pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
                         }
-                        
+
                     }
                     Timer pauseTimer2 = new Timer();
                     pauseTimer2.Interval = 3000; // 3 seconds
@@ -155,7 +155,7 @@ namespace ppa_lab_test_1
                     {
                         for (int i = 0; i < game.player.units.Count(); i++)
                         {
-                            
+
                             pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
                         }
                         //for (int i = 0; i < game.enemy.units.Count(); i++)
@@ -176,7 +176,7 @@ namespace ppa_lab_test_1
                     //    }
                     //}
                     pauseTimer2.Start();
-                        pauseTimer1.Stop();
+                    pauseTimer1.Stop();
                 };
                 pauseTimer1.Start();
             }
@@ -204,7 +204,7 @@ namespace ppa_lab_test_1
                         if (game.player.units[i].Name == "Archer")
                         {
                             pBoxAP[i].Image = game.player.units[i].ImgsE.Special;
-                        }                        
+                        }
                     }
                     pauseTimer.Stop();
                 };
@@ -313,7 +313,7 @@ namespace ppa_lab_test_1
                 gm.SetCommand(pgg);
                 gm.Execute();
                 ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-                ggE.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+                //ggE.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             }
 
         }
@@ -329,20 +329,20 @@ namespace ppa_lab_test_1
         }
 
 
-        private void gulyaiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ggP != null)
-            {
-                MessageBox.Show("You already have gulyai-gorod");
-            }
-            else
-            {
-                PlaceGulyaiGorod pgg = new PlaceGulyaiGorod(game);
-                gm.SetCommand(pgg);
-                gm.Execute();
-                ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            }
-        }
+        //private void gulyaiToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    if (ggP != null)
+        //    {
+        //        MessageBox.Show("You already have gulyai-gorod");
+        //    }
+        //    else
+        //    {
+        //        PlaceGulyaiGorod pgg = new PlaceGulyaiGorod(game);
+        //        gm.SetCommand(pgg);
+        //        gm.Execute();
+        //        ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+        //    }
+        //}
 
     }
 }

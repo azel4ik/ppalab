@@ -196,6 +196,7 @@ namespace ppa_lab_test_1
         public override void Execute()
         {
             game.player.PlaceGulyaiGorod();
+            //game.enemy.PlaceGulyaiGorod();
         }
 
         public override void Undo()
@@ -255,7 +256,7 @@ namespace ppa_lab_test_1
             }
             if (o_unt.Alive()) 
             {
-                if (player.gg != null) o_unt.DoAttack(enemy.gg, o_unt.Attack);
+                if (player.gg != null) o_unt.DoAttack(player.gg, o_unt.Attack);
                 else
                 {
                     o_unt.DoAttack(p_unt, o_unt.Attack);
@@ -648,7 +649,6 @@ namespace ppa_lab_test_1
 
         public int FindRandomLightorArcher()
         {
-            int res = -1;
             List<int> unts = new List<int>();
             for (int i = 0; i < units.Count(); i++)
             {
@@ -657,7 +657,8 @@ namespace ppa_lab_test_1
             int val;
             Random randinx = new Random();
             val = randinx.Next(unts.Count);
-            return unts[val];
+            if (unts.Count > 0) return unts[val];
+            return -1;
         }
 
         public void WizardCloning()
@@ -672,23 +673,26 @@ namespace ppa_lab_test_1
                     if (wzrds[i] > 0)
                     {
                         int inx = FindRandomLightorArcher();
-                        UnitType ut = CheckUnit(units[inx]);
-                        switch (ut)
+                        if (inx > -1)
                         {
-                            case UnitType.Archer:
-                                Wizard wz = (Wizard)units[wzrds[i]];
-                                Archer ar = (Archer)units[inx];
-                                units.Add(wz.Clone(ar));
+                            UnitType ut = CheckUnit(units[inx]);
+                            switch (ut)
+                            {
+                                case UnitType.Archer:
+                                    Wizard wz = (Wizard)units[wzrds[i]];
+                                    Archer ar = (Archer)units[inx];
+                                    if (units.Count < 5) units.Add(wz.Clone(ar));
+                                    break;
+
+                                case UnitType.LightUnit:
+                                    Wizard wzl = (Wizard)units[wzrds[i]];
+                                    LightUnit liu = (LightUnit)units[inx];
+                                    if (units.Count < 5) units.Add(wzl.Clone(liu));
+                                    break;
+
+                            }
                             break;
-
-                            case UnitType.LightUnit:
-                                Wizard wzl = (Wizard)units[wzrds[i]];
-                                LightUnit liu = (LightUnit)units[inx];
-                                units.Add(wzl.Clone(liu));
-                                break;
-
                         }
-                        break;
                      }
                 }
             }
