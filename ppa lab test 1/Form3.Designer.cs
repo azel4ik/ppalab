@@ -34,9 +34,9 @@
             attackToolStripMenuItem = new ToolStripMenuItem();
             cloneToolStripMenuItem = new ToolStripMenuItem();
             playUpToTheEndToolStripMenuItem = new ToolStripMenuItem();
+            gulyaigorodToolStripMenuItem = new ToolStripMenuItem();
             Undo = new ToolStripButton();
             Redo = new ToolStripButton();
-            Save = new ToolStripButton();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             x1ToolStripMenuItem = new ToolStripMenuItem();
             x3ToolStripMenuItem = new ToolStripMenuItem();
@@ -58,7 +58,8 @@
             pictureBoxp1 = new PictureBox();
             pictureBoxp4 = new PictureBox();
             splitContainer1 = new SplitContainer();
-            gulyaigorodToolStripMenuItem = new ToolStripMenuItem();
+            label1 = new Label();
+            label2 = new Label();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             panel1.SuspendLayout();
@@ -75,6 +76,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxp1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             SuspendLayout();
             // 
@@ -82,7 +85,7 @@
             // 
             toolStrip1.BackColor = Color.White;
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { Action, Undo, Redo, Save, toolStripDropDownButton1 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { Action, Undo, Redo, toolStripDropDownButton1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1700, 27);
@@ -102,23 +105,30 @@
             // attackToolStripMenuItem
             // 
             attackToolStripMenuItem.Name = "attackToolStripMenuItem";
-            attackToolStripMenuItem.Size = new Size(224, 26);
+            attackToolStripMenuItem.Size = new Size(212, 26);
             attackToolStripMenuItem.Text = "Attack";
             attackToolStripMenuItem.Click += attackToolStripMenuItem_Click;
             // 
             // cloneToolStripMenuItem
             // 
             cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
-            cloneToolStripMenuItem.Size = new Size(224, 26);
+            cloneToolStripMenuItem.Size = new Size(212, 26);
             cloneToolStripMenuItem.Text = "Clone";
             cloneToolStripMenuItem.Click += cloneToolStripMenuItem_Click;
             // 
             // playUpToTheEndToolStripMenuItem
             // 
             playUpToTheEndToolStripMenuItem.Name = "playUpToTheEndToolStripMenuItem";
-            playUpToTheEndToolStripMenuItem.Size = new Size(224, 26);
+            playUpToTheEndToolStripMenuItem.Size = new Size(212, 26);
             playUpToTheEndToolStripMenuItem.Text = "Play up to the end";
             playUpToTheEndToolStripMenuItem.Click += playUpToTheEndToolStripMenuItem_Click;
+            // 
+            // gulyaigorodToolStripMenuItem
+            // 
+            gulyaigorodToolStripMenuItem.Name = "gulyaigorodToolStripMenuItem";
+            gulyaigorodToolStripMenuItem.Size = new Size(212, 26);
+            gulyaigorodToolStripMenuItem.Text = "Gulyai-gorod";
+            gulyaigorodToolStripMenuItem.Click += gulyaigorodToolStripMenuItem_Click_1;
             // 
             // Undo
             // 
@@ -139,16 +149,6 @@
             Redo.Size = new Size(29, 24);
             Redo.Text = "Redo";
             Redo.Click += Redo_Click;
-            // 
-            // Save
-            // 
-            Save.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            Save.Image = (Image)resources.GetObject("Save.Image");
-            Save.ImageTransparentColor = Color.Magenta;
-            Save.Name = "Save";
-            Save.Size = new Size(29, 24);
-            Save.Text = "Save";
-            Save.Click += Save_Click;
             // 
             // toolStripDropDownButton1
             // 
@@ -360,20 +360,33 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = SystemColors.Info;
+            splitContainer1.Panel1.Controls.Add(label1);
             // 
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = SystemColors.Info;
+            splitContainer1.Panel2.Controls.Add(label2);
             splitContainer1.Size = new Size(1700, 51);
             splitContainer1.SplitterDistance = 842;
             splitContainer1.TabIndex = 2;
             // 
-            // gulyaigorodToolStripMenuItem
+            // label1
             // 
-            gulyaigorodToolStripMenuItem.Name = "gulyaigorodToolStripMenuItem";
-            gulyaigorodToolStripMenuItem.Size = new Size(224, 26);
-            gulyaigorodToolStripMenuItem.Text = "Gulyai-gorod";
-            gulyaigorodToolStripMenuItem.Click += gulyaigorodToolStripMenuItem_Click_1;
+            label1.AutoSize = true;
+            label1.Location = new Point(21, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 20);
+            label1.TabIndex = 0;
+            label1.Text = "label1";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(33, 16);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 0;
+            label2.Text = "label2";
             // 
             // Form3
             // 
@@ -404,6 +417,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxp2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxp4).EndInit();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
+            splitContainer1.Panel2.ResumeLayout(false);
+            splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ResumeLayout(false);
@@ -418,7 +435,6 @@
         private ToolStripMenuItem cloneToolStripMenuItem;
         private ToolStripButton Undo;
         private ToolStripButton Redo;
-        private ToolStripButton Save;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
@@ -444,5 +460,7 @@
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem playUpToTheEndToolStripMenuItem;
         private ToolStripMenuItem gulyaigorodToolStripMenuItem;
+        private Label label1;
+        private Label label2;
     }
 }
