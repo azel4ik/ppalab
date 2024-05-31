@@ -11,11 +11,11 @@ namespace ppa_lab_test_1
 {
     public interface IArmyPosition
     {
-        public void MoveAlgorithm(Game g, int movetype) { }
+        public void MoveAlgorithm(Game g) { }
     }
     public class OnevsOnePosition : IArmyPosition
     {
-        public void MoveAlgorithm(Game g, int movetype)
+        public void MoveAlgorithm(Game g)
         {
             if (g.player.units.Count() > 0 && g.enemy.units.Count() > 0)
             {
@@ -31,11 +31,12 @@ namespace ppa_lab_test_1
                 g.player.RemoveDeadUnits();
                 g.enemy.RemoveDeadUnits();
             }
+            //bool b = g.EndGame();
         }
     }
     public class ThreevsThreePosition : IArmyPosition
     {
-        public void MoveAlgorithm(Game g, int movetype)
+        public void MoveAlgorithm(Game g)
         {
             if (g.player.units.Count() > 0 && g.enemy.units.Count() > 0)
             {
@@ -51,7 +52,7 @@ namespace ppa_lab_test_1
     }
     public class AllvsAllPosition : IArmyPosition
     {
-        public void MoveAlgorithm(Game g, int movetype)
+        public void MoveAlgorithm(Game g)
         {
             int playernum = g.player.units.Count();
             int enemynum = g.enemy.units.Count();

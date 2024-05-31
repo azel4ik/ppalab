@@ -58,6 +58,7 @@
             pictureBoxp1 = new PictureBox();
             pictureBoxp4 = new PictureBox();
             splitContainer1 = new SplitContainer();
+            playUpToTheEndToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             panel1.SuspendLayout();
@@ -91,7 +92,7 @@
             // Action
             // 
             Action.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            Action.DropDownItems.AddRange(new ToolStripItem[] { gulyaigorodToolStripMenuItem, attackToolStripMenuItem, cloneToolStripMenuItem });
+            Action.DropDownItems.AddRange(new ToolStripItem[] { gulyaigorodToolStripMenuItem, attackToolStripMenuItem, cloneToolStripMenuItem, playUpToTheEndToolStripMenuItem });
             Action.Image = (Image)resources.GetObject("Action.Image");
             Action.ImageTransparentColor = Color.Magenta;
             Action.Name = "Action";
@@ -367,6 +368,13 @@
             splitContainer1.SplitterDistance = 842;
             splitContainer1.TabIndex = 2;
             // 
+            // playUpToTheEndToolStripMenuItem
+            // 
+            playUpToTheEndToolStripMenuItem.Name = "playUpToTheEndToolStripMenuItem";
+            playUpToTheEndToolStripMenuItem.Size = new Size(224, 26);
+            playUpToTheEndToolStripMenuItem.Text = "Play up to the end";
+            playUpToTheEndToolStripMenuItem.Click += playUpToTheEndToolStripMenuItem_Click;
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -433,6 +441,6 @@
         public PictureBox pictureBoxe1;
         public PictureBox ggE;
         private ToolStripMenuItem gulyaigorodToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem playUpToTheEndToolStripMenuItem;
     }
 }

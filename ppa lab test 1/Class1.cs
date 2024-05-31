@@ -50,7 +50,7 @@ namespace ppa_lab_test_1
         }
         public override void Execute()
         {
-            game.Move(1);
+            game.Move();
             finalenemystate = game.enemy.Copy();
             finalplayerstate = game.player.Copy();
         }
@@ -85,9 +85,9 @@ namespace ppa_lab_test_1
         }
         public override void Execute()
         {
-            while (game.player.units.Count() > 0 || game.enemy.units.Count() > 0)
+            while (game.player.units.Count() > 0 && game.enemy.units.Count() > 0)
             {
-                game.Move(1);
+                game.Move();
             }
             finalenemystate = game.enemy.Copy();
             finalplayerstate = game.player.Copy();
@@ -221,9 +221,15 @@ namespace ppa_lab_test_1
             //ap.PositionUnits(this);
         }
 
-        public void Move(int movetype)
+        public void Move()
         {
-            ArmyPosition.MoveAlgorithm(this, movetype);
+            ArmyPosition.MoveAlgorithm(this);
+        }
+
+        public bool EndGame()
+        {
+            if (player.units.Count > enemy.units.Count) return true;
+            return false;
         }
 
         public void Attack(Unit p_unt, Unit o_unt)

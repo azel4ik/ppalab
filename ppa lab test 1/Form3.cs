@@ -227,11 +227,6 @@ namespace ppa_lab_test_1
 
         }
 
-        private void Action_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Undo_Click(object sender, EventArgs e)
         {
             gm.Undo();
@@ -252,10 +247,7 @@ namespace ppa_lab_test_1
 
         }
 
-        private void toolStripButton1_Click_1(object sender, EventArgs e)
-        {
 
-        }
 
         private void x1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -328,21 +320,15 @@ namespace ppa_lab_test_1
             //pBoxAP[4].Image = game.player.units[4].ImgsP.StandingStill;
         }
 
-
-        //private void gulyaiToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    if (ggP != null)
-        //    {
-        //        MessageBox.Show("You already have gulyai-gorod");
-        //    }
-        //    else
-        //    {
-        //        PlaceGulyaiGorod pgg = new PlaceGulyaiGorod(game);
-        //        gm.SetCommand(pgg);
-        //        gm.Execute();
-        //        ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-        //    }
-        //}
+        private void playUpToTheEndToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlayUpToTheEnd playUpToTheEnd = new PlayUpToTheEnd(game);
+            gm.SetCommand(playUpToTheEnd);
+            gm.Execute();
+            Hide();
+            Form5 f5 = new Form5(game.EndGame());
+            f5.Show();
+        }
 
     }
 }
