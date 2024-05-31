@@ -33,10 +33,7 @@
             Action = new ToolStripDropDownButton();
             attackToolStripMenuItem = new ToolStripMenuItem();
             cloneToolStripMenuItem = new ToolStripMenuItem();
-
-            gulyaiToolStripMenuItem = new ToolStripMenuItem();
-            gulyaigorodToolStripMenuItem = new ToolStripMenuItem();
-
+            playUpToTheEndToolStripMenuItem = new ToolStripMenuItem();
             Undo = new ToolStripButton();
             Redo = new ToolStripButton();
             Save = new ToolStripButton();
@@ -61,7 +58,7 @@
             pictureBoxp1 = new PictureBox();
             pictureBoxp4 = new PictureBox();
             splitContainer1 = new SplitContainer();
-            playUpToTheEndToolStripMenuItem = new ToolStripMenuItem();
+            gulyaigorodToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             panel1.SuspendLayout();
@@ -95,11 +92,7 @@
             // Action
             // 
             Action.DisplayStyle = ToolStripItemDisplayStyle.Image;
-
-            Action.DropDownItems.AddRange(new ToolStripItem[] { attackToolStripMenuItem, cloneToolStripMenuItem, gulyaiToolStripMenuItem });
-
-            Action.DropDownItems.AddRange(new ToolStripItem[] { gulyaigorodToolStripMenuItem, attackToolStripMenuItem, cloneToolStripMenuItem, playUpToTheEndToolStripMenuItem });
-
+            Action.DropDownItems.AddRange(new ToolStripItem[] { attackToolStripMenuItem, cloneToolStripMenuItem, playUpToTheEndToolStripMenuItem, gulyaigorodToolStripMenuItem });
             Action.Image = (Image)resources.GetObject("Action.Image");
             Action.ImageTransparentColor = Color.Magenta;
             Action.Name = "Action";
@@ -120,21 +113,12 @@
             cloneToolStripMenuItem.Text = "Clone";
             cloneToolStripMenuItem.Click += cloneToolStripMenuItem_Click;
             // 
-
-            // gulyaiToolStripMenuItem
+            // playUpToTheEndToolStripMenuItem
             // 
-            gulyaiToolStripMenuItem.Name = "gulyaiToolStripMenuItem";
-            gulyaiToolStripMenuItem.Size = new Size(224, 26);
-            gulyaiToolStripMenuItem.Text = "Gulyai-Gorod";
-            //gulyaiToolStripMenuItem.Click += gulyaiToolStripMenuItem_Click;
-
-            // gulyaigorodToolStripMenuItem
-            // 
-            gulyaigorodToolStripMenuItem.Name = "gulyaigorodToolStripMenuItem";
-            gulyaigorodToolStripMenuItem.Size = new Size(224, 26);
-            gulyaigorodToolStripMenuItem.Text = "Gulyai-gorod";
-            gulyaigorodToolStripMenuItem.Click += gulyaigorodToolStripMenuItem_Click;
-
+            playUpToTheEndToolStripMenuItem.Name = "playUpToTheEndToolStripMenuItem";
+            playUpToTheEndToolStripMenuItem.Size = new Size(224, 26);
+            playUpToTheEndToolStripMenuItem.Text = "Play up to the end";
+            playUpToTheEndToolStripMenuItem.Click += playUpToTheEndToolStripMenuItem_Click;
             // 
             // Undo
             // 
@@ -384,12 +368,12 @@
             splitContainer1.SplitterDistance = 842;
             splitContainer1.TabIndex = 2;
             // 
-            // playUpToTheEndToolStripMenuItem
+            // gulyaigorodToolStripMenuItem
             // 
-            playUpToTheEndToolStripMenuItem.Name = "playUpToTheEndToolStripMenuItem";
-            playUpToTheEndToolStripMenuItem.Size = new Size(224, 26);
-            playUpToTheEndToolStripMenuItem.Text = "Play up to the end";
-            playUpToTheEndToolStripMenuItem.Click += playUpToTheEndToolStripMenuItem_Click;
+            gulyaigorodToolStripMenuItem.Name = "gulyaigorodToolStripMenuItem";
+            gulyaigorodToolStripMenuItem.Size = new Size(224, 26);
+            gulyaigorodToolStripMenuItem.Text = "Gulyai-gorod";
+            gulyaigorodToolStripMenuItem.Click += gulyaigorodToolStripMenuItem_Click_1;
             // 
             // Form3
             // 
@@ -458,10 +442,7 @@
         public PictureBox ggE;
 
         private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem gulyaiToolStripMenuItem;
-
-        private ToolStripMenuItem gulyaigorodToolStripMenuItem;
         private ToolStripMenuItem playUpToTheEndToolStripMenuItem;
-
+        private ToolStripMenuItem gulyaigorodToolStripMenuItem;
     }
 }

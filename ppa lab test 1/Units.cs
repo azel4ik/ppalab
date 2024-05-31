@@ -449,7 +449,7 @@ namespace ppa_lab_test_1
 
             ImgsP = new BasicImages();
 
-            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "маг стоит.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "магД_стоит1.png"));
             ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "маг колдует.gif"));
             ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
