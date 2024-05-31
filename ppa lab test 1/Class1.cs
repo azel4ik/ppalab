@@ -179,6 +179,8 @@ namespace ppa_lab_test_1
         public CloneUnit(Game r)
         {
             game = r;
+            initialplayerstate = r.player.Copy();
+            initialenemystate = r.enemy.Copy();
             command_name = "Clone Unit";
         }
         public override void Execute()
@@ -211,7 +213,10 @@ namespace ppa_lab_test_1
         public override void Execute()
         {
             game.player.PlaceGulyaiGorod();
-            //game.enemy.PlaceGulyaiGorod();
+            Random eggr = new Random();
+            int val = eggr.Next(1);
+            if (val == 0) game.enemy.PlaceGulyaiGorod();
+            else { }
         }
 
         public override void Undo()
@@ -301,29 +306,35 @@ namespace ppa_lab_test_1
         {
             List<Unit> parchers = player.FindUnit("Archer");
             List<Unit> oarchers = enemy.FindUnit("Archer");
-            for (int i = 0; i < parchers.Count(); i++)
+            if (parchers.Count > 0)
             {
-                if (enemy.units.Count() > 0)
+                for (int i = 0; i < parchers.Count(); i++)
                 {
-                    Random rndt = new Random();
-                    int value = rndt.Next(enemy.units.Count());
-                    parchers[i].DoAttack(enemy.units[value], ((Archer)parchers[i]).ShootAttack);
-                    if (enemy.units[value].Name.Contains("Heavy Infantry") && enemy.units[value].Health < enemy.units[value].MaxHealth * 0.2)
+                    if (enemy.units.Count() > 0)
                     {
-                        enemy.UnbuffHeavyUnit(enemy.units[value]);
+                        Random rndt = new Random();
+                        int value = rndt.Next(enemy.units.Count());
+                        parchers[i].DoAttack(enemy.units[value], ((Archer)parchers[i]).ShootAttack);
+                        if (enemy.units[value].Name.Contains("Heavy Infantry") && enemy.units[value].Health < enemy.units[value].MaxHealth * 0.2)
+                        {
+                            enemy.UnbuffHeavyUnit(enemy.units[value]);
+                        }
                     }
                 }
             }
-            for (int i = 0; i < oarchers.Count(); i++)
+            if (oarchers.Count > 0)
             {
-                if (player.units.Count() > 0)
+                for (int i = 0; i < oarchers.Count(); i++)
                 {
-                    Random rndt = new Random();
-                    int value = rndt.Next(player.units.Count());
-                    oarchers[i].DoAttack(player.units[value], ((Archer)oarchers[i]).ShootAttack);
-                    if (player.units[value].Name.Contains("Heavy Infantry") && player.units[value].Health < player.units[value].MaxHealth * 0.2)
+                    if (player.units.Count() > 0)
                     {
-                        player.UnbuffHeavyUnit(player.units[value]);
+                        Random rndt = new Random();
+                        int value = rndt.Next(player.units.Count());
+                        oarchers[i].DoAttack(player.units[value], ((Archer)oarchers[i]).ShootAttack);
+                        if (player.units[value].Name.Contains("Heavy Infantry") && player.units[value].Health < player.units[value].MaxHealth * 0.2)
+                        {
+                            player.UnbuffHeavyUnit(player.units[value]);
+                        }
                     }
                 }
             }

@@ -468,7 +468,7 @@ namespace ppa_lab_test_1
             ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "маг_стоит.png"));
             ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "маг_колдует.png"));
             ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "мага_бьют.png"));
-            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "аг_умер.png"));
+            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "маг_умер.png"));
             ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "мага_лечат.png"));
             ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "маг_клонирует.png"));
 

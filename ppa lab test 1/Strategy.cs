@@ -21,6 +21,9 @@ namespace ppa_lab_test_1
             {
                 g.player.BuffHeavyUnits(PositionType.OnevsOne);
                 g.enemy.BuffHeavyUnits(PositionType.OnevsOne);
+                Random ggre = new Random();
+                int val = ggre.Next(5);
+                if (val == 0) g.enemy.PlaceGulyaiGorod();
 
                 Random rnst = new Random();
                 int valst = rnst.Next(1);
