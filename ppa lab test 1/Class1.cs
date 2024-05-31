@@ -146,6 +146,28 @@ namespace ppa_lab_test_1
         }
     }
 
+    class SaveGame : GameCommand
+    {
+        Game game;
+        public SaveGame(Game r)
+        {
+            game = r;
+            command_name = "Save Game";
+        }
+        public override void Execute()
+        {
+            game.Save();
+        }
+
+        public override void Undo()
+        {
+
+        }
+        public override void Redo()
+        {
+
+        } 
+    }
 
     class CloneUnit : GameCommand
     {

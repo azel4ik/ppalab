@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
             NewGame = new Button();
+            LoadGame = new Button();
             ExitButton = new Button();
             SuspendLayout();
             // 
@@ -57,13 +58,29 @@
             NewGame.FlatStyle = FlatStyle.Flat;
             NewGame.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             NewGame.ForeColor = Color.Gold;
-            NewGame.Location = new Point(272, 134);
+            NewGame.Location = new Point(272, 91);
             NewGame.Name = "NewGame";
-            NewGame.Size = new Size(250, 66);
+            NewGame.Size = new Size(250, 52);
             NewGame.TabIndex = 1;
             NewGame.Text = "New Game";
             NewGame.UseVisualStyleBackColor = false;
             NewGame.Click += button1_Click;
+            // 
+            // LoadGame
+            // 
+            LoadGame.Anchor = AnchorStyles.Top;
+            LoadGame.BackColor = Color.Transparent;
+            LoadGame.Cursor = Cursors.Hand;
+            LoadGame.FlatStyle = FlatStyle.Flat;
+            LoadGame.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            LoadGame.ForeColor = Color.Gold;
+            LoadGame.Location = new Point(272, 163);
+            LoadGame.Name = "LoadGame";
+            LoadGame.Size = new Size(250, 52);
+            LoadGame.TabIndex = 2;
+            LoadGame.Text = "Load Game";
+            LoadGame.UseVisualStyleBackColor = false;
+            LoadGame.Click += button2_Click;
             // 
             // ExitButton
             // 
@@ -73,9 +90,9 @@
             ExitButton.FlatStyle = FlatStyle.Flat;
             ExitButton.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             ExitButton.ForeColor = Color.Gold;
-            ExitButton.Location = new Point(272, 219);
+            ExitButton.Location = new Point(272, 235);
             ExitButton.Name = "ExitButton";
-            ExitButton.Size = new Size(250, 70);
+            ExitButton.Size = new Size(250, 52);
             ExitButton.TabIndex = 3;
             ExitButton.Text = "Exit";
             ExitButton.UseVisualStyleBackColor = false;
@@ -89,6 +106,7 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
             Controls.Add(ExitButton);
+            Controls.Add(LoadGame);
             Controls.Add(NewGame);
             Controls.Add(label1);
             Name = "Form1";
@@ -102,6 +120,7 @@
 
         private Label label1;
         private Button NewGame;
+        private Button LoadGame;
         private Button ExitButton;
     }
 }

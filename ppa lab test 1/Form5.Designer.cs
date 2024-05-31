@@ -40,7 +40,7 @@
             backtomenubt.FlatStyle = FlatStyle.Flat;
             backtomenubt.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             backtomenubt.ForeColor = Color.Gold;
-            backtomenubt.Location = new Point(261, 318);
+            backtomenubt.Location = new Point(242, 324);
             backtomenubt.Name = "backtomenubt";
             backtomenubt.Size = new Size(331, 86);
             backtomenubt.TabIndex = 0;
@@ -55,7 +55,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.Control;
-            label1.Location = new Point(309, 164);
+            label1.Location = new Point(360, 167);
             label1.Name = "label1";
             label1.Size = new Size(105, 55);
             label1.TabIndex = 1;
