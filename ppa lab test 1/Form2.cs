@@ -29,7 +29,8 @@ namespace ppa_lab_test_1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (balance >= 0 && balance != wallet)
+            int totalnum = (int)HICount.Value + (int)LICount.Value + (int)ACount.Value + (int)HCount.Value + (int)WCount.Value;
+            if (balance >= 0 && balance != wallet && totalnum <=4)
             {
                 Game g = new Game();
 
@@ -52,6 +53,11 @@ namespace ppa_lab_test_1
             else if (balance < 0)
             {
                 Form4 f4 = new Form4("Not enough money...");
+                f4.Show();
+            }
+            else if(totalnum > 4)
+            {
+                Form4 f4 = new Form4("Too many units...");
                 f4.Show();
             }
             else
