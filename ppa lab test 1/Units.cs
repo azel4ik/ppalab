@@ -17,6 +17,8 @@ namespace ppa_lab_test_1
         Dead,
         Damaged
     }
+
+    //creation
     interface IUnitAbstactFactory
     {
         public Unit Create();
