@@ -19,6 +19,8 @@ namespace ppa_lab_test_1
         {
             if (g.player.units.Count() > 0 && g.enemy.units.Count() > 0)
             {
+                g.player.BuffHeavyUnits(PositionType.OnevsOne);
+                g.enemy.BuffHeavyUnits(PositionType.OnevsOne);
                 g.Attack(g.player.units[0], g.enemy.units[0]);
                 g.LongAttack();
                 g.player.HealArmy(PositionType.OnevsOne);

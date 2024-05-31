@@ -240,6 +240,10 @@ namespace ppa_lab_test_1
                 else
                 {
                     p_unt.DoAttack(o_unt, p_unt.Attack);
+                    if(o_unt.Name.Contains("Heavy Infantry")&&o_unt.Health < o_unt.MaxHealth*0.2)
+                    {
+                        enemy.UnbuffHeavyUnit(o_unt);
+                    }
                     odmlp.GetDamaged();
                 }
                 if (!o_unt.Alive()) 
@@ -255,6 +259,10 @@ namespace ppa_lab_test_1
                 else
                 {
                     o_unt.DoAttack(p_unt, o_unt.Attack);
+                    if (o_unt.Name.Contains("Heavy Infantry") && o_unt.Health < o_unt.MaxHealth * 0.2)
+                    {
+                        player.UnbuffHeavyUnit(p_unt);
+                    }
                     pdmlp.GetDamaged();
                 }
                 if (!p_unt.Alive()) 
@@ -278,6 +286,10 @@ namespace ppa_lab_test_1
                     Random rndt = new Random();
                     int value = rndt.Next(enemy.units.Count());
                     parchers[i].DoAttack(enemy.units[value], ((Archer)parchers[i]).ShootAttack);
+                    if (enemy.units[value].Name.Contains("Heavy Infantry") && enemy.units[value].Health < enemy.units[value].MaxHealth * 0.2)
+                    {
+                        enemy.UnbuffHeavyUnit(enemy.units[value]);
+                    }
                 }
             }
             for (int i = 0; i < oarchers.Count(); i++)
@@ -287,6 +299,10 @@ namespace ppa_lab_test_1
                     Random rndt = new Random();
                     int value = rndt.Next(player.units.Count());
                     oarchers[i].DoAttack(player.units[value], ((Archer)oarchers[i]).ShootAttack);
+                    if (player.units[value].Name.Contains("Heavy Infantry") && player.units[value].Health < player.units[value].MaxHealth * 0.2)
+                    {
+                        player.UnbuffHeavyUnit(player.units[value]);
+                    }
                 }
             }
         }
@@ -678,7 +694,14 @@ namespace ppa_lab_test_1
             }
         }
     
-
+        public void BuffHeavyUnits(PositionType pt)
+        {
+            List<int> inxs = FindBuffPair(pt);
+            for (int i = 0;i < inxs.Count;i++) 
+            {
+                BuffHeavyUnit(i);
+            }
+        }
         public void BuffHeavyUnit(int inx)
         {
             Random rndbuff = new Random();
@@ -694,24 +717,63 @@ namespace ppa_lab_test_1
                 units[inx] = hu;
             }
         }
-        public void UnbuffHeavyUnit(int inx)
+        public void UnbuffHeavyUnit(Unit unt)
         {
-            if (units[inx].Name.Contains(" с крутым мечом")) 
-            { 
-                units[inx].Defence -= HeavyInfantryHelmet.buff; 
-                units[inx].Name.Replace(" с крутым мечом", ""); 
-            }
-            if (units[inx].Name.Contains(" со шлемом"))
+            if (unt.Name.Contains(" с крутым мечом")) 
             {
-                units[inx].Attack -= HeavyInfantryCoolSword.buff;
-                units[inx].Name.Replace(" со шлемом", "");
+                unt.Defence -= HeavyInfantryHelmet.buff;
+                unt.Name.Replace(" с крутым мечом", ""); 
             }
-
+            if (unt.Name.Contains(" со шлемом"))
+            {
+                unt.Attack -= HeavyInfantryCoolSword.buff;
+                unt.Name.Replace(" со шлемом", "");
+            }
         }
 
-        public List<int> FindBuffPair()
+        public List<int> FindBuffPair(PositionType pt)
         {
             List<int> res = new List<int>();
+            switch(pt)
+            {
+                case PositionType.OnevsOne:
+                    for (int i = 0; i < units.Count - 1; i++)
+                    {
+                        if (units[i].Name.Contains("Heavy Infantry") && units[i + 1].Name.Contains("Light Infantry"))
+                        {
+                            if (!units[i].Name.Contains(" с крутым мечом") && !units[i].Name.Contains(" со шлемом"))
+                            {
+                                res.Add(i);
+                            }
+                        }
+                    }
+                    break;
+                case PositionType.ThreevsThree:
+                    for (int i = 0; i < units.Count - 1; i++)
+                    {
+                        if (units[i].Name.Contains("Heavy Infantry") && units[i + 1].Name.Contains("Light Infantry"))
+                        {
+                            if (!units[i].Name.Contains(" с крутым мечом") && !units[i].Name.Contains(" со шлемом"))
+                            {
+                                res.Add(i);
+                            }
+                        }
+                    }
+                    break;
+                case PositionType.AllvsAll:
+                    for (int i = 0; i < units.Count - 1; i++)
+                    {
+                        if (units[i].Name.Contains("Heavy Infantry") && units[i + 1].Name.Contains("Light Infantry"))
+                        {
+                            if (!units[i].Name.Contains(" с крутым мечом") && !units[i].Name.Contains(" со шлемом"))
+                            {
+                                res.Add(i);
+                            }
+                        }
+                    }
+                    break;
+            }
+            
             return res;
         }
         public Army Copy()
