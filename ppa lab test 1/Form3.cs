@@ -175,6 +175,7 @@ namespace ppa_lab_test_1
                 archer.Start();
                 healer.Tick += (sender, args) =>
                 {
+                    //здесь исключение в конце игры, так как одна из армий нулевая
                     pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
                     pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
                     // After 5 seconds, restore the original image
@@ -227,29 +228,113 @@ namespace ppa_lab_test_1
                 pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
                 pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
                 pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
-                Timer pauseTimer = new Timer();
-                pauseTimer.Interval = 5000; // 5 seconds
-                pauseTimer.Tick += (sender, args) =>
+                Timer archer = new Timer();
+                archer.Interval = 3000; // 5 seconds
+                Timer healer = new Timer();
+                healer.Interval = 3000; // 5 seconds
+                Timer stand = new Timer();
+                stand.Interval = 3000; // 5 seconds
+                archer.Tick += (sender, args) =>
                 {
+                    pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
+                    pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
+                    pBoxAP[1].Image = game.player.units[game.player.units.Count() - 2].ImgsP.StandingStill;
+                    pBoxAE[1].Image = game.enemy.units[game.enemy.units.Count() - 2].ImgsE.StandingStill;
                     // After 5 seconds, restore the original image
-                    for (int i = 0; i < game.player.units.Count(); i++)
+                    for (int i = 0; i < game.player.units.Count() - 2; i++)
                     {
-                        pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
-                    }
-                    //for (int i = 0; i < game.enemy.units.Count(); i++)
-                    //{
-                    //    pBoxAE[i].Image = game.enemy.units[i].ImgsE.StandingStill;
-                    //}
-                    for (int i = 0; i < game.player.units.Count(); i++)
-                    {
-                        if (game.player.units[i].Name == "Archer")
+                        if (game.player.units[i].Name.Contains("Archer"))
                         {
-                            pBoxAP[i].Image = game.player.units[i].ImgsE.Special;
+                            pBoxAP[i + 1].Image = game.player.units[i].ImgsP.Special;
                         }
                     }
-                    pauseTimer.Stop();
+                    for (int i = 0; i < game.enemy.units.Count() - 2; i++)
+                    {
+                        if (game.enemy.units[i].Name.Contains("Archer"))
+                        {
+                            pBoxAE[i + 1].Image = game.enemy.units[i].ImgsE.Special;
+                        }
+
+                    }
+                    stand.Start();
+                    archer.Stop();
+                    healer.Start();
+
                 };
-                pauseTimer.Start();
+                archer.Start();
+                healer.Tick += (sender, args) =>
+                {
+                    pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
+                    pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
+                    pBoxAP[1].Image = game.player.units[game.player.units.Count() - 2].ImgsP.StandingStill;
+                    pBoxAE[1].Image = game.enemy.units[game.enemy.units.Count() - 2].ImgsE.StandingStill;
+                    // After 5 seconds, restore the original image
+                    for (int i = 0; i < game.player.units.Count() - 1; i++)
+                    {
+                        if (game.player.units[i].Name.Contains("Healer"))
+                        {
+                            pBoxAP[i + 1].Image = game.player.units[i].ImgsP.Special;
+                        }
+
+                    }
+                    for (int i = 0; i < game.enemy.units.Count() - 1; i++)
+                    {
+                        if (game.enemy.units[i].Name.Contains("Healer"))
+                        {
+                            pBoxAE[i + 1].Image = game.enemy.units[i].ImgsE.Special;
+                        }
+
+                    }
+                    healer.Stop();
+                };
+                stand.Tick += (sender, args) =>
+                {
+                    pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
+                    pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
+                    pBoxAP[1].Image = game.player.units[game.player.units.Count() - 2].ImgsP.StandingStill;
+                    pBoxAE[1].Image = game.enemy.units[game.enemy.units.Count() - 2].ImgsE.StandingStill;
+                    // After 5 seconds, restore the original image
+                    for (int i = 0; i < game.player.units.Count() - 1; i++)
+                    {
+                        if (game.player.units[i].Name.Contains("Archer"))
+                        {
+                            pBoxAP[i + 1].Image = game.player.units[i].ImgsP.StandingStill;
+                        }
+
+                    }
+                    for (int i = 0; i < game.enemy.units.Count() - 1; i++)
+                    {
+                        if (game.enemy.units[i].Name.Contains("Archer"))
+                        {
+                            pBoxAE[i + 1].Image = game.enemy.units[i].ImgsE.StandingStill;
+                        }
+
+                    }
+                    stand.Stop();
+                };
+                //Timer pauseTimer = new Timer();
+                //pauseTimer.Interval = 5000; // 5 seconds
+                //pauseTimer.Tick += (sender, args) =>
+                //{
+                //    // After 5 seconds, restore the original image
+                //    for (int i = 0; i < game.player.units.Count(); i++)
+                //    {
+                //        pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
+                //    }
+                //    //for (int i = 0; i < game.enemy.units.Count(); i++)
+                //    //{
+                //    //    pBoxAE[i].Image = game.enemy.units[i].ImgsE.StandingStill;
+                //    //}
+                //    for (int i = 0; i < game.player.units.Count(); i++)
+                //    {
+                //        if (game.player.units[i].Name == "Archer")
+                //        {
+                //            pBoxAP[i].Image = game.player.units[i].ImgsE.Special;
+                //        }
+                //    }
+                //    pauseTimer.Stop();
+                //};
+                //pauseTimer.Start();
             }
             if (fight == 3)
             {
@@ -359,8 +444,6 @@ namespace ppa_lab_test_1
 
         }
 
-
-
         private void x1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fight = 1;
@@ -392,7 +475,6 @@ namespace ppa_lab_test_1
 
         private void everyoneXEveryoneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             fight = 3;
             for (int i = 0; i < game.player.units.Count(); i++)
             {
@@ -405,7 +487,82 @@ namespace ppa_lab_test_1
             game.SetArmyPosition(new AllvsAllPosition());
         }
 
-        private void gulyaigorodToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void cloneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //если у нас еще нет клона:
+            CloneUnit cu = new CloneUnit(game);
+            gm.SetCommand(cu);
+            gm.Execute();
+            int k = 0;
+            
+            for (int i = 0; i < game.player.units.Count(); i++)
+            {
+                pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
+                k++;
+            }
+            string str = k.ToString();
+            string str1= game.player.units.Count().ToString();
+            MessageBox.Show(str1);
+            //pBoxAP[4].Image = game.player.units[4].ImgsP.StandingStill;
+        }
+
+        private void playUpToTheEndToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Timer fightall = new Timer();
+            fightall.Interval = 3000; // 5 seconds
+            Timer deadall = new Timer();
+            deadall.Interval = 1000; // 5 seconds
+            fightall.Tick += (sender, args) =>
+            {
+                for (int i = 0; i < game.player.units.Count(); i++)
+                {
+                    //MessageBox.Show("I'm here");
+                    pBoxAP[i].Image = game.player.units[i].ImgsP.BasicAttack;
+
+                }
+                for (int i = 0; i < game.enemy.units.Count(); i++)
+                {
+                    pBoxAE[i].Image = game.enemy.units[i].ImgsE.BasicAttack;
+
+                }
+                deadall.Start();
+                fightall.Stop();
+            };
+            fightall.Start();            
+            deadall.Tick += (sender, args) =>
+            {
+                for (int i = 0; i < game.player.units.Count(); i++)
+                {
+                    pBoxAP[i].Image = game.player.units[i].ImgsP.Dead;
+
+                }
+                for (int i = 0; i < game.enemy.units.Count(); i++)
+                {
+                    pBoxAE[i].Image = game.enemy.units[i].ImgsE.Dead;
+
+                }
+                deadall.Stop();
+            };
+            
+            Form5 f5 = new Form5(game.EndGame());
+            Timer mess = new Timer();
+            mess.Interval = 4000; // 5 seconds
+            mess.Tick += (sender, args) =>
+            {
+                
+                PlayUpToTheEnd playUpToTheEnd = new PlayUpToTheEnd(game);
+                gm.SetCommand(playUpToTheEnd);
+                gm.Execute();
+                Hide();
+                f5.Show();
+                mess.Stop();
+            };
+            mess.Start();
+            
+        }
+
+        private void gulyaigorodToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (ggP.Image != null)
             {
@@ -419,37 +576,6 @@ namespace ppa_lab_test_1
                 ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
                 //ggE.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
             }
-
-        }
-
-        private void cloneToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //если у нас еще нет клона:
-            CloneUnit cu = new CloneUnit(game);
-            gm.SetCommand(cu);
-            gm.Execute();
-            //pBoxAP[4].Image = game.player.units[4].ImgsP.StandingStill;
-        }
-
-        private void playUpToTheEndToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //if (ggP.Image != null)
-            //{
-            //    MessageBox.Show("You already have gulyai-gorod");
-            //}
-            //else
-            //{
-            //    PlaceGulyaiGorod pgg = new PlaceGulyaiGorod(game);
-            //    gm.SetCommand(pgg);
-            //    gm.Execute();
-            //    ggP.Image = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            //}
-            PlayUpToTheEnd playUpToTheEnd = new PlayUpToTheEnd(game);
-            gm.SetCommand(playUpToTheEnd);
-            gm.Execute();
-            Hide();
-            Form5 f5 = new Form5(game.EndGame());
-            f5.Show();
         }
     }
 }
