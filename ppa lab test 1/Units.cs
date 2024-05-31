@@ -10,6 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ppa_lab_test_1
 {
+    // перечисление состояний юнитов
     public enum UnitStates
     {
         Alive,
