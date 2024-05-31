@@ -18,7 +18,7 @@ namespace ppa_lab_test_1
         Damaged
     }
 
-    //creation
+    //creation abstract factory
     interface IUnitAbstactFactory
     {
         public Unit Create();
@@ -130,6 +130,7 @@ namespace ppa_lab_test_1
         }
     }
 
+    //concrete factory1
     class LIFactory : IUnitAbstactFactory
     {
         public Unit Create()
@@ -137,6 +138,8 @@ namespace ppa_lab_test_1
             return new LightUnit();
         }
     }
+
+    //concrete factory2
     class HIFactory : IUnitAbstactFactory
     {
         public Unit Create()
@@ -144,6 +147,8 @@ namespace ppa_lab_test_1
             return new HeavyUnit();
         }
     }
+
+
     class ArcherFactory : IUnitAbstactFactory
     {
         public Unit Create()
@@ -282,8 +287,6 @@ namespace ppa_lab_test_1
                 Health += healAmount;
             }
         }
-        
-
     }
     public class Archer : Unit, IHealable, ICloneable
     {
