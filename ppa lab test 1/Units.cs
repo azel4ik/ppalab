@@ -456,21 +456,21 @@ namespace ppa_lab_test_1
 
             ImgsP = new BasicImages();
 
-            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "маг стоит.gif"));
-            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "маг колдует.gif"));
-            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "маг_стоит.png"));
+            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "маг_колдует.png"));
+            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "мага_бьют.png"));
+            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "маг_умер.png"));
+            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "мага_лечат.png"));
+            ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "маг_клонирует.png"));
 
             ImgsE = new BasicImages();
 
-            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "маг стоит.gif"));
-            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "маг колдует.gif"));
-            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "маг_стоит.png"));
+            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "маг_колдует.png"));
+            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "мага_бьют.png"));
+            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "аг_умер.png"));
+            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "мага_лечат.png"));
+            ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "маг_клонирует.png"));
 
         }
 
