@@ -129,15 +129,7 @@ namespace ppa_lab_test_1
 
         private void attackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (game.Over)
-            {
-                Hide();
-                bcgstream.Dispose();
-                bcgstream.Close();
-                
-                Form5 f5 = new Form5(game.EndGame());
-                f5.Show();
-            }
+
             if (fight == 1)
             {
                 #region
@@ -151,31 +143,31 @@ namespace ppa_lab_test_1
                 stand.Interval = 3000; // 5 seconds
                 archer.Tick += (sender, args) =>
                 {
-                    //здесь кидает исключение из-за того, что одна из армий нулевая в конце игры
-                    pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
-                    pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
-                    // After 5 seconds, restore the original image
-                    for (int i = 0; i < game.player.units.Count() - 1; i++)
-                    {
-                        if (game.player.units[i].Name.Contains("Archer"))
+                        //здесь кидает исключение из-за того, что одна из армий нулевая в конце игры
+                        pBoxAP[0].Image = game.player.units[game.player.units.Count() - 1].ImgsP.StandingStill;
+                        pBoxAE[0].Image = game.enemy.units[game.enemy.units.Count() - 1].ImgsE.StandingStill;
+                        // After 5 seconds, restore the original image
+                        for (int i = 0; i < game.player.units.Count() - 1; i++)
                         {
-                            pBoxAP[i + 1].Image = game.player.units[i].ImgsP.Special;
+                            if (game.player.units[i].Name.Contains("Archer"))
+                            {
+                                pBoxAP[i + 1].Image = game.player.units[i].ImgsP.Special;
+                            }
                         }
-                    }
-                    for (int i = 0; i < game.enemy.units.Count() - 1; i++)
-                    {
-                        if (game.enemy.units[i].Name.Contains("Archer"))
+                        for (int i = 0; i < game.enemy.units.Count() - 1; i++)
                         {
-                            pBoxAE[i + 1].Image = game.enemy.units[i].ImgsE.Special;
+                            if (game.enemy.units[i].Name.Contains("Archer"))
+                            {
+                                pBoxAE[i + 1].Image = game.enemy.units[i].ImgsE.Special;
+                            }
+
                         }
+                        stand.Start();
+                        archer.Stop();
+                        healer.Start();
 
-                    }
-                    stand.Start();
-                    archer.Stop();
-                    healer.Start();
-
+                    archer.Start();
                 };
-                archer.Start();
                 healer.Tick += (sender, args) =>
                 {
                     //здесь исключение в конце игры, так как одна из армий нулевая
@@ -355,7 +347,20 @@ namespace ppa_lab_test_1
             MakeMove mm = new MakeMove(game);
             gm.SetCommand(mm);
             gm.Execute();
-
+            if (game.Over)
+            {
+                
+                Hide();
+                loop.Dispose();
+                loop.Close();
+                bcgstream.Dispose();
+                bcgstream.Close();
+                outbcg.Dispose();
+                Hide();
+                Form5 f5 = new Form5(game.EndGame());
+                f5.Show();
+                return;
+            }
 
 
             Timer firstpos = new Timer();
