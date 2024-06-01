@@ -18,7 +18,7 @@ namespace ppa_lab_test_1
         Damaged
     }
 
-    //creation abstract factory
+    //creation
     interface IUnitAbstactFactory
     {
         public Unit Create();
@@ -130,7 +130,6 @@ namespace ppa_lab_test_1
         }
     }
 
-    //concrete factory1
     class LIFactory : IUnitAbstactFactory
     {
         public Unit Create()
@@ -138,8 +137,6 @@ namespace ppa_lab_test_1
             return new LightUnit();
         }
     }
-
-    //concrete factory2
     class HIFactory : IUnitAbstactFactory
     {
         public Unit Create()
@@ -147,8 +144,6 @@ namespace ppa_lab_test_1
             return new HeavyUnit();
         }
     }
-
-
     class ArcherFactory : IUnitAbstactFactory
     {
         public Unit Create()
@@ -170,19 +165,19 @@ namespace ppa_lab_test_1
 
             ImgsP = new BasicImages();
 
-            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "кентавр стоит.gif"));
-            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "кентавр атакует.gif"));
-            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота стоит.png"));
+            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота атакует.png"));
+            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота мертв.png"));
+            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехоту лечат.png"));
+            ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехоту бьют.png"));
 
             ImgsE = new BasicImages();
 
-            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "кентавр стоит.gif"));
-            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "кентавр атакует.gif"));
-            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота стоит.png"));
+            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота атакует.png"));
+            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота мертв.png"));
+            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехоту лечат.png"));
+            ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехоту бьют.png"));
         }
 
         public HeavyUnit Copy()
@@ -248,19 +243,19 @@ namespace ppa_lab_test_1
 
             ImgsP = new BasicImages();
 
-            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "рыцарь стоит.gif"));
-            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "рыцарь атакует.gif"));
-            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "пехота стоит.png"));
+            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "пехота атакует.png"));
+            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "пехоту бьют.png"));
+            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "пехота мертв.png"));
+            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "пехоту лечат.png"));
 
             ImgsE = new BasicImages();
 
-            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "рыцарь стоит.gif"));
-            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "рыцарь атакует.gif"));
-            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "пехота стоит.png"));
+            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "пехота атакует.png"));
+            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "пехоту бьют.png"));
+            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "пехота мертв.png"));
+            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "пехоту лечат.png"));
         }
 
         public object Clone()
@@ -287,6 +282,8 @@ namespace ppa_lab_test_1
                 Health += healAmount;
             }
         }
+        
+
     }
     public class Archer : Unit, IHealable, ICloneable
     {
@@ -357,24 +354,24 @@ namespace ppa_lab_test_1
 
             ImgsP = new BasicImages();
 
-            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "врач стоит.gif"));
-            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "врач атакует.gif"));
-            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsP.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "хиллер стоит.png"));
+            ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "хиллер атакует.png"));
+            ImgsP.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "хиллера бьют.png"));
+            ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "хиллер мертв.png"));
+            ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "хиллер стоит.png")); // пока просто стоит
 
-            ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "врач лечит.gif"));
+            ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "хиллер лечит.png"));
 
 
             ImgsE = new BasicImages();
 
-            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "врач стоит.gif"));
-            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "врач атакует.gif"));
-            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
-            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "attacktest.gif"));
+            ImgsE.StandingStill = Image.FromFile(Path.Combine(Application.StartupPath, "хиллер стоит.png"));
+            ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "хиллер атакует.png"));
+            ImgsE.Damaged = Image.FromFile(Path.Combine(Application.StartupPath, "хиллера бьют.png"));
+            ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "хиллер мертв.png"));
+            ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "хиллер стоит.png"));
 
-            ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "врач лечит.gif"));
+            ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "хиллер лечит.png"));
 
         }
         public Healer Copy()

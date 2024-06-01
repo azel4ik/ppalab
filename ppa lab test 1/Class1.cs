@@ -747,7 +747,7 @@ namespace ppa_lab_test_1
             List<int> inxs = FindBuffPair(pt);
             for (int i = 0;i < inxs.Count;i++) 
             {
-                BuffHeavyUnit(inxs[i]);
+                BuffHeavyUnit(i);
             }
         }
         public void BuffHeavyUnit(int inx)
