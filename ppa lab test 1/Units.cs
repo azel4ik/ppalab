@@ -87,7 +87,7 @@ namespace ppa_lab_test_1
         {
             Name = name;
         }
-        public void DoAttack(Unit opponent, int attack) // хз как написать, но суть в том, что аттакующий и аттакованный юниты были живы для действия
+        public void DoAttack(Unit opponent, int attack) 
         {
             Random rndAtt = new Random();
             int AttackValue = rndAtt.Next((int)(attack*0.75), (int)(attack * 1.25));
@@ -99,7 +99,7 @@ namespace ppa_lab_test_1
 
             }
         }
-        internal IHealable Recover(int power) //стырила у Наташи
+        internal IHealable Recover(int power) 
         {
             throw new NotImplementedException();
         }
@@ -152,6 +152,22 @@ namespace ppa_lab_test_1
         }
     }
 
+    class HFactory : IUnitAbstactFactory
+    {
+        public Unit Create()
+        {
+            return new Healer();
+        }
+    }
+
+    class WFactory : IUnitAbstactFactory
+    {
+        public Unit Create()
+        {
+            return new Wizard();
+        }
+    }
+
     public class HeavyUnit : Unit, IHealable
     {
         public HeavyUnit()
@@ -169,7 +185,7 @@ namespace ppa_lab_test_1
             ImgsP.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота атакует.png"));
             ImgsP.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота мертв.png"));
             ImgsP.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехоту лечат.png"));
-            ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехоту бьют.png"));
+            ImgsP.Special = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота баф.png"));
 
             ImgsE = new BasicImages();
 
@@ -177,7 +193,7 @@ namespace ppa_lab_test_1
             ImgsE.BasicAttack = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота атакует.png"));
             ImgsE.Dead = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота мертв.png"));
             ImgsE.Healed = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехоту лечат.png"));
-            ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехоту бьют.png"));
+            ImgsE.Special = Image.FromFile(Path.Combine(Application.StartupPath, "тяж_пехота баф.png"));
         }
 
         public HeavyUnit Copy()

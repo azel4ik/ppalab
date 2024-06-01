@@ -40,7 +40,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Pfeffer Mediæval", 36F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = SystemColors.Control;
+            label1.ForeColor = Color.DarkGreen;
             label1.Location = new Point(241, 5);
             label1.Name = "label1";
             label1.Size = new Size(326, 83);
@@ -57,7 +57,7 @@
             NewGame.FlatStyle = FlatStyle.Flat;
             NewGame.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             NewGame.ForeColor = Color.Gold;
-            NewGame.Location = new Point(272, 91);
+            NewGame.Location = new Point(272, 308);
             NewGame.Name = "NewGame";
             NewGame.Size = new Size(250, 52);
             NewGame.TabIndex = 1;
@@ -73,7 +73,7 @@
             ExitButton.FlatStyle = FlatStyle.Flat;
             ExitButton.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             ExitButton.ForeColor = Color.Gold;
-            ExitButton.Location = new Point(272, 159);
+            ExitButton.Location = new Point(272, 386);
             ExitButton.Name = "ExitButton";
             ExitButton.Size = new Size(250, 52);
             ExitButton.TabIndex = 3;

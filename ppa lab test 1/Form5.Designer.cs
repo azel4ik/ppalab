@@ -52,10 +52,10 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
+            label1.BackColor = Color.Gold;
             label1.Font = new Font("Pfeffer Mediæval", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.Control;
-            label1.Location = new Point(360, 167);
+            label1.Location = new Point(351, 165);
             label1.Name = "label1";
             label1.Size = new Size(105, 55);
             label1.TabIndex = 1;
@@ -72,6 +72,7 @@
             Controls.Add(backtomenubt);
             Name = "Form5";
             Text = "Form5";
+            Load += Form5_Load;
             ResumeLayout(false);
             PerformLayout();
         }

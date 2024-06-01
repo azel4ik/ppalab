@@ -287,6 +287,11 @@ namespace ppa_lab_test_1
                         pBoxAP[0].Image = game.player.units[0].ImgsP.Special;
                         pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
                     }
+                    else
+                    {
+                        pBoxAP[0].Image = game.player.units[0].ImgsP.BasicAttack;
+                        pBoxAP[1].Image = game.player.units[1].ImgsP.BasicAttack;
+                    }
                 }
                 else
                 {
@@ -325,6 +330,11 @@ namespace ppa_lab_test_1
                     if ((game.enemy.units[0].Name.Contains("Heavy") && game.enemy.units[2].Name.Contains("Light")))
                     {
                         pBoxAE[0].Image = game.enemy.units[0].ImgsE.Special;
+                        pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
+                    }
+                    else
+                    {
+                        pBoxAE[0].Image = game.enemy.units[0].ImgsE.BasicAttack;
                         pBoxAE[1].Image = game.enemy.units[1].ImgsE.BasicAttack;
                     }
                 }
@@ -586,14 +596,14 @@ namespace ppa_lab_test_1
                 // After 5 seconds, restore the original image
                 for (int i = 0; i < game.player.units.Count(); i++)
                 {
-                    if (game.player.units[i].Health == 0)
+                    if (game.player.units[i].Health <= 0)
                     {
                         pBoxAP[i].Image = ClearIm;
                     }
                 }
                 for (int i = 0; i < game.enemy.units.Count(); i++)
                 {
-                    if (game.enemy.units[i].Health == 0)
+                    if (game.enemy.units[i].Health <= 0)
                     {
                         pBoxAE[i].Image = ClearIm;
                     }
@@ -620,6 +630,10 @@ namespace ppa_lab_test_1
             {
                 pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
             }
+            for (int i = 0; i < game.enemy.units.Count(); i++)
+            {
+                pBoxAE[i].Image = game.enemy.units[i].ImgsE.StandingStill;
+            }
             label1.Text = LivesInfo(game.player);
             label2.Text = LivesInfo(game.enemy);
 
@@ -631,6 +645,10 @@ namespace ppa_lab_test_1
             for (int i = 0; i < game.player.units.Count(); i++)
             {
                 pBoxAP[i].Image = game.player.units[i].ImgsP.StandingStill;
+            }
+            for (int i = 0; i < game.enemy.units.Count(); i++)
+            {
+                pBoxAE[i].Image = game.enemy.units[i].ImgsE.StandingStill;
             }
             label1.Text = LivesInfo(game.player);
             label2.Text = LivesInfo(game.enemy);

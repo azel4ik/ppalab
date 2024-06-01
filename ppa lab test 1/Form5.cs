@@ -25,5 +25,10 @@ namespace ppa_lab_test_1
             Hide();
             f1.Show();
         }
+
+        private void Form5_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

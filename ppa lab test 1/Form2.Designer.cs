@@ -57,7 +57,7 @@
             label1.BackColor = Color.Transparent;
             label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("Pfeffer Mediæval", 36F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = SystemColors.ButtonFace;
+            label1.ForeColor = Color.DarkGreen;
             label1.Location = new Point(266, 0);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -180,12 +180,12 @@
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.FlatStyle = FlatStyle.Flat;
-            label3.Font = new Font("Pfeffer Mediæval", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ForeColor = SystemColors.Control;
+            label3.Font = new Font("Pfeffer Mediæval", 10.7999992F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.DarkGreen;
             label3.Location = new Point(28, 92);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(152, 25);
+            label3.Size = new Size(160, 25);
             label3.TabIndex = 11;
             label3.Text = "Heavy Infantry(20)";
             // 
@@ -194,12 +194,12 @@
             label4.Anchor = AnchorStyles.Top;
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Pfeffer Mediæval", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.ForeColor = SystemColors.Control;
+            label4.Font = new Font("Pfeffer Mediæval", 10.7999992F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.DarkGreen;
             label4.Location = new Point(28, 167);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(147, 25);
+            label4.Size = new Size(157, 25);
             label4.TabIndex = 12;
             label4.Text = "Light Infantry (10)";
             // 
@@ -208,12 +208,12 @@
             label5.Anchor = AnchorStyles.Top;
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Pfeffer Mediæval", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.ForeColor = SystemColors.Control;
+            label5.Font = new Font("Pfeffer Mediæval", 10.7999992F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.DarkGreen;
             label5.Location = new Point(28, 254);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(103, 25);
+            label5.Size = new Size(109, 25);
             label5.TabIndex = 13;
             label5.Text = "Archers (30)";
             // 
@@ -222,12 +222,12 @@
             label6.Anchor = AnchorStyles.Top;
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Pfeffer Mediæval", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.ForeColor = SystemColors.Control;
+            label6.Font = new Font("Pfeffer Mediæval", 10.7999992F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.DarkGreen;
             label6.Location = new Point(504, 94);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(100, 25);
+            label6.Size = new Size(105, 25);
             label6.TabIndex = 14;
             label6.Text = "Healers (35)";
             // 
@@ -236,12 +236,12 @@
             label7.Anchor = AnchorStyles.Top;
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Pfeffer Mediæval", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.ForeColor = SystemColors.Control;
+            label7.Font = new Font("Pfeffer Mediæval", 10.7999992F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = Color.DarkGreen;
             label7.Location = new Point(504, 177);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(107, 25);
+            label7.Size = new Size(112, 25);
             label7.TabIndex = 15;
             label7.Text = "Wizards (35)";
             // 
@@ -249,6 +249,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaptionText;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1000, 561);

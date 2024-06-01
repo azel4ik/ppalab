@@ -29,7 +29,7 @@ namespace ppa_lab_test_1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int total = (int)HICount.Value + (int)LICount.Value + (int)ACount.Value + (int)ACount.Value + (int)HCount.Value + (int)WCount.Value;
+            int total = (int)HICount.Value + (int)LICount.Value + (int)ACount.Value + (int)HCount.Value + (int)WCount.Value;
             if (balance >= 0 && balance != wallet && total < 5)
             {
                 Game g = new Game();
